@@ -613,6 +613,28 @@
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '9534d1cebea3dfbb9ec6',
+        clientSecret: '6a5cc1e867a33b3a7296e470e33d6cadd5dd3abe',
+        repo: 'BlogComment(Chinese Blog)',
+        owner: 'kingsleyli920',
+        admin: "kingsleyli920",
+        id: '2019-11-20T17-22-54',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
 
     
 
