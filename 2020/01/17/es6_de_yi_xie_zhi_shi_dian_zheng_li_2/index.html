@@ -545,7 +545,7 @@ finish moving...
 <h2 id="回调地狱解决办法"><a href="#回调地狱解决办法" class="headerlink" title="回调地狱解决办法"></a>回调地狱解决办法</h2><p>解决办法有三种，分别是使用<strong>Promise</strong> ，使用<strong>Async和Await</strong>以及使用<strong>Generator</strong>函数。这一篇文章先讲一下Promise的使用。</p>
 <h3 id="Promise的概念以及使用"><a href="#Promise的概念以及使用" class="headerlink" title="Promise的概念以及使用"></a>Promise的概念以及使用</h3><p><strong><em>Promise不是解决异步问题本身，而是解决异步的写法问题，使异步写法更清晰。</em></strong></p>
 <p>先说下Promise，在MDN，Promise被如下定义：</p>
-<pre><code>Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.[1]</code></pre><p>Promise有三个状态：<b>Pending（在等待异步流程执行完毕）；Fulfilled或者Resolved（成功）；Rejected（失败）</b>。<br>异步操作的结果决定了当前状态，其它内容无法干扰Promise状态。且，Promise如果状态改变，则不会再变，比如从pending转台改变到rejected，就不会再回到pending，或者再变为Fulfilled。[2]</p>
+<pre><code>Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.[1]</code></pre><p>Promise有三个状态：<b>Pending（在等待异步流程执行完毕）；Fulfilled或者Resolved（成功）；Rejected（失败）</b>。<br>异步操作的结果决定了当前状态，其它内容无法干扰Promise状态。且，Promise如果状态改变，则不会再变，比如从pending改变到rejected，就不会再回到pending，或者再变为fulfilled。[2]</p>
 <p>接下来展示一段Promise的简单使用：</p>
 <pre><code>let p = new Promise((resolve, reject) =&gt; {
         setTimeout(() =&gt; {
@@ -635,7 +635,7 @@ po.then((res) =&gt; {
 
  console.log(pt);</code></pre><p> 结果为：</p>
 <pre><code>Promise {&lt;pending&gt;}__proto__: Promise[[PromiseStatus]]: "resolved"[[PromiseValue]]: "pt"
-1</code></pre><p>上述代码运行后先打印了最后一行的pt。因为异步的原因，然后打印了resolve传如then函数的数字1。pt的展开结果我们可以看出，then方法会给我们返回一个Promise对象，而且从上述结果看出，返回的是一个resolved状态的Promise对象。</p>
+1</code></pre><p>上述代码运行后先打印了最后一行的pt。因为异步的原因，然后打印了resolve传入then函数的数字1。pt的展开结果我们可以看出，then方法会给我们返回一个Promise对象，而且从上述结果看出，返回的是一个resolved状态的Promise对象。</p>
 <p>现在我们都了解到Promise的用法了，上文中的移动方块的例子能改写为：</p>
 <pre><code>function move(ele, dir, dist) {
     let curPos = parseFloat(getComputedStyle(ele)[dir]);
@@ -666,7 +666,7 @@ move(box, "left", 100).then(() =&gt; {
 })</code></pre><p>运行结果和上述结果一样。但是可读性和代码可扩展性得到了显著的提高。</p>
 <h4 id="Promise-all方法"><a href="#Promise-all方法" class="headerlink" title="Promise all方法"></a>Promise all方法</h4><p>说完Promise的使用和then还有catch常用方法，接着说下Promise的另一个常用方法 - all方法。</p>
 <p>MDN对于all方法的说明是：</p>
-<pre><code>Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数    中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失    败原因的是第一个失败 promise 的结果。[3] </code></pre><p>简单说就是比如创建了三个不同的Promise对象，调用all方法顺序执行三个Promise对象，如果三个都是resolved状态，则可以向下执行。</p>
+<pre><code>Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数    中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失    败原因的是第一个失败 promise 的结果。[3] </code></pre><p>简单说就是比如创建了三个不同的Promise对象，调用all方法执行三个Promise对象，如果三个都是resolved状态，则可以向下执行。</p>
 <p>例子：</p>
 <pre><code> let p1 = new Promise((resolve, reject) =&gt; {
      console.log(1);
@@ -691,7 +691,7 @@ let p2 = new Promise((resolve, reject) =&gt; {
 2
 3
 4</code></pre><p>如果任意一个Promise对象的执行状态是rejected。则需要在then中或者或者代码最后使用catch方法捕获错误，不然会报错。</p>
-<h3 id="Promise-race方法"><a href="#Promise-race方法" class="headerlink" title="Promise race方法"></a>Promise race方法</h3><p>这个方法和all方法正好相反，all方法是顺序执行，全部执行结束，才执行下面的内容。race方法顾名思义，有其中一项执行结束，则开始执行下面的方法。代码如下：</p>
+<h3 id="Promise-race方法"><a href="#Promise-race方法" class="headerlink" title="Promise race方法"></a>Promise race方法</h3><p>这个方法和all方法正好相反，all方法是全部执行结束，才执行下面的内容。race方法顾名思义，有其中一项执行结束，则开始执行下面的方法。代码如下：</p>
 <pre><code> let p1 = new Promise((resolve, reject) =&gt; {
      setTimeout(() =&gt; {
         console.log(1);

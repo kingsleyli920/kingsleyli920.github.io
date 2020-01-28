@@ -1,0 +1,1285 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="es6_summary_2, CoderStarter">
+    <meta name="description" content=" ES6 Summary #2 
+  Asynchronous and synchronous  
+
+*Asynchronous and synchronous are a message notification mechanism.*W">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>es6_summary_2 | CoderStarter</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/en/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/en/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/en/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">CoderStarter</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Home</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/en/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="https://kingsleyli920.github.io" class="waves-effect waves-light">
+            
+            <span>中文</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search" title="Search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">CoderStarter</div>
+        <div class="logo-desc">
+            
+            God helps those who help themselves.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/en" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="/en/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/en/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/en/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/en/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/en/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://kingsleyli920.github.io" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-link"></i>
+                
+                中文
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/kingsleyli920" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link">
+    <a href="https://github.com/kingsleyli920" class="tooltipped" target="_blank" data-tooltip="Access to My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:kuncheng.li1015@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email Me" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="My LinkedIn: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+        <i class="fa fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="" class="tooltipped" data-tooltip="My WeChat: kingsleyli920" data-position="top" data-delay="50">
+        <i class="fa fa-weixin"></i>
+    </a>
+
+
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/kingsleyli920" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        es6_summary_2
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/en/tags/JavaScript/" target="_blank">
+                                <span class="chip bg-color">JavaScript</span>
+                            </a>
+                        
+                            <a href="/en/tags/ECMAScript-6/" target="_blank">
+                                <span class="chip bg-color">ECMAScript 6</span>
+                            </a>
+                        
+                            <a href="/en/tags/Front-End-Development/" target="_blank">
+                                <span class="chip bg-color">Front End Development</span>
+                            </a>
+                        
+                            <a href="/en/tags/Web-Development/" target="_blank">
+                                <span class="chip bg-color">Web Development</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/en/categories/Front-end/" class="post-category" target="_blank">
+                                Front-end
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-01-28
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
+                        2.2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
+                        13 Min
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <center> <h1>ES6 Summary #2</h1> </center>
+<center> <h2> <font color="lightgray">Asynchronous and synchronous</font> </h2> </center>
+
+<h3 id="Asynchronous-and-synchronous-are-a-message-notification-mechanism"><a href="#Asynchronous-and-synchronous-are-a-message-notification-mechanism" class="headerlink" title="*Asynchronous and synchronous are a message notification mechanism.*"></a><strong>*<u>Asynchronous and synchronous are a message notification mechanism.</u>*</strong></h3><h2 id="What-is-Asynchronous？"><a href="#What-is-Asynchronous？" class="headerlink" title="What is Asynchronous？"></a>What is Asynchronous？</h2><h3 id="Asynchronous-non-blocking："><a href="#Asynchronous-non-blocking：" class="headerlink" title="Asynchronous non-blocking："></a>Asynchronous non-blocking：</h3><pre><code>For example: A calls B, while B processes, A continues to execute. The processing of B ends, the result is returned, and A is executed again with the result of B. A does not have to wait for the end of B's execution during this period.</code></pre><h3 id="Synchronous-blocking："><a href="#Synchronous-blocking：" class="headerlink" title="Synchronous blocking："></a>Synchronous blocking：</h3><pre><code>For example: A calls B, and B returns the result to A after processing, and A continues to execute. A waits for the end of B's execution during this period. The execution of normal code is performed line by line, which is the synchronization mechanism.</code></pre><h3 id="The-most-basic-way-to-achieve-asynchronous-Using-timers"><a href="#The-most-basic-way-to-achieve-asynchronous-Using-timers" class="headerlink" title="The most basic way to achieve asynchronous: Using timers"></a>The most basic way to achieve asynchronous: <strong><em>Using timers</em></strong></h3><pre><code>function move(ele, dir, dist) {
+    let curPos = parseFloat(getComputedStyle(ele)[dir]);
+    let speed = (dist - curPos) /Math.abs(curPos - dist);
+    clearInterval(ele.timer);
+    console.log("start moving...");
+    ele.timer = setInterval(() =&gt; {
+       if (Math.abs(curPos - dist) &lt;= 0) {
+            clearInterval(ele.timer);
+            console.log("finish moving...");
+       } else {
+            curPos += speed;
+            ele.style[dir] = curPos + "px";
+       }
+    }, 20);
+    console.log("printing....");
+}
+
+let box = document.querySelector("#box");
+
+move(box, "left", 100);</code></pre><p>The result is：</p>
+<p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/code-result1.gif" alt="Code Result"></p>
+<p>The printing result is：</p>
+<p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/code-result2.png" alt="Code Printing Result"></p>
+<p>It can be seen from the results that “printing…” is printed before the end of the block movement, and it is not executed sequentially as in a regular program. This is the most basic asynchronous implementation.</p>
+<h3 id="Need-more-operation-after-asynchronous-funtion-end"><a href="#Need-more-operation-after-asynchronous-funtion-end" class="headerlink" title="Need more operation after asynchronous funtion end?"></a>Need more operation after asynchronous funtion end?</h3><p>There must be many solutions, but I think the better method is the callback function method, modify the above code：</p>
+<pre><code>function move(ele, dir, dist, callback) {
+    let curPos = parseFloat(getComputedStyle(ele)[dir]);
+    let speed = (dist - curPos) /Math.abs(curPos - dist);
+    clearInterval(ele.timer);
+    console.log("start moving...");
+    ele.timer = setInterval(() =&gt; {
+       if (Math.abs(curPos - dist) &lt;= 0) {
+            clearInterval(ele.timer);
+            console.log("finish moving...");
+            callback &amp;&amp; callback(); // ===&gt;First determine whether there is a callback, if it exists, then execute
+       } else {
+            curPos += speed;
+            ele.style[dir] = curPos + "px";
+       }
+    }, 20);
+    console.log("printing....");
+
+}
+
+let box = document.querySelector("#box");
+
+move(box, "left", 100, () =&gt; {
+    console.log("Run callback function");
+});</code></pre><p>The result is：</p>
+<pre><code>start moving...
+printing....
+finish moving...
+Run callback function</code></pre><p>This can well solve the problems that require asynchronous results or need to execute some code after asynchronous execution.</p>
+<h3 id="This-implementation-of-asynchronous-and-callback-issues-Callback-Hell"><a href="#This-implementation-of-asynchronous-and-callback-issues-Callback-Hell" class="headerlink" title="This implementation of asynchronous and callback issues: Callback Hell"></a>This implementation of asynchronous and callback issues: <strong><em>Callback Hell</em></strong></h3><p>The Callback Hell is to call call back function multiple times, resulting in too many layers, as follows:</p>
+<pre><code>move(box, "left", 100,() =&gt; {
+    move(box, "top", 100,() =&gt; {
+        move(box, "left", -100,() =&gt; {
+            move(box, "top", -100,() =&gt; {
+                console.log("finish...");
+            });
+        });
+    });
+});</code></pre><p>The layer of above code is too deep, which is not conducive to code reuse, maintainability, and readability.</p>
+<h2 id="Callback-Hell-Solution"><a href="#Callback-Hell-Solution" class="headerlink" title="Callback Hell Solution"></a>Callback Hell Solution</h2><p>There are three solutions, namely using <strong>Promise</strong>, using <strong>Async and Await</strong>, and using <strong>Generator</strong> function. I will talk about the Promise.</p>
+<h3 id="Promise-concept-and-usage"><a href="#Promise-concept-and-usage" class="headerlink" title="Promise concept and usage"></a>Promise concept and usage</h3><p><strong><em>Promises do not solve the asynchronous problem itself, but solve the asynchronous writing problem, making asynchronous writing clearly.</em></strong></p>
+<p>Let’s talk about promises first. In MDN, promises are defined as follows:</p>
+<pre><code>The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.[1]</code></pre><p>Promise has three states: <b> Pending (waiting for asynchronous process execution to complete); Fulfilled or Resolved (successful); Rejected (failed) &lt;/ b&gt;.<br>The result of the asynchronous operation determines the current state, and other content cannot interfere with the Promise state. In addition, if the status of a Promise changes, it will not change again. For example, if you change from a Pending turn to Rejected, state will not return to Pending or become Fulfilled again. [2]</b></p>
+<p>The following shows a simple use of a Promise:</p>
+<pre><code>let p = new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            console.log(p);
+            resolve();
+        }, 2000); 
+    });
+
+    p.then(() =&gt; {
+        console.log(p);
+        console.log("then....");
+    }); </code></pre><p>The “then” method is equivalent to the callback function. According to the above code, it can be found that a function is passed after the Promise is created. The parameters of the function are two functions - Resolve and Reject, corresponding to Rejected and Resolved (Fulfilled) States. Now you can see at a glance. If the asynchronous execution is successful, you call “resolve()”, otherwise “reject()”. The above results are:</p>
+<p>After the program runs for two seconds, it prints the following：</p>
+<pre><code>Promise {&lt;pending&gt;}
+Promise {&lt;resolved&gt;: undefined}
+then....</code></pre><p>It can be seen that if the asynchronous execution is successful and the Resolve function is called, the program will execute down to “then”, and from the two printed “p”s, we can see that the status of the Promise changes from Pending to Resolved.</p>
+<h4 id="So-how-do-you-use-asynchronous-results"><a href="#So-how-do-you-use-asynchronous-results" class="headerlink" title="So how do you use asynchronous results?"></a>So how do you use asynchronous results?</h4><p>Many times, the results produced by asynchronous are what we will use later, so if we use Promise to optimize asynchronous writing, like above, how do we use asynchronous results?</p>
+<p>In fact, the answer already appears in the above code. The second line of the above code results, There is an “undefined” value after “resolved”. This place is used to store asynchronous results. The code can be changed as follows:</p>
+<pre><code>let p = new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            console.log(p);
+            resolve("parameters..."); // =======》Here you can pass parameters when executing resolve.
+        }, 2000); 
+ });
+
+ p.then((res) =&gt; { // ======》You can pass a parameter here, such asres
+        console.log(p);
+        console.log(res);         
+        console.log("then....");
+ });</code></pre><p>The results are：</p>
+<pre><code>Promise {&lt;pending&gt;}
+Promise {&lt;resolved&gt;: "parameters..."}
+parameters...
+then....</code></pre><p>Combining the above code and results, we can see that by passing the asynchronous result to the resolve method, after calling the then method, it can receive a parameter, which will point to the asynchronous result. This makes it possible to use asynchronous results.</p>
+<p>If you want to use the result of “reject” in the “then” function, it is also very simple. Pass a second callback function as a parameter, such as:</p>
+<pre><code>p.then((res) =&gt; {
+        console.log(p);
+        console.log(res);
+        console.log("then....");
+ }, (rej) =&gt; {
+        console.log(rej);
+ });</code></pre><p>At a glance, I won’t go into details here.</p>
+<p>However, if we should call the “then” function for multiple times, two functions are passed in each function to handle the success and failure results, which is sometimes cumbersome. Therefore, if all steps are processed with errors or failures, but only one kind of information need to be given to the user (such as network request error), you can use the following methods:</p>
+<pre><code>p.then((res) =&gt; {
+        console.log(p);
+        console.log(res);
+        console.log("then....");
+ }).then((res) =&gt; {
+        console.log(p);
+        console.log(res);
+        console.log("then....");
+ }).then((res) =&gt; {
+        console.log(p);
+        console.log(res);
+        console.log("then....");
+ }).catch((rej) =&gt; {
+     console.log("fail...");
+ })</code></pre><p>If you want to implement the previous scenario that requires multiple callbacks, the code is as follows:</p>
+<pre><code>let po = new Promise((resolve, reject) =&gt; {
+    resolve(1);
+});
+
+po.then((res) =&gt; {
+   console.log(res);
+   return 2;
+}).then((res) =&gt; {
+   console.log(res);
+   return 3;
+}).then((res) =&gt; {
+   console.log(res);
+   return 4;
+}).then((res) =&gt; {
+   console.log(res);
+})</code></pre><p>Result is：</p>
+<pre><code>1
+2
+3
+4</code></pre><p>Obviously, the result returned by the “then” method can be obtained by the “then” method behind. But why is it available? We can assign a value to the result of the “then” method and print it. The code is:</p>
+<pre><code>let po = new Promise((resolve, reject) =&gt; {
+     resolve(1);
+ });
+
+ let pt = po.then((res) =&gt; {
+     console.log(res);
+     return "pt";
+ })
+
+ console.log(pt);</code></pre><p> Result is：</p>
+<pre><code>Promise {&lt;pending&gt;}__proto__: Promise[[PromiseStatus]]: "resolved"[[PromiseValue]]: "pt"
+1</code></pre><p>After the above code is run, the last line of “pt” is printed. Because of the asynchronous reason, then the number “1” of the resolve passed into the “then” function is printed. The expansion result of “pt” can be seen that the “then” method will return a Promise object to us, and from the above results, it is seen that a Promise object with “resolved” state is returned.</p>
+<p>Now that we all understand the use of promises, the example of moving blocks above can be rewritten as:</p>
+<pre><code>function move(ele, dir, dist) {
+    let curPos = parseFloat(getComputedStyle(ele)[dir]);
+    let speed = (dist - curPos) /Math.abs(curPos - dist);
+
+    return new Promise((resolve, reject) =&gt; {
+        clearInterval(ele.timer);
+        ele.timer = setInterval(() =&gt; {
+        if (Math.abs(curPos - dist) &lt;= 0) {
+                clearInterval(ele.timer); 
+                resolve();
+        } else {
+                curPos += speed;
+                ele.style[dir] = curPos + "px";
+        }
+        }, 20);
+    })
+}
+
+let box = document.querySelector("#box");
+
+move(box, "left", 100).then(() =&gt; {
+    return move(box, "top", 100);
+}).then(() =&gt; {
+    return move(box, "left", 0);
+}).then(() =&gt; {
+    return move(box, "top", 0);
+})</code></pre><p>The result is the same as the above result. But readability and code scalability have been significantly improved.</p>
+<h4 id="Promise-“all”-function"><a href="#Promise-“all”-function" class="headerlink" title="Promise “all” function"></a>Promise “all” function</h4><p>After talking about the use of Promise and the use of “catch” and “then”, later, we will talk about another common method, Promise “all” function.</p>
+<p>MDN’s description of the “all” method is:</p>
+<pre><code>The Promise.all() method returns a single Promise that fulfills when all of the promises passed as an iterable have been fulfilled or when the iterable contains no promises. It rejects with the reason of the first promise that rejects.[3] </code></pre><p>For example, three different Promise objects are created, and the “all” method is called to execute the three Promise objects. If all three Promise objects are in the “resolved” state, then, can be executed downwards.</p>
+<p>For example:</p>
+<pre><code> let p1 = new Promise((resolve, reject) =&gt; {
+     console.log(1);
+     resolve();
+ });
+
+
+let p2 = new Promise((resolve, reject) =&gt; {
+     console.log(2);
+     resolve();
+ });
+
+ let p3 = new Promise((resolve, reject) =&gt; {
+     console.log(3);
+     resolve();
+ });
+
+ Promise.all([p1, p2, p3]).then(() =&gt;{
+     console.log(4);
+ })</code></pre><p>Result:</p>
+<pre><code>1
+2
+3
+4</code></pre><p>If the execution status of any Promise object is rejected. You need to use catch method to catch errors in “then” or at the end of the code, otherwise an error will be reported.</p>
+<h3 id="Promise-“race”-function"><a href="#Promise-“race”-function" class="headerlink" title="Promise “race” function"></a>Promise “race” function</h3><p>This method is exactly the opposite of the all method. The all method is executed. And after all execution is complete, the following content is executed. As the name of the race method implies, when one of the executions of Promise objects ends, the following method starts to execute. code show as below:</p>
+<pre><code> let p1 = new Promise((resolve, reject) =&gt; {
+     setTimeout(() =&gt; {
+        console.log(1);
+        resolve();
+     }, 2000);
+ });
+
+
+let p2 = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        console.log(2);
+        resolve();
+     }, 1000);
+ });
+
+ let p3 = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        console.log(3);
+        resolve();
+     }, 5000);
+ });
+
+ Promise.race([p1, p2, p3]).then(() =&gt;{
+     console.log(4);
+ }).catch(() =&gt; {
+     console.log("err");
+ });</code></pre><p>结果是：</p>
+<pre><code>2
+4
+1
+3</code></pre><p>In the above code, we set the execution time of “p1” to 2s, “p2” to 1s, and “p3” to 5s. As can be seen from the results, after the execution of “p1”, the following “then” method is directly executed, so the printing order is 2, 4 and the last two will finish later.</p>
+<h3 id="Async-and-Await"><a href="#Async-and-Await" class="headerlink" title="Async and Await"></a>Async and Await</h3><p>Sometimes when using the series of Promise methods, I still feel that the readability is general and the code scalability is limited. At this time, you can use Async and Await in combination with Promise. The sample code is as follows:</p>
+<pre><code>async function fn () {
+    let p1 = await new Promise((resolve) =&gt; {
+        console.log(1);
+        resolve(2);
+    });
+
+    let p2 = await new Promise((resolve) =&gt; {
+        console.log(p1);
+        resolve(3);
+    });
+
+    let p3 = await new Promise((resolve) =&gt; {
+        console.log(p2);
+        resolve(4);
+    });
+    console.log(p3);
+}
+
+fn();
+
+Result is：
+1
+2
+3
+4</code></pre><p>Async and Await further simplify the amount of code, optimize the writing, and are by far it is the most commonly used asynchronous writing.</p>
+<p>Note:</p>
+<ol>
+<li>“Await” is followed by a method that returns a Promise object or creates a new Promise object.</li>
+<li>“Await” must be placed in the function marked by “Async”.</li>
+<li>If you need to catch an exception, you can use “try {} catch (exception) {}” to write “await” into the code block after “try”.</li>
+<li>The “Async” function returns a Promise, and the status is “resolved”.</li>
+<li>“Await” can accept non-Promise object as the result of an await expression. But no matter what is behind await, it will block the execution of the internal code of the “async” function. If there is an external code at this time, the external code is executed first, and then it returns to the internal execution.</li>
+<li>If the code in async is synchronous, then it executes synchronously.</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Promise is almost finished, and also briefly talked about Async and Await. It feels that the most important part is to know how to use them. As for Generator, I have never heard of it before, and I feel that it is less used, so I’ll look for a chance to talk about it later.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise</a></p>
+<p>[2] <a href="https://www.jianshu.com/p/1ab01ee4102a" target="_blank" rel="noopener">https://www.jianshu.com/p/1ab01ee4102a</a></p>
+<p>[3] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">$</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">Thank you for supporting me !!!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">Wechat</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">ALiPay</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="Wechat Reward Barcode">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="ALiPay Reward Barcode">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://kingsleyli920.github.io/en" class="b-link-green">CoderStarter</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/en/2020/01/28/es6_summary_2/" class="b-link-green">es6_summary_2</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '677a7f18e45d5e45d02b',
+        clientSecret: '492ee9217daf9960af526d70efc39ecc802cdefb',
+        repo: 'BlogComment(English Blog)',
+        owner: 'kingsleyli920',
+        admin: "kingsleyli920",
+        id: '2020-01-28T00-47-18',
+        distractionFreeMode: false,  // Facebook-like distraction free mode
+        language: 'en'
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/en/2020/01/28/es6_summary_2/">
+                    <div class="card-image">
+                        
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6_summary_2">
+                        
+                        <span class="card-title">es6_summary_2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary"> ES6 Summary #2 
+  Asynchronous and synchronous  
+
+*Asynchronous and synchronous are a message notification mechanism.*W</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/en/categories/Front-end/" class="post-category" target="_blank">
+                                    Front-end
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/en/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/en/tags/ECMAScript-6/" target="_blank">
+                        <span class="chip bg-color">ECMAScript 6</span>
+                    </a>
+                    
+                    <a href="/en/tags/Front-End-Development/" target="_blank">
+                        <span class="chip bg-color">Front End Development</span>
+                    </a>
+                    
+                    <a href="/en/tags/Web-Development/" target="_blank">
+                        <span class="chip bg-color">Web Development</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/en/2020/01/01/es6_summary_1/">
+                    <div class="card-image">
+                        
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6_summary_1">
+                        
+                        <span class="card-title">es6_summary_1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary"> ES6 Summary #1 
+  Let, Const and Var  
+
+
+
+PrefaceI have learned and got in touch with Front End Development for several</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/en/categories/Front-end/" class="post-category" target="_blank">
+                                    Front-end
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/en/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/en/tags/ECMAScript-6/" target="_blank">
+                        <span class="chip bg-color">ECMAScript 6</span>
+                    </a>
+                    
+                    <a href="/en/tags/Front-End-Development/" target="_blank">
+                        <span class="chip bg-color">Front End Development</span>
+                    </a>
+                    
+                    <a href="/en/tags/Web-Development/" target="_blank">
+                        <span class="chip bg-color">Web Development</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('60')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: CoderStarter<br />'
+            + 'Author: K.L<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + 'The copyright of this article belongs to the author. Please indicate the source of any form of reprint.';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">3.2k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/kingsleyli920" class="tooltipped" target="_blank" data-tooltip="Access to My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:kuncheng.li1015@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email Me" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="My LinkedIn: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+        <i class="fa fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="" class="tooltipped" data-tooltip="My WeChat: kingsleyli920" data-position="top" data-delay="50">
+        <i class="fa fa-weixin"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/en/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
