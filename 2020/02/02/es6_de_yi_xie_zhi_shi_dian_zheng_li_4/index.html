@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="es6的一些知识点整理, CoderStarter">
-    <meta name="description" content=" es6的一些知识点整理 
+    <meta name="keywords" content="es6的一些知识点整理4, CoderStarter">
+    <meta name="description" content=" es6的一些知识点整理 - 4 
   基础部分  
 
-
-
-开篇接触前端也很久了，当然主要都是在学校，工业级的不太多，仅仅是实习中的有限的时间接触了一些。说到前端，不得不说前端的发展历程，从最简单的类似UI的工作，到现在，各种前端框架层出不穷，前端">
+前言之前介绍了很多关于ES6的新增功能，比如let和const，块状作用域，解构赋值，展开运算符，异步同步等。今天想说一下set和map这两个数据结构。
+Set先说一下set，Java">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>es6的一些知识点整理 | CoderStarter</title>
+    <title>es6的一些知识点整理4 | CoderStarter</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -320,7 +319,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        es6的一些知识点整理
+                        es6的一些知识点整理4
                     </div>
                 </div>
             </div>
@@ -448,21 +447,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-02
+                    2020-02-02
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        2.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        11 分
                     </div>
                     
                 
@@ -478,51 +477,172 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center> <h1>es6的一些知识点整理</h1> </center>
+                <center> <h1>es6的一些知识点整理 - 4</h1> </center>
 <center> <h2> <font color="lightgray">基础部分</font> </h2> </center>
 
-<font size="3">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前介绍了很多关于ES6的新增功能，比如let和const，块状作用域，解构赋值，展开运算符，异步同步等。今天想说一下set和map这两个数据结构。</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>先说一下set，Javascript的set类似于其它语言的set，其最大作用就是可以去重，MDN对set的描述是：</p>
+<pre><code>Set 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用。[1]</code></pre><p>下面是一个set的例子：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4];
+    let set = new Set(arr);
+    console.log(set);</code></pre><p>运行结果是：</p>
+<pre><code>Set(4) {1, 2, 3, 4}</code></pre><p>通过上述代码，我们能很快很方便的把数组转换成set，数组中的重复的值都被去除掉了。</p>
+<h3 id="Set的常用方法-add-delete-has-clear，forEach"><a href="#Set的常用方法-add-delete-has-clear，forEach" class="headerlink" title="Set的常用方法 - add, delete, has, clear，forEach"></a><strong>Set的常用方法 - add, delete, has, clear，forEach</strong></h3><h3 id="1-add方法"><a href="#1-add方法" class="headerlink" title="1. add方法"></a>1. add方法</h3><p>顾名思义，add方法是向set中添加值的方法。如下方的代码：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4];
+    let set = new Set(arr);
+    console.log(set);
 
-<h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>接触前端也很久了，当然主要都是在学校，工业级的不太多，仅仅是实习中的有限的时间接触了一些。说到前端，不得不说前端的发展历程，从最简单的类似UI的工作，到现在，各种前端框架层出不穷，前端开发也从Web开发的无足轻重，变成现在和后端一样的重要。同样由于近几年Web前端技术的发展，IOS和Android技术被挤压的很厉害，也渐渐并入前端当中。使得现在前端在Web开发中占有的比重隐隐超过后端。</p>
-<p>以上是我个人对前端变化的理解。排除Android和IOS，Web前端技术，不论你是用什么框架，什么库，JavaScript永远是基础，也是最重要的一部分。JavaScript主要由ECMAScript（核心），DOM（文档对象模型）和BOM（浏览器对象模型）。</p>
-<p>ES6（ECMAScript 6）是2015年推出的，也推出一段时间了，随着这几年发展，添加了很多新特性，虽然后面还有ES2017，ES2019，但是貌似普及率没有ES6高，兼容性更不要说了，ES6保证了一定的向下兼容性，后面我会总结下ES6的一些新出的基础知识点，包括新增关键词，新增概念等。</p>
-<h2 id="ES6的兼容性"><a href="#ES6的兼容性" class="headerlink" title="ES6的兼容性"></a>ES6的兼容性</h2><p>首先先说ES6的兼容性，ES6支持绝大多数最新版本浏览器，包括Edge，Firefox 68+， Chrome 78+，Opera65+，Safari 12.1+等桌面版浏览器支持率几乎达到100%。移动版浏览器，包括IOS12+，Samsung 9+， OperaMobile 54+兼容程度也接近100%。至于IE，就基本不支持了，但是可以用代码转换。</p>
-<h3 id="ES6兼容IE（和其它浏览器）的方法"><a href="#ES6兼容IE（和其它浏览器）的方法" class="headerlink" title="ES6兼容IE（和其它浏览器）的方法"></a>ES6兼容IE（和其它浏览器）的方法</h3><ol>
-<li>兼容基本语法（不包括Promise之类的）</li>
-</ol>
-<p>在引入其它脚本前，引入browser.min.js， script标签的type设为text/babel</p>
-<ol start="2">
-<li>如果使用Promise等新特性</li>
-</ol>
-<p>Babel默认编译转换JavaScript语句，不能转换新的API。但是可以使用Polyfill（代码填充）技术。在开发页面中引入browser-polyfill即可：</p>
-<pre><code>&lt;script type="text/javascript" src="你的browser-polyfill路径"&gt;&lt;/script&gt;</code></pre><h2 id="let，const的使用以及它们和var的区别"><a href="#let，const的使用以及它们和var的区别" class="headerlink" title="let，const的使用以及它们和var的区别"></a>let，const的使用以及它们和var的区别</h2><p>let和const是ES6新出来的关键字，和var作用相同，用来声明变量。但是也有很多不同。如果需要考虑兼容性更多，还是推荐用var比较好。接下来说下它们的使用和区别。</p>
-<h3 id="说let和const之前，先说说var的一些特性"><a href="#说let和const之前，先说说var的一些特性" class="headerlink" title="说let和const之前，先说说var的一些特性"></a>说let和const之前，先说说var的一些特性</h3><ul>
-<li><p>var的作用域是全局或者整个函数块</p>
-</li>
-<li><p>var可以被预解析，也就是说，可以在定义前使用变量，比如：</p>
-<p>  <code>console.log(a); var a = 10;</code>这个是不会报错的，因为var定义的a被预解析。</p>
-</li>
-<li><p>var定义的变量在同一作用域下能重复定义</p>
-<p>  <code>var a = 10; console.log(a); var a = 20; console.log(20);</code> 结果是10 20</p>
-</li>
-</ul>
-<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><ul>
-<li><p>let声明的变量或者语句以及表达式，作用域为块级作用域（简单粗略可以理解成是两个大括号包裹着是一个块级作用域）</p>
-</li>
-<li><p>同一作用域下，let不能重复声明，比如：</p>
-<p>  <code>let a = 10; console.log(a); let a = 20;</code> 上述代码会报错，因为在同一个作用域中重复声明了a变量。</p>
-</li>
-<li><p>let不能被预解析，也就是：</p>
-<p>  <code>console.log(a); let a = 10;</code>是会报错的。</p>
-</li>
-</ul>
-<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const 就没什么可说的了，它拥有let的所有特性，并且定义的变量为常量，不可重复赋值。</p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>let，const和var基本介绍完了，很简单，let和const的出现，优化了声明变量，表达式等。如果不考虑兼容性，推荐使用let代替var。</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
-<li><a href="https://www.jianshu.com/p/13444c467ce2" target="_blank" rel="noopener">https://www.jianshu.com/p/13444c467ce2</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla</a></li>
-</ul>
-</font><script>
+    set.add('a');
+    set.add(1);
+    set.add(1.1);
+    console.log(...set);</code></pre><p>结果是：</p>
+<pre><code>    1 2 3 4 "a" 1.1</code></pre><p>通过上方代码，我们分别添加了字符串a，数字1和数字1.1，从结果能看出，添加的值是逐个加入到set后面的，并且由于数字1存在，因此不会被重复添加进去。而且很容易看出，set不是一个固定数据类型的数据结构。至于返回值，add方法的返回值是set本身。</p>
+<h3 id="2-delete方法"><a href="#2-delete方法" class="headerlink" title="2. delete方法"></a>2. delete方法</h3><p>接下来看一下delete方法，这个方法可以帮助我们删除掉set内的指定值。如果要删除的值存在，则删除，如果不存在，则不操作，比如如下代码：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
+    let set = new Set(arr);
+    console.log(...set);
+    let res1 = set.delete(1);
+    console.log(...set);
+    let res2 =  set.delete(1.1);
+    console.log(...set);
+    set.delete("a");
+    console.log(...set);
+
+    console.log(res1, res2);</code></pre><p>结果是：</p>
+<pre><code>1 2 3 4 "a" 2.2
+2 3 4 "a" 2.2
+2 3 4 "a" 2.2
+2 3 4 2.2
+true false</code></pre><p>从结果的打印，能很容易的看出，当删除1时候，删除成功，之后删除1.1，由于1.1不存在，因此没有操作，最后删除字符串a，删除成功。而且从打印的返回值res1和res2我们能看出，如果删除成功，返回值是true，否则是false。这个返回值，有时候会帮助我们用于判断，决定接下来的操作。</p>
+<h3 id="3-has方法"><a href="#3-has方法" class="headerlink" title="3. has方法"></a>3. has方法</h3><p>has方法很明显，用来判断set中是否存在某个值，MDN对其的描述是：</p>
+<pre><code>has() 方法返回一个布尔值来指示对应的值value是否存在Set对象中。[2]</code></pre><p>接下来一个例子：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
+    let set = new Set(arr);
+    console.log(...set);
+    console.log(set.has(1));
+    console.log(set.has("a"));
+    console.log(set.has(999));</code></pre><p>结果是：</p>
+<pre><code>1 2 3 4 "a" 2.2
+true
+true
+false</code></pre><p>通过结果，我们能看出，set中包含数字1，2，3，4，字符串a以及浮点数2.2，当我们判断是否存在1和”a”时，由于存在，返回true，当判断999时，因为不存在，则返回false。</p>
+<h3 id="4-clear方法"><a href="#4-clear方法" class="headerlink" title="4. clear方法"></a>4. clear方法</h3><p>接着看下clear方法，这个方法就没什么可说了，就是很简单的清空set。这个方法返回值是undefined。而且不管set是不是空的，都不报错。一个例子如下：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
+    let set = new Set(arr);
+    console.log(...set);
+    set.clear();
+    console.log(set);
+    set.clear();
+    console.log(set);</code></pre><p>结果是：</p>
+<pre><code>1 2 3 4 "a" 2.2
+Set(0) {}
+Set(0) {}</code></pre><p>显而易见，set被清空，而且重复调用也不会出错。</p>
+<h3 id="5-forEach方法"><a href="#5-forEach方法" class="headerlink" title="5. forEach方法"></a>5. forEach方法</h3><p>forEach方法是很多数据结构都有的方法，用来迭代数据结构中的所有项。MDN描述如下：</p>
+<pre><code>forEach 方法会根据集合中元素的插入顺序，依次执行提供的回调函数。[3]</code></pre><p>从描述中能看出，forEach方法迭代的值和索引，是通过回调函数来使用的，代码如下：</p>
+<pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
+    let set = new Set(arr);
+
+    set.forEach((val, key, set) =&gt; {
+        console.log(val,":",key, ":", set);
+    })</code></pre><p>结果如下：</p>
+<pre><code>1 ":" 1 ":" Set(6) {1, 2, 3, 4, "a", …}
+2 ":" 2 ":" Set(6) {1, 2, 3, 4, "a", …}
+3 ":" 3 ":" Set(6) {1, 2, 3, 4, "a", …}
+4 ":" 4 ":" Set(6) {1, 2, 3, 4, "a", …}
+a : a : Set(6) {1, 2, 3, 4, "a", …}
+2.2 ":" 2.2 ":" Set(6) {1, 2, 3, 4, "a", …}</code></pre><p>set的forEach函数第一个参数也是一个回调函数，类似于其他数据结构，但是set的forEach和数组有些不同，由于set没有索引，因此，回调函数的第一个value值和第二个key值都是当前操作项的值。与此同时，他还能接收第三个参数，第三个参数是这个值来源于的哪个数组。</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>说完了set，那就不能不说map了，本来想分两篇文章写，但是想了想，还是写了吧。先看下Map在MDN中的描述：</p>
+<pre><code>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。[4]</code></pre><p>下面代码，是map的简单使用：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+    let map2 = new Map([1, 'one'], [2, 'two'], [3, 'three']);
+    console.log(map2);</code></pre><p>结果是：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+Uncaught TypeError: Iterator value 1 is not an entry object
+at new Map (&lt;anonymous&gt;)
+at demo2.html:110</code></pre><p>从结果我们能看出，创建map不能用下面创建map2的方式，会报错，通过错误提示，我们能看出，创建map时候，传入的必须是一个可迭代的数据结构， 比如数组。接下来看看map的几个常用方法。上述代码中，key是数字1，2，3 等，value是各个key对应的英文单词。</p>
+<h3 id="Map的常用方法-set-get-keys-values-delete-has-clear，forEach"><a href="#Map的常用方法-set-get-keys-values-delete-has-clear，forEach" class="headerlink" title="Map的常用方法 - set, get, keys, values, delete, has, clear，forEach"></a><strong>Map的常用方法 - set, get, keys, values, delete, has, clear，forEach</strong></h3><h3 id="1-set和get方法"><a href="#1-set和get方法" class="headerlink" title="1. set和get方法"></a>1. set和get方法</h3><p>先说下set和get方法，这两个方法很好理解，就是插入新的key-value对，和通过相应的key得到相应的value。下面看一下相应代码：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    let setAns = map.set(4, "four");
+    console.log("map: ", map);
+    console.log("setAns: ", setAns);
+
+    let val = map.get(2);
+    console.log("getVal: ", val);
+
+    map.set(1, "oneoneone");
+    console.log("map: ", map);
+
+    console.log(map.get(333));</code></pre><p>结果是：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+map:  Map(4) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+setAns:  Map(4) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+getVal:  two
+map:  Map(4) {1 =&gt; "oneoneone", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+undefined</code></pre><p>通过上面结果我们能看出，set方法的返回值是map本身，get方法的返回值是获取到的value值，如果没有对应的key，则返回undefined。同时我们能轻松的看出插入和获取的操作，如果插入时，key值不存在，则插入key-value对。如果存在，则更新key对应的value值为新插入的值。</p>
+<h3 id="2-keys和values方法"><a href="#2-keys和values方法" class="headerlink" title="2. keys和values方法"></a>2. keys和values方法</h3><p>通过keys和values方法，我们分别能得到相应的可迭代对象作为返回值，对象中分别按插入顺序存入了所有key值和value值。下面是keys和values的简单用法：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    let keys = map.keys();
+    console.log("keys: ", keys);
+
+    let values = map.values();
+    console.log("values: ", values);</code></pre><p>结果是：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+keys:  MapIterator {1, 2, 3}
+values:  MapIterator {"one", "two", "three"}</code></pre><p>通过结果我们能看出，keys和values方法的返回值都是MapIterator对象，我们能使用Iterator对象的相应方法获取相应的值。</p>
+<h3 id="3-delete方法"><a href="#3-delete方法" class="headerlink" title="3. delete方法"></a>3. delete方法</h3><p>map的delete方法类似set中的delete方法，删除对应key值的value，删除成功返回true，失败返回false。简单用法如下：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    let ans1 = map.delete(1);
+    console.log("map: ", map);
+    console.log("return answer after delete: ", ans1);
+    let ans2 = map.delete(1);
+    console.log("map: ", map);
+    console.log("return answer after delete: ", ans2);</code></pre><p>打印结果是：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+map:  Map(2) {2 =&gt; "two", 3 =&gt; "three"}
+return answer after delete:  true
+map:  Map(2) {2 =&gt; "two", 3 =&gt; "three"}
+return answer after delete:  false</code></pre><p>从结果显而易见，第一次调用delete，传入参数1，则成功删除key值1对应的值“one”，并且我们能看出，由于删除成功，返回值是true。而第二次再次删除数字1对应的值时，由于之前删除过，map中已经不存在key为1的项，因此删除失败，map不变，返回值为false。</p>
+<h3 id="4-has方法"><a href="#4-has方法" class="headerlink" title="4. has方法"></a>4. has方法</h3><p>has方法也很简单，通过传入的key值，判断是否存在相应的键值对，如果存在则返回true，否则返回false。下面是简单用法：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    console.log(map.has(1));
+    console.log(map.has("one"));</code></pre><p>打印结果为：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+true
+false</code></pre><p>从结果能很快看出，当我们传入数字1时，由于map中存在这个key值，因此返回true，相反的，map中不存在“one”，因此第二个has返回的结果时false。</p>
+<h3 id="5-clear方法"><a href="#5-clear方法" class="headerlink" title="5. clear方法"></a>5. clear方法</h3><p>clear方法就更简单了，就是清空map用的。clear方法的返回值是undefined。代码如下：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    map.clear();
+    console.log(map);</code></pre><p>结果如下：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+Map(0) {}</code></pre><p>结果显而易见，就不赘述了。</p>
+<h3 id="6-forEach方法"><a href="#6-forEach方法" class="headerlink" title="6. forEach方法"></a>6. forEach方法</h3><p>map的forEach方法和set的略有不同，同样是传入一个回调函数作为参数，不同的是，回调函数的第一个和第二个参数，set由于没有索引，因此两个参数都是相应的值，但是map不同，map的forEach方法中的回调函数的第一个参数是键值对的value值，第二个是key值，下面的例子很清楚：</p>
+<pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+    console.log(map);
+
+    map.forEach((val, key) =&gt; {
+        console.log(key,":",val);
+    });</code></pre><p>结果是：</p>
+<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+1 ":" "one"
+2 ":" "two"
+3 ":" "three"</code></pre><p>从结果能很容易看出，map的回调函数也有第三个参数，和set类似，返回这个map，在此不再多说了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天说了两个数据解构，set和map，这两个数据结构并不罕见，很多编程语言中都有，而且在javaScript中的用法和在其它语言中的用法也很类似。可以简单便捷的完成很多其它数据解构不容易完成的任务。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set</a></p>
+<p>[2] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has</a></p>
+<p>[3] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach</a></p>
+<p>[4] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map</a></p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -680,7 +800,7 @@
                     </span>
                     <a href="https://kingsleyli920.github.io" class="b-link-green">CoderStarter</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/01/02/es6_de_yi_xie_zhi_shi_dian_zheng_li/" class="b-link-green">es6的一些知识点整理</a>
+                    <a href="/2020/02/02/es6_de_yi_xie_zhi_shi_dian_zheng_li_4/" class="b-link-green">es6的一些知识点整理4</a>
                 </p>
             </div>
         </div>
@@ -702,7 +822,7 @@
         repo: 'BlogComment(Chinese Blog)',
         owner: 'kingsleyli920',
         admin: "kingsleyli920",
-        id: '2020-01-02T01-13-43',
+        id: '2020-02-02T00-42-02',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -723,27 +843,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/17/es6_de_yi_xie_zhi_shi_dian_zheng_li_2/">
+                <a href="/2020/02/02/es6_de_yi_xie_zhi_shi_dian_zheng_li_4/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理2">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理4">
                         
-                        <span class="card-title">es6的一些知识点整理2</span>
+                        <span class="card-title">es6的一些知识点整理4</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> es6的一些知识点整理 - 2 
-  异步与同步  
+                    <div class="summary"> es6的一些知识点整理 - 4 
+  基础部分  
 
-*异步和同步是一种消息通知机制。*什么是异步？异步非阻塞：比如： A调用B，B处理同时，A继续执行。B处理结束，返回结果，A再用B的结果执行。A在此期间不用等B执行结束。同步阻塞：比</div>
+前言之前介绍了很多关于ES6的新增功能，比如let和const，块状作用域，解构赋值，展开运算符，异步同步等。今天想说一下set和map这两个数据结构。
+Set先说一下set，Java</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -756,6 +878,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -786,34 +909,29 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/23/wo_de_di_yi_ge_bo_ke_xin_de_kai_shi/">
+                <a href="/2020/02/02/es6_de_yi_xie_zhi_shi_dian_zheng_li_3/">
                     <div class="card-image">
                         
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理3">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="我的第一个博客 - 新起点">
-                        
-                        <span class="card-title">我的第一个博客 - 新起点</span>
+                        <span class="card-title">es6的一些知识点整理3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> 我的第一个博客 
-  新起点  
+                    <div class="summary"> es6的一些知识点整理 - 3 
+  基础部分  
 
-
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
-
-
-在本科学习和硕士学习期间，我已经学习计算机科学超过五年</div>
+前言本来想写一系列的ES6基础的博文，之后再总结一些ES6的高级功能，比如异步同步之类的，但是写完第一个文章后，忘记总结其它基础部分，就直接写了异步和同步。因此这篇文章开始，会继续总结</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="post-category" target="_blank">
-                                    一些感悟
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
                                 </a>
                             
                             
@@ -823,8 +941,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%90%90%E7%A2%8E%E6%9D%82%E8%B0%88/" target="_blank">
-                        <span class="chip bg-color">琐碎杂谈</span>
+                    <a href="/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/ECMAScript-6/" target="_blank">
+                        <span class="chip bg-color">ECMAScript 6</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">前端开发</span>
+                    </a>
+                    
+                    <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">Web开发</span>
                     </a>
                     
                 </div>
