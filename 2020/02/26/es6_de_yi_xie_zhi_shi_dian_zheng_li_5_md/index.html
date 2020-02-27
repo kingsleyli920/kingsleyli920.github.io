@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="contact, CoderStarter">
-    <meta name="description" content="contact | CoderStarter">
+    <meta name="keywords" content="es6的一些知识点整理5.md, CoderStarter">
+    <meta name="description" content=" es6的一些知识点整理5 
+  基础部分  
+
+前言今天准备说下ES6的新增的功能 - 箭头函数。其实箭头函数在很多其它语言中已经存在了，比如Java。箭头函数是匿名的，而且箭头函数的存在，省却了很多常用的操作。简化了代码，但是在说箭头">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>contact | CoderStarter</title>
+    <title>es6的一些知识点整理5.md | CoderStarter</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -309,13 +312,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        contact
+                        es6的一些知识点整理5.md
                     </div>
                 </div>
             </div>
@@ -405,12 +408,37 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JavaScript/" target="_blank">
+                                <span class="chip bg-color">JavaScript</span>
+                            </a>
+                        
+                            <a href="/tags/ECMAScript-6/" target="_blank">
+                                <span class="chip bg-color">ECMAScript 6</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
+                                <span class="chip bg-color">前端开发</span>
+                            </a>
+                        
+                            <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
+                                <span class="chip bg-color">Web开发</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                前端开发
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -418,21 +446,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-20
+                    2020-02-26
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        52
+                        1.9k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        7 分
                     </div>
                     
                 
@@ -448,7 +476,156 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <center> <h1>es6的一些知识点整理5</h1> </center>
+<center> <h2> <font color="lightgray">基础部分</font> </h2> </center>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天准备说下ES6的新增的功能 - 箭头函数。其实箭头函数在很多其它语言中已经存在了，比如Java。箭头函数是匿名的，而且箭头函数的存在，省却了很多常用的操作。简化了代码，但是在说箭头函数之前，我准备先说下function命名的函数。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>普通函数自然是在ES5版本就已经存在了，相比于箭头函数，普通函数的兼容性自然好很多，下面是普通函数的定义：</p>
+<pre><code>function func() {
+    console.log("func");
+}
+
+let func2 = function() {
+    console.log("func2");
+}
+
+func();
+func2();</code></pre><p>结果是；</p>
+<pre><code>func
+func2</code></pre><p>显而易见，函数是有两种定义方式的，一种是常规的方式，function关键字后跟着函数名，之后是参数列表，然后是是函数体。第二种是表达式方式，就是函数名在等号左边，函数定义在等号右边。普通函数会绑定this，arguments等关键字，比如下方的例子：</p>
+<pre><code>function a(a) {
+     console.log("this: ", this, "\n arguments: ", arguments);
+}
+
+a(1,2,3,4);</code></pre><p>结果是：</p>
+<pre><code>this:  Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …} 
+arguments:  Arguments(4) [1, 2, 3, 4, callee: ƒ, Symbol(Symbol.iterator): ƒ]</code></pre><p>普通函数的this指向的是调用他的对象，如上述代码，是直接写在script标签内的，是全局调用的，因此调用他的时候，this对应的是window。当然这是非严格模式下的，如果是定义为严格模式，也就是在代码前加入”use strict”，这个this会指向undefined。下面例子能让我们理解更清晰：</p>
+<pre><code>let obj = {
+    name: "name1",
+    func: function() {
+        console.log(this.name);
+    }
+}
+
+obj.func();</code></pre><p>结果是：</p>
+<pre><code>name1</code></pre><p>显而易见了，func函数是obj调用的。总之只要记住，普通函数的this指向其调用对象，不管他是函数，对象还是默认的window，就足够了。接着说下arguments，从之前的代码，我们能看到，arguments是普通函数绑定的关键字，类似于this，你不需要自己定义。arguments对应的是传入的所有参数。当然，普通函数还绑定super，指向其父类，这涉及到面向对象的知识，之后我会写专题。至于为什么有的时候普通函数的this并不好用呢，下面的例子可以说明：</p>
+<pre><code>function Person() {
+    this.a = 20;
+    setInterval(function setA() {
+        this.a++;
+    }, 1000);
+    console.log(this.a);
+}
+
+let p =new Person();</code></pre><p>结果是：</p>
+<pre><code>20</code></pre><p>根据结果能看出来，Person构造函数的内部有个异步函数，1秒后a+1，但是通过打印结果能看出，这个函数并没有作用于Person这个构造函数中的a变量。因此如果这种情况想要改变Person中的a变量，只能引入一个变量指向Person中的this，如下：</p>
+<pre><code>function Person() {
+    this.a = 20;
+    let that = this;
+    setInterval(function setA() {
+        that.a++;
+        console.log(that.a);
+    }, 1000);
+
+}
+
+let p =new Person();</code></pre><p>上述代码中，我们引入了that指向Person函数的this，这样setA函数就能利用that来访问Person函数中的a了。但是这种写法比较麻烦，而且容易出错。箭头函数的一些特性，就是为了简化普通函数的this的使用，以及相关面向对象的使用，使函数看起来不那么像面向对象语言的函数用法。</p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>顾名思义，就是用箭头表示的函数，它比普通函数更简洁，它没有绑定this，arguments和super。由于它的特性，它在面向对象编程中，不能用于定义构造函数。</p>
+<p>以下是箭头函数的表达方式[1]：</p>
+<pre><code>(param1, param2, …, paramN) =&gt; { statements } 
+(param1, param2, …, paramN) =&gt; expression =&gt; 当只需要返回时，可以省略大括号
+//相当于：(param1, param2, …, paramN) =&gt;{ return expression; }
+
+// 当只有一个参数时，圆括号是可选的：
+(singleParam) =&gt; { statements }
+singleParam =&gt; { statements }
+
+// 没有参数的函数应该写成一对圆括号。
+() =&gt; { statements }</code></pre><p><br>当然它还有很多高级用法：</p>
+<pre><code>let test = params =&gt; {
+    return {foo: "bar"}
+};
+
+//加括号的函数体返回对象字面量表达式[1]
+let test2 = params =&gt; ({foo: "bar"}); ===》上面的简写版
+console.log(test(1)); //{foo: "bar"}
+console.log(test(2)); //{foo: "bar"}</code></pre><p>对于参数方面，虽然箭头函数相对于普通函数没有arguments，但是箭头函数支持剩余参数和参数默认值，如下：</p>
+<pre><code>let a = (item1, item2, ...items) =&gt; {
+    console.log(item1, item2, items);
+}
+
+a(1, "a", 1, 2, "as", "c"); //打印结果：1 "a" (4) [1, 2, "as", "c"]
+
+let b = (item1, item2 = 2) =&gt; {
+    console.log(item1, item2);
+}
+
+b(1); //打印结果：1 2
+b(1, 1); // 打印结果：1 1</code></pre><p>首先通过第一个函数a能看出，最后的items通过展开运算符（…）接收了除了1和”a”之外的剩下的所有参数。而b函数则向我们展示了参数默认值的用法，b函数接收两个参数，item1和item2，item2有默认值2，第一次调用它，只传入了一个参数，则item1得到传入值1，item2则保持默认值2，第二次调用，传入两个1，则item2就会被赋予新值，不再保留默认值。但是注意，带默认值的参数，要放在参数列表的最后面。</p>
+<p>接着可以看下下面代码：</p>
+<pre><code>let obj1 = {
+    name: "name",
+    func: () =&gt; {
+        console.log("obj1:",this);
+    }
+}
+
+let obj2 = {
+    name: "name",
+    func: function() {
+        console.log("obj2:",this);
+    }
+}
+
+obj1.func();
+obj2.func();</code></pre><p>运行结果是：</p>
+<pre><code>obj1: Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+bj2: {name: "name", func: ƒ}</code></pre><p>显而易见，obj1内实现箭头函数，this指向Window，而普通函数的this指向了obj2这个对象。所以，箭头函数的优势如下：</p>
+<pre><code>function outer() {
+    this.i = 2;
+
+    function inner() {
+        console.log("this:",this,"i:",this.i);
+    }
+    inner();
+}
+
+var outer = new outer();
+
+function outer2() {
+    this.i = 2;
+
+    let inner = () =&gt; {
+        console.log("this:",this,"i:",this.i);
+    }
+    inner();
+}</code></pre><p>   var outer2 = new outer2();</p>
+<p>结果是：</p>
+<pre><code>this: Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …} i: undefined
+this: outer2 {i: 2} i: 2</code></pre><p>显而易见，同样是外部函数作为构造函数，调用了名为inner的内部函数，但是this的指向结果却不同，如果内部函数是普通函数，则this指向全局，也就是Window，所以，第一个this指向Window。而箭头函数没有this，它的this继承自上一层，上一层是outer2的实例，this指向outer2，因此箭头函数的this也指向outer2。因此第一个i的值是undefined，第二个是获取到outer2中的i的值，也就是2.</p>
+<p>如果内部函数为普通函数，也需要得到外部函数的变量，那么可以用下方代码实现：</p>
+<pre><code>function outer() {
+    this.i = 2;
+    this.inner = function () {
+        console.log("this:",this,"i:",this.i);
+    }
+    this.inner();
+}
+
+var outer = new outer();</code></pre><p>或者：</p>
+<pre><code>function outer() {
+    this.i = 2;
+    let that = this;
+    var inner = function () {
+        console.log("this:",that,"i:",that.i);
+    }
+    inner();
+}
+
+var outer = new outer();</code></pre><p>结果都是：</p>
+<pre><code>this: outer {i: 2} i: 2</code></pre><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>箭头函数的基本用法和理解差不多就这么多了，总之，箭头函数没有this，所以对象相关的一切用法，比如new，prototype等，箭头函数都没有。在某些场合，箭头函数确实简化了书写，或者由于箭头函数this继承自上层，因此在某些情况箭头函数用起来更方便，但是只要用到和对象相关的方法或者关键字等，均不能用箭头函数。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -606,7 +783,7 @@
                     </span>
                     <a href="https://kingsleyli920.github.io" class="b-link-green">CoderStarter</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/contact/index.html" class="b-link-green">contact</a>
+                    <a href="/2020/02/26/es6_de_yi_xie_zhi_shi_dian_zheng_li_5_md/" class="b-link-green">es6的一些知识点整理5.md</a>
                 </p>
             </div>
         </div>
@@ -628,7 +805,7 @@
         repo: 'BlogComment(Chinese Blog)',
         owner: 'kingsleyli920',
         admin: "kingsleyli920",
-        id: '2019-11-20T17-22-54',
+        id: '2020-02-26T23-29-47',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -654,33 +831,56 @@
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/contact/index.html">
+                <a href="/2020/02/26/es6_de_yi_xie_zhi_shi_dian_zheng_li_5_md/">
                     <div class="card-image">
                         
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理5.md">
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="contact">
-                        
-                        <span class="card-title">contact</span>
+                        <span class="card-title">es6的一些知识点整理5.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return</div>
+                    <div class="summary"> es6的一些知识点整理5 
+  基础部分  
+
+前言今天准备说下ES6的新增的功能 - 箭头函数。其实箭头函数在很多其它语言中已经存在了，比如Java。箭头函数是匿名的，而且箭头函数的存在，省却了很多常用的操作。简化了代码，但是在说箭头</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-26
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            K.L
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/ECMAScript-6/" target="_blank">
+                        <span class="chip bg-color">ECMAScript 6</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">前端开发</span>
+                    </a>
+                    
+                    <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">Web开发</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -688,36 +888,59 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/contact/index.html">
+                <a href="/2020/02/02/es6_de_yi_xie_zhi_shi_dian_zheng_li_4/">
                     <div class="card-image">
                         
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理4">
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="contact">
-                        
-                        <span class="card-title">contact</span>
+                        <span class="card-title">es6的一些知识点整理4</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return</div>
+                    <div class="summary"> es6的一些知识点整理 - 4 
+  基础部分  
+
+前言之前介绍了很多关于ES6的新增功能，比如let和const，块状作用域，解构赋值，展开运算符，异步同步等。今天想说一下set和map这两个数据结构。
+Set先说一下set，Java</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-02
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            K.L
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/ECMAScript-6/" target="_blank">
+                        <span class="chip bg-color">ECMAScript 6</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">前端开发</span>
+                    </a>
+                    
+                    <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">Web开发</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
