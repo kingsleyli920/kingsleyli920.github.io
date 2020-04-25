@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Java知识点整理-01</title>
+      <link href="/2020/04/25/java_zhi_shi_dian_zheng_li_01/"/>
+      <url>/2020/04/25/java_zhi_shi_dian_zheng_li_01/</url>
+      
+        <content type="html"><![CDATA[<center> <h1>Java知识点整理-01</h1> </center><center> <h2> <font color="lightgray">Java基础部分</font> </h2> </center><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>和上一篇笔记，隔了几个月，这几个月疫情持续爆发，我也是纠结在回国还是暂时留在美国中犹豫不决，到了四月，已经无票可买。看起来，滞留美国遥遥无期，好在到了关键时刻，能延长。从三月到四月，一直在为了买票，打包行李焦头烂额。因此没找出时间来继续写东西。今天思考了一上午，终于对于去留下定决心，现在心里的石头落下了，可以安心继续学习了。</p><p>今天想写点和Java相关的，面试需要用的一些知识点，第一呢，是为了我自己未来面试，不用四处查找。第二是复习一下之前的知识点，因为我发现，很多知识点，几周不看，就会忘记。第三就是，如果有机会，能被别人看到我的博客，希望对你有些帮助。</p><h2 id="Java基础知识点"><a href="#Java基础知识点" class="headerlink" title="Java基础知识点"></a>Java基础知识点</h2><h3 id="1-面向对象和面向过程对比"><a href="#1-面向对象和面向过程对比" class="headerlink" title="1. 面向对象和面向过程对比"></a>1. 面向对象和面向过程对比</h3><pre><code>面向过程：性能相对高于面向对象语言，类调用需要实例化，因此消耗资源比较大。性能为重的项目，比如嵌入式开发，单片机等，通常用面向过程类语言开发。当然，类似嵌入式这种，需要用到面向过程开发的第二个原因，是因为面向过程语言通常会将代码直接编译成可执行的二进制机械码。但是面向过程语言的复用性，扩展性和维护性上比面向对象语言要低很多。面向对象： 性能相对于面向过程语言较差，因为大部分面向对象语言（比如Java）都不会将代码直接编译为可执行的二进制机械码。但是面向对象语言，由于有继承，封装等特性，复用性，维护性和可扩展性会比面向过程语言高很多。并且，面向对象语言可以设计出低耦合系统，系统会更灵活，更容易维护，也更不容易出错。</code></pre><h3 id="2-字符型常量和字符串常量的区别"><a href="#2-字符型常量和字符串常量的区别" class="headerlink" title="2. 字符型常量和字符串常量的区别"></a>2. 字符型常量和字符串常量的区别</h3><pre><code>字符型常量：1. 单引号引起的单个字符，如'a', '1', '?'等。2. 字符常量相当于一个整型值，可以参加表达式运算，比如'2'-'0' -&gt; 返回一个整型数值2。3. Java中字符常量占两个字节。4. 可以接受unicode字符，如'大'等。字符串常量：1. 双引号引起的一个或者多个字符，如"abc", "ab2"等。2. 字符串常量指向一个内存地址，这个地址中存放了字符串值。3. 字符串大小是若干字节。4. 是最常用和最基本的引用类型。5. 可以简单的使用 + 来连接两个字符串，比如 "hello " + "world"，得到的结果是"hello world"。6. 多行字符串，在Java13之前，Java本身不支持多行字符串，只能自行拼接，例如：    String s = "first line \n"     + "second line \n"     + "end";但是Java13开始，Java引入了类似Python中的多行字符串，例如：    String s = """                 first line,                second line,                end               """; 7. 字符串是不可变的，因此每次给一个字符串型变量赋值，其实是改变其指针的指向。8. 字符串变量可以指向一个空值null。</code></pre><h3 id="3-Java变量，常量和数据类型"><a href="#3-Java变量，常量和数据类型" class="headerlink" title="3. Java变量，常量和数据类型"></a>3. Java变量，常量和数据类型</h3><pre><code>1. 基本数据类型：    整数类型：byte，short，int，long    浮点数类型：float，double    字符类型：char    布尔类型：boolean    各数据类型数据占用的字节数：    byte：1个字节（8位，8bits）    short，char：2个字节    int，float：4个字节    double，long：8个字节    float型浮点数，通常要加上f后缀表示，如7.89f    long型整数，也可以加上l后缀，如192837437l    boolean类型只有true和false两个值。2. 变量和常量：    double pi = 3.14；    final double PI = 3.14159；    上面两行代码，第一行是Java中变量定义的例子，第二行定义的是常量。很明显，final关键字定义的变量，不能被再次修改，可以视作常量。在Java中，常量通常用大写来表示。3. Var关键字    Var关键字是Java10中新增的，跟Javascript类似，用var定义变量后，Java编译器会自己推断相应的变量的数据类型。var的最大作用是，如果遇到一些很长的变量类型，用var会短很多。</code></pre><h3 id="4-整数运算"><a href="#4-整数运算" class="headerlink" title="4. 整数运算"></a>4. 整数运算</h3><pre><code>1. 整数运算是精准的，如果是除法的话，也只能得到整数部分。比如15/2，如果是整数运算，只能得到7。2. %：求余数运算，比如15%2 = 1。3. 如果除数是0，编译不会报错，但是运行会报错。4. 整数运算是有范围的，如果超出范围，不会报错，会得到奇怪的结果，比如2147483647 + 1 会得到 -2147483648。因为Java只有带符号整型数字，因此最高位是符号位，如果计算超过范围，最高位改变，因此会变成负数。5. 解决上面4中的问题的方法是，将int型改为long型。6. Java中的计算存在简写方式，比如：    int a = 2;    int b = 3;    a += 1; // a = 3    b -= 1; // b = 2    a /= 3; // a = 1;    b *= 2; // b = 4;7. Java中还有自增（++）和自减（--）运算符，比如：    int a = 9;    System.out.println(a++); // 打印 9，a = 10    System.out.println(++a); // 打印 11， a = 11    可以看出，自增（或者自减）运算符在变量前，先执行自增（或者自减），再引用，反之，先引用，后计算。</code></pre><h3 id="5-浮点数运算"><a href="#5-浮点数运算" class="headerlink" title="5. 浮点数运算"></a>5. 浮点数运算</h3><pre><code>1. 浮点数不能做位运算和移位运算。2. 有些浮点数运算不精确（比如0.1，但0.5能精确表示），因此例如下列代码：    double x = 1.0 / 10; // 0.1    double y = 1 - 9.0 / 10; // 0.09999999999999998以上代码，可以看出浮点数计算存在的误差。3. 由于浮点数的误差问题，因此判断两个浮点数相等，通常不直接类似整数那样使用 == 判断，而是：    double r = Math.abs(x - y);    if (r &lt; 0.00001) {}4. 如果是一个整型数和浮点数都参与计算，整型数会被强制提升到浮点型。但是复杂运算中，如果两个整型数先计算，是不会被提升到浮点型。5. 浮点数除以0不会报错，会返回特殊值，比如：    double d1 = 0.0 / 0; // NaN -&gt; Not a Number    double d2 = 1.0 / 0; // Infinity    double d3 = -1.0 / 0; // -Infinity6. 浮点数可以强制转换成整型，比如：int n1 = (int) 12.3; // 12</code></pre><h3 id="6-布尔运算"><a href="#6-布尔运算" class="headerlink" title="6. 布尔运算"></a>6. 布尔运算</h3><pre><code>1. 布尔运算是一种关系运算，包括：    比较运算符：&gt;，&gt;=，&lt;，&lt;=，==，!=    与运算： &amp;&amp;    或运算： ||    非运算： !    优先级从高到低：{!} ---&gt; {&gt;，&gt;=，&lt;，&lt;=} ---&gt; {==，!=} ---&gt; {&amp;&amp;} ---&gt; {||}2. 短路运算    运算符左边的布尔运算表达式能提前确定结果，则不需要运算右边的部分。例如：        false &amp;&amp; (1 / 0 &gt; 3)，    前面是false，则返回false，不会尝试计算后面的表达式。因此不报错。另一个例子：        false &amp; (1 / 0 &gt; 3)，    这个则会报错，因为不论前面的表达式结果如何，都会向后计算。    || 运算符也是短路运算符。3. 三元运算符    exp? result1:result2表达式结果返回true，则返回result1，否则返回result2。例如：    int a = 5 &gt; 3? 5 : 3; // a = 5    int b = 5 &lt; 3? 5 : 3; // b = 3</code></pre><h3 id="7-数组类型"><a href="#7-数组类型" class="headerlink" title="7. 数组类型"></a>7. 数组类型</h3><pre><code>数组类型是Java的基础类型之一，定义方式是"类型[]"。例如 int[]。可以在中括号中加数字来决定数组长度，比如int[5]。数组的特点：    1. 数组创建后，其内元素都有默认值。整型默认都是0，浮点型是0.0，布尔型是false。    2. 数组创建后大小不可变。    3. 访问数组元素要使用索引，索引从0开始。    4. 可以快速定义数组内元素，例如：        int[] scores = new int[] {98, 86, 78, 99};        或者        int[] scores = {98, 86, 78, 99};    5. 数组变量也是引用型的变量，它指向一个地址，所以给它赋值，就是改变其指向的地址，并不是真的把相应存储空间中的数组改变了。    6. 对于数组元素类型是引用类型的数组，每个存储空间内存储的是相应元素的地址，比如：        string[] animals = {"dog", "cat", "fish"};    而在数组中并没有直接存储这三个字符串，而是存储了它们相应的地址，如果改变其中某项，如：        animals[1] = bird;    并不是把第二个值改变，而是第二个角标指向从字符串"cat"变为"bird"。</code></pre><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>本来想写面试重点的，但是强迫症一不小心写成知识点总结了。那就按步就班继续写吧，今天总结了下Java的一些基础类型，运算，基础数据类型。下一篇应该会写关于条件语句，循环语句，以及数组的更深入的知识点。今天貌似没有什么references，都是基础的，也都是我自己写的，如果有错请指正。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> Java Core </tag>
+            
+            <tag> Java开发 </tag>
+            
+            <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>es6的一些知识点整理5.md</title>
       <link href="/2020/02/26/es6_de_yi_xie_zhi_shi_dian_zheng_li_5_md/"/>
       <url>/2020/02/26/es6_de_yi_xie_zhi_shi_dian_zheng_li_5_md/</url>
