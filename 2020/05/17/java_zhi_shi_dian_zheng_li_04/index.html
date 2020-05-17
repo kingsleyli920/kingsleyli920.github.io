@@ -4,15 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的第一个博客 - 新起点, CoderStarter">
-    <meta name="description" content=" 我的第一个博客 
-  新起点  
+    <meta name="keywords" content="Java知识点整理-04, CoderStarter">
+    <meta name="description" content=" Java知识点整理-04 
+  Java面向对象-02  
 
-
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
-
-
-在本科学习和硕士学习期间，我已经学习计算机科学超过五年">
+前言今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：
+Food food = new Food(&#34;Beef&#34;);这句话">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>我的第一个博客 - 新起点 | CoderStarter</title>
+    <title>Java知识点整理-04 | CoderStarter</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -316,13 +313,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/java-articles-cover-image.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        我的第一个博客 - 新起点
+                        Java知识点整理-04
                     </div>
                 </div>
             </div>
@@ -414,8 +411,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%90%90%E7%A2%8E%E6%9D%82%E8%B0%88/" target="_blank">
-                                <span class="chip bg-color">琐碎杂谈</span>
+                            <a href="/tags/Java/" target="_blank">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/Java-Core/" target="_blank">
+                                <span class="chip bg-color">Java Core</span>
+                            </a>
+                        
+                            <a href="/tags/Java%E5%BC%80%E5%8F%91/" target="_blank">
+                                <span class="chip bg-color">Java开发</span>
+                            </a>
+                        
+                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/" target="_blank">
+                                <span class="chip bg-color">Java基础</span>
                             </a>
                         
                     </div>
@@ -426,8 +435,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="post-category" target="_blank">
-                                一些感悟
+                            <a href="/categories/Java%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                Java开发
                             </a>
                         
                     </div>
@@ -438,21 +447,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-23
+                    2020-05-17
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        375
+                        1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        3 分
                     </div>
                     
                 
@@ -468,20 +477,74 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center> <h1>我的第一个博客</h1> </center>
-<center> <h2> <font color="lightgray">新起点</font> </h2> </center>
+                <center> <h1>Java知识点整理-04</h1> </center>
+<center> <h2> <font color="lightgray">Java面向对象-02</font> </h2> </center>
 
-<font size="4">
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：</p>
+<pre><code>Food food = new Food("Beef");</code></pre><p>这句话如果按照上一个文章的写法是：</p>
+<pre><code>Food food = new Food();
+food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候就给这个实例相应的内容，会简单很多。而帮我们完成这个目标的函数，就是构造函数。</p>
+<h2 id="Java构造函数"><a href="#Java构造函数" class="headerlink" title="Java构造函数"></a>Java构造函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><pre><code>实际上，每次创建一个实例时，是通过构造方法来创建实例，比如上述例子：
 
+    class Food {
 
-<p>在本科学习和硕士学习期间，我已经学习计算机科学超过五年了。我在英国获得了本科学位。我的大学是埃塞克斯大学。它位于英国最古老的城镇-科尔切斯特。</p>
-<p>在这几年中。我学到了很多不同类型的技术栈。例如，Java，Spring，Python，Django，HTML，CSS，JavaScript，Vue.js，React.js，Angular，MySQL，Redis和属于其他技术领域的技术。我的知识足够广泛。但是我需要找出这些技术的未来职业方向。而且我需要深入学习相关技术。</p>
-<p>因此，我建立并部署了此个人博客。我希望记录下我需要记住的知识点，在开发项目期间遇到的错误以及对所学技术的个人理解。</p>
-<p>我目前的计划是修正和复习有关Java的知识，记录要点，学习期间发生的错误等。</p>
-<p>将来，我将复习和修正越来越多我以前学过的的技术的要点。</p>
-<p>谢谢。</p>
-</font><p><font size="4">K.L<br></font></p>
+        String recipe:
+
+        public Food(String recipe) {
+            this.recipe = recipe;
+        }
+    }
+
+从上述例子我们能看出，构造函数的基本形式是：
+
+    修饰字段 类名(想要初始化的参数列表) {
+        // 构造函数内容
+    }
+
+构造函数的名字和类名一样，首字母也是大写的，这点和其它函数不同。构造函数没有返回值和返回类型，只有访问可见性的修饰字段。大部分时间，在简单的项目和代码中我们就直接定义构造函数为public，但是构造函数也可以用其它修饰类型，比如private来修饰的。构造函数的参数列表并没有要求，想要在创建实例的时候初始化的字段，都可以放在参数列表。</code></pre><h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h3><pre><code>但是类似我们上一篇文章中的例子，比如：
+
+    class Person {
+        String name;
+        int age;
+
+        // ...其它一些方法
+    }
+
+我们并没有写任何构造函数，但是还是可以创建上述类的实例。这是因为，如果当我们没有定义构造函数时，Java会帮我们生成一个默认的构造函数，这个构造函数不传入任何参数。因此上述例子实际是这样：
+
+    class Person {
+        String name;
+        int age;
+
+        // 默认构造函数
+        public Person() {
+
+        }
+        // ...其它一些方法
+    }
+
+当我们自定义构造函数时，Java便不会执行默认构造函数，因此上述Food类的例子，我们无法创建一个不传入任何参数的实例。
+
+如果想既可以创建带参数的实例，又可以创建不带参数的实例，便只需要把这些构造函数都定义出来。这涉及到另一个概念 - 函数的重载，在后面我会展开说。
+
+没有在构造函数中初始化的参数，引用类型默认值时null，int类型是0，boolean类型是false，double是0.0。
+
+当类中有多个构造方法的时候，Java可以通过识别参数个数和类型来判断在创建实例时候，需要调用哪一个构造函数。</code></pre><h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><p>上面我提到了一种概念，叫做函数/方法的重载，具体意思就是如果一个类中需要一系列的作用类似，参数不同的方法，则可以把它们定义成一个名字，例如：</p>
+<pre><code>class Food {
+
+    public void addFood(String name, int weight) {
+        //
+    } 
+
+    public void addFood(String Name) {
+        //
+    }
+
+    public void addFood(String[] names, int[] weights) {
+        //
+    }
+}</code></pre><p>上述例子中，我们重载了addFood方法，重载方法的参数不同，但是通常返回类型是相同的。这样我们在使用某个方法时，更灵活，也不会因为定义过多的不同方法名的函数而显得混乱。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这篇文章比较短，因为想继续写后面的内容，但是发现后面想写的内容，比较复杂内容比较多，因为我接下来想讲一下面向对象的一个很重要的特性 - 继承和多态。因此这篇文章就这样结尾吧，下一篇文章，便是Java的重头戏之一，继承和多态。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -640,7 +703,7 @@
                     </span>
                     <a href="https://kingsleyli920.github.io" class="b-link-green">CoderStarter</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/11/23/wo_de_di_yi_ge_bo_ke_xin_de_kai_shi/" class="b-link-green">我的第一个博客 - 新起点</a>
+                    <a href="/2020/05/17/java_zhi_shi_dian_zheng_li_04/" class="b-link-green">Java知识点整理-04</a>
                 </p>
             </div>
         </div>
@@ -662,7 +725,7 @@
         repo: 'kingsleyli920.github.io',
         owner: 'kingsleyli920',
         admin: "kingsleyli920",
-        id: '2019-11-23T04-05-38',
+        id: '2020-05-17T16-06-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -683,58 +746,59 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/02/es6_de_yi_xie_zhi_shi_dian_zheng_li/">
+                <a href="/2020/05/17/java_zhi_shi_dian_zheng_li_04/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/java-articles-cover-image.jpg" class="responsive-img" alt="Java知识点整理-04">
                         
-                        <span class="card-title">es6的一些知识点整理</span>
+                        <span class="card-title">Java知识点整理-04</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> es6的一些知识点整理 
-  基础部分  
+                    <div class="summary"> Java知识点整理-04 
+  Java面向对象-02  
 
-
-
-开篇接触前端也很久了，当然主要都是在学校，工业级的不太多，仅仅是实习中的有限的时间接触了一些。说到前端，不得不说前端的发展历程，从最简单的类似UI的工作，到现在，各种前端框架层出不穷，前端</div>
+前言今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：
+Food food = new Food("Beef");这句话</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                    前端开发
+                            <a href="/categories/Java%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    Java开发
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/" target="_blank">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tags/ECMAScript-6/" target="_blank">
-                        <span class="chip bg-color">ECMAScript 6</span>
+                    <a href="/tags/Java-Core/" target="_blank">
+                        <span class="chip bg-color">Java Core</span>
                     </a>
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
-                        <span class="chip bg-color">前端开发</span>
+                    <a href="/tags/Java%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">Java开发</span>
                     </a>
                     
-                    <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
-                        <span class="chip bg-color">Web开发</span>
+                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/" target="_blank">
+                        <span class="chip bg-color">Java基础</span>
                     </a>
                     
                 </div>
@@ -745,49 +809,55 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/23/wo_de_di_yi_ge_bo_ke_xin_de_kai_shi/">
+                <a href="/2020/05/12/java_zhi_shi_dian_zheng_li_03/">
                     <div class="card-image">
                         
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/java-articles-cover-image.jpg" class="responsive-img" alt="Java知识点整理-03">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="我的第一个博客 - 新起点">
-                        
-                        <span class="card-title">我的第一个博客 - 新起点</span>
+                        <span class="card-title">Java知识点整理-03</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> 我的第一个博客 
-  新起点  
+                    <div class="summary"> Java知识点整理-03 
+  Java面向对象-01  
 
-
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
-
-
-在本科学习和硕士学习期间，我已经学习计算机科学超过五年</div>
+前言今天这篇文章写一下关于Java面向对象的知识点。Java是一种面向对象语言，英文是Object-Oriented Programming，缩写是OOP。要说面向对象，得先说</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="post-category" target="_blank">
-                                    一些感悟
+                            <a href="/categories/Java%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    Java开发
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%90%90%E7%A2%8E%E6%9D%82%E8%B0%88/" target="_blank">
-                        <span class="chip bg-color">琐碎杂谈</span>
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Java-Core/" target="_blank">
+                        <span class="chip bg-color">Java Core</span>
+                    </a>
+                    
+                    <a href="/tags/Java%E5%BC%80%E5%8F%91/" target="_blank">
+                        <span class="chip bg-color">Java开发</span>
+                    </a>
+                    
+                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/" target="_blank">
+                        <span class="chip bg-color">Java基础</span>
                     </a>
                     
                 </div>
