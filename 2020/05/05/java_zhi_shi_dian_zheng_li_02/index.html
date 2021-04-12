@@ -31,6 +31,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -229,7 +231,7 @@
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -516,7 +518,7 @@
 上述例子中的所有条件，可以是表达式，某个变量等，只要最终结果是boolean结果或者可以转成boolean结果，一般都行。
 
 5. if语句是从上往下来判断执行的，因此如果上面的条件包含后面语句的条件，则后面的判断块内代码执行不了，比如：
-
+    
     int score = 87
     if (score &gt;= 60) {
         System.out.println("及格");
@@ -530,7 +532,9 @@
 
     上述代码结果是：及格
 
-上述可以看出，如果score是89分，我们的本意是想划分为良好，但是由于score &gt;= 60在最上面，只要score大于60，则会执行其代码块内的代码，因此上述代码结果是"及格"，而不是我们想要的良好。因此写代码一定要注意，几个互相有重叠的条件，范围大的条件语句要放在下面。</code></pre><h3 id="2-switch条件语句"><a href="#2-switch条件语句" class="headerlink" title="2. switch条件语句"></a>2. switch条件语句</h3><pre><code>1. 其实switch语句用的相对较少，而且switch语句是可以翻译成if相关语句来表示的。switch语句的最简单的表达方式是：
+上述可以看出，如果score是89分，我们的本意是想划分为良好，但是由于score &gt;= 60在最上面，只要score大于60，则会执行其代码块内的代码，因此上述代码结果是"及格"，而不是我们想要的良好。因此写代码一定要注意，几个互相有重叠的条件，范围大的条件语句要放在下面。
+</code></pre>
+<h3 id="2-switch条件语句"><a href="#2-switch条件语句" class="headerlink" title="2. switch条件语句"></a>2. switch条件语句</h3><pre><code>1. 其实switch语句用的相对较少，而且switch语句是可以翻译成if相关语句来表示的。switch语句的最简单的表达方式是：
 
     switch(表达式) {
         case 表达式1:
@@ -661,7 +665,9 @@
         }
     }
 
-上述代码返回结果是temp计算出来的结果。这样，不管语句多复杂，我们都可以顺利获得想要的返回值。</code></pre><h2 id="Java循环语句"><a href="#Java循环语句" class="headerlink" title="Java循环语句"></a>Java循环语句</h2><h3 id="1-while，do-while循环语句"><a href="#1-while，do-while循环语句" class="headerlink" title="1. while，do while循环语句"></a>1. while，do while循环语句</h3><pre><code>1. 循环语句的用途是非常广泛的，如果需要多次运行同一段程序，则需要用到循环语句。比如下列代码：
+上述代码返回结果是temp计算出来的结果。这样，不管语句多复杂，我们都可以顺利获得想要的返回值。
+</code></pre>
+<h2 id="Java循环语句"><a href="#Java循环语句" class="headerlink" title="Java循环语句"></a>Java循环语句</h2><h3 id="1-while，do-while循环语句"><a href="#1-while，do-while循环语句" class="headerlink" title="1. while，do while循环语句"></a>1. while，do while循环语句</h3><pre><code>1. 循环语句的用途是非常广泛的，如果需要多次运行同一段程序，则需要用到循环语句。比如下列代码：
 
     int sum = 0;
     sum = sum + 1;
@@ -726,7 +732,9 @@ while每次循环开始前，都会判断条件表达式是否成立，只有条
         num2++;
     } while (num2 &lt; 1);
 
-上述代码执行结束后，num1的结果还是1，但是num2的结果是2了，因此能看出do while比while多执行了一次。</code></pre><h3 id="2-for循环语句"><a href="#2-for循环语句" class="headerlink" title="2. for循环语句"></a>2. for循环语句</h3><pre><code>1. for循环的使用感觉比while的使用还要广泛，for循环的基本形式是：
+上述代码执行结束后，num1的结果还是1，但是num2的结果是2了，因此能看出do while比while多执行了一次。
+</code></pre>
+<h3 id="2-for循环语句"><a href="#2-for循环语句" class="headerlink" title="2. for循环语句"></a>2. for循环语句</h3><pre><code>1. for循环的使用感觉比while的使用还要广泛，for循环的基本形式是：
 
     for (循环条件初始化; 循环条件判断; 更新循环条件) {
         // 执行语句
@@ -790,7 +798,10 @@ for each 循环写法可以直接获取数组内的元素，for each是基于迭
         // 执行代码
     }
 
-for each循环获取数据结构内元素非常方便，但是由于获取不到角标，因此需要操作角标的操作，则不能用for each。</code></pre><h3 id="3-break和continue"><a href="#3-break和continue" class="headerlink" title="3. break和continue"></a>3. break和continue</h3><pre><code>1. 接下来说两个循环中最常用的关键字：break和continue。break语句是用来跳出这个循环的，类似switch语句的break。continue顾名思义，跳过这次循环，继续下一次循环。下面代码展示了它们两个的使用场景：
+for each循环获取数据结构内元素非常方便，但是由于获取不到角标，因此需要操作角标的操作，则不能用for each。
+    
+</code></pre>
+<h3 id="3-break和continue"><a href="#3-break和continue" class="headerlink" title="3. break和continue"></a>3. break和continue</h3><pre><code>1. 接下来说两个循环中最常用的关键字：break和continue。break语句是用来跳出这个循环的，类似switch语句的break。continue顾名思义，跳过这次循环，继续下一次循环。下面代码展示了它们两个的使用场景：
 
     例1:
         int[] arr = {1, 2, 3};
@@ -817,26 +828,11 @@ for each循环获取数据结构内元素非常方便，但是由于获取不�
 
 上述例子，打印结果没有2，因为当角标等于1，程序进入if语句，执行continue，跳过本次循环继续下一次循环，没有继续执行打印语句。
 
-2. 多层循环嵌套的话，break总是跳出自己所在的那层循环，continue也是作用于自己所在的那层循环，它们不会直接影响到其它内层或者外层的循环。</code></pre><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天写了些关于条件语句和循环语句的知识点。都很简单，而且也都很常用。接下来，下一篇，我要开始写一下Java的核心 - 面向对象相关的知识点了。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+2. 多层循环嵌套的话，break总是跳出自己所在的那层循环，continue也是作用于自己所在的那层循环，它们不会直接影响到其它内层或者外层的循环。
+</code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天写了些关于条件语句和循环语句的知识点。都很简单，而且也都很常用。接下来，下一篇，我要开始写一下Java的核心 - 面向对象相关的知识点了。
+    </p>
+
             </div>
             <hr/>
 
@@ -1238,7 +1234,7 @@ for each循环获取数据结构内元素非常方便，但是由于获取不�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1273,7 +1269,7 @@ for each循环获取数据结构内元素非常方便，但是由于获取不�
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 

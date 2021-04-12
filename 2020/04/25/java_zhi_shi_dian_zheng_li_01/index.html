@@ -31,6 +31,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -229,7 +231,7 @@
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -453,7 +455,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.5k
+                        2.4k
                     </div>
                     
 
@@ -483,7 +485,9 @@
 <p>今天想写点和Java相关的，面试需要用的一些知识点，第一呢，是为了我自己未来面试，不用四处查找。第二是复习一下之前的知识点，因为我发现，很多知识点，几周不看，就会忘记。第三就是，如果有机会，能被别人看到我的博客，希望对你有些帮助。</p>
 <h2 id="Java基础知识点"><a href="#Java基础知识点" class="headerlink" title="Java基础知识点"></a>Java基础知识点</h2><h3 id="1-面向对象和面向过程对比"><a href="#1-面向对象和面向过程对比" class="headerlink" title="1. 面向对象和面向过程对比"></a>1. 面向对象和面向过程对比</h3><pre><code>面向过程：性能相对高于面向对象语言，类调用需要实例化，因此消耗资源比较大。性能为重的项目，比如嵌入式开发，单片机等，通常用面向过程类语言开发。当然，类似嵌入式这种，需要用到面向过程开发的第二个原因，是因为面向过程语言通常会将代码直接编译成可执行的二进制机械码。但是面向过程语言的复用性，扩展性和维护性上比面向对象语言要低很多。
 
-面向对象： 性能相对于面向过程语言较差，因为大部分面向对象语言（比如Java）都不会将代码直接编译为可执行的二进制机械码。但是面向对象语言，由于有继承，封装等特性，复用性，维护性和可扩展性会比面向过程语言高很多。并且，面向对象语言可以设计出低耦合系统，系统会更灵活，更容易维护，也更不容易出错。</code></pre><h3 id="2-字符型常量和字符串常量的区别"><a href="#2-字符型常量和字符串常量的区别" class="headerlink" title="2. 字符型常量和字符串常量的区别"></a>2. 字符型常量和字符串常量的区别</h3><pre><code>字符型常量：
+面向对象： 性能相对于面向过程语言较差，因为大部分面向对象语言（比如Java）都不会将代码直接编译为可执行的二进制机械码。但是面向对象语言，由于有继承，封装等特性，复用性，维护性和可扩展性会比面向过程语言高很多。并且，面向对象语言可以设计出低耦合系统，系统会更灵活，更容易维护，也更不容易出错。
+</code></pre>
+<h3 id="2-字符型常量和字符串常量的区别"><a href="#2-字符型常量和字符串常量的区别" class="headerlink" title="2. 字符型常量和字符串常量的区别"></a>2. 字符型常量和字符串常量的区别</h3><pre><code>字符型常量：
 
 1. 单引号引起的单个字符，如'a', '1', '?'等。
 2. 字符常量相当于一个整型值，可以参加表达式运算，比如'2'-'0' -&gt; 返回一个整型数值2。
@@ -511,7 +515,9 @@
                 end
                """; 
 7. 字符串是不可变的，因此每次给一个字符串型变量赋值，其实是改变其指针的指向。
-8. 字符串变量可以指向一个空值null。</code></pre><h3 id="3-Java变量，常量和数据类型"><a href="#3-Java变量，常量和数据类型" class="headerlink" title="3. Java变量，常量和数据类型"></a>3. Java变量，常量和数据类型</h3><pre><code>1. 基本数据类型：
+8. 字符串变量可以指向一个空值null。
+</code></pre>
+<h3 id="3-Java变量，常量和数据类型"><a href="#3-Java变量，常量和数据类型" class="headerlink" title="3. Java变量，常量和数据类型"></a>3. Java变量，常量和数据类型</h3><pre><code>1. 基本数据类型：
 
     整数类型：byte，short，int，long
     浮点数类型：float，double
@@ -541,7 +547,9 @@
 
 3. Var关键字
 
-    Var关键字是Java10中新增的，跟Javascript类似，用var定义变量后，Java编译器会自己推断相应的变量的数据类型。var的最大作用是，如果遇到一些很长的变量类型，用var会短很多。</code></pre><h3 id="4-整数运算"><a href="#4-整数运算" class="headerlink" title="4. 整数运算"></a>4. 整数运算</h3><pre><code>1. 整数运算是精准的，如果是除法的话，也只能得到整数部分。比如15/2，如果是整数运算，只能得到7。
+    Var关键字是Java10中新增的，跟Javascript类似，用var定义变量后，Java编译器会自己推断相应的变量的数据类型。var的最大作用是，如果遇到一些很长的变量类型，用var会短很多。
+</code></pre>
+<h3 id="4-整数运算"><a href="#4-整数运算" class="headerlink" title="4. 整数运算"></a>4. 整数运算</h3><pre><code>1. 整数运算是精准的，如果是除法的话，也只能得到整数部分。比如15/2，如果是整数运算，只能得到7。
 
 2. %：求余数运算，比如15%2 = 1。
 
@@ -568,7 +576,9 @@
     System.out.println(a++); // 打印 9，a = 10
     System.out.println(++a); // 打印 11， a = 11
 
-    可以看出，自增（或者自减）运算符在变量前，先执行自增（或者自减），再引用，反之，先引用，后计算。</code></pre><h3 id="5-浮点数运算"><a href="#5-浮点数运算" class="headerlink" title="5. 浮点数运算"></a>5. 浮点数运算</h3><pre><code>1. 浮点数不能做位运算和移位运算。
+    可以看出，自增（或者自减）运算符在变量前，先执行自增（或者自减），再引用，反之，先引用，后计算。
+</code></pre>
+<h3 id="5-浮点数运算"><a href="#5-浮点数运算" class="headerlink" title="5. 浮点数运算"></a>5. 浮点数运算</h3><pre><code>1. 浮点数不能做位运算和移位运算。
 
 2. 有些浮点数运算不精确（比如0.1，但0.5能精确表示），因此例如下列代码：
 
@@ -590,7 +600,9 @@
     double d2 = 1.0 / 0; // Infinity
     double d3 = -1.0 / 0; // -Infinity
 
-6. 浮点数可以强制转换成整型，比如：int n1 = (int) 12.3; // 12</code></pre><h3 id="6-布尔运算"><a href="#6-布尔运算" class="headerlink" title="6. 布尔运算"></a>6. 布尔运算</h3><pre><code>1. 布尔运算是一种关系运算，包括：
+6. 浮点数可以强制转换成整型，比如：int n1 = (int) 12.3; // 12
+</code></pre>
+<h3 id="6-布尔运算"><a href="#6-布尔运算" class="headerlink" title="6. 布尔运算"></a>6. 布尔运算</h3><pre><code>1. 布尔运算是一种关系运算，包括：
 
     比较运算符：&gt;，&gt;=，&lt;，&lt;=，==，!=
     与运算： &amp;&amp;
@@ -608,7 +620,7 @@
     前面是false，则返回false，不会尝试计算后面的表达式。因此不报错。另一个例子：
 
         false &amp; (1 / 0 &gt; 3)，
-
+    
     这个则会报错，因为不论前面的表达式结果如何，都会向后计算。
 
     || 运算符也是短路运算符。
@@ -620,7 +632,9 @@
 表达式结果返回true，则返回result1，否则返回result2。例如：
 
     int a = 5 &gt; 3? 5 : 3; // a = 5
-    int b = 5 &lt; 3? 5 : 3; // b = 3</code></pre><h3 id="7-数组类型"><a href="#7-数组类型" class="headerlink" title="7. 数组类型"></a>7. 数组类型</h3><pre><code>数组类型是Java的基础类型之一，定义方式是"类型[]"。例如 int[]。可以在中括号中加数字来决定数组长度，比如int[5]。数组的特点：
+    int b = 5 &lt; 3? 5 : 3; // b = 3
+</code></pre>
+<h3 id="7-数组类型"><a href="#7-数组类型" class="headerlink" title="7. 数组类型"></a>7. 数组类型</h3><pre><code>数组类型是Java的基础类型之一，定义方式是"类型[]"。例如 int[]。可以在中括号中加数字来决定数组长度，比如int[5]。数组的特点：
 
     1. 数组创建后，其内元素都有默认值。整型默认都是0，浮点型是0.0，布尔型是false。
     2. 数组创建后大小不可变。
@@ -628,7 +642,7 @@
     4. 可以快速定义数组内元素，例如：
 
         int[] scores = new int[] {98, 86, 78, 99};
-
+        
         或者
 
         int[] scores = {98, 86, 78, 99};
@@ -640,9 +654,9 @@
     而在数组中并没有直接存储这三个字符串，而是存储了它们相应的地址，如果改变其中某项，如：
 
         animals[1] = bird;
-
+    
     并不是把第二个值改变，而是第二个角标指向从字符串"cat"变为"bird"。
-
+    
     7. 数组可以是多维数组，比如二维数组，例如：
 
         int[][] arr = {
@@ -650,27 +664,12 @@
             {4,5,6},
             {7,8,9}
         };
+    
+    获得多维数组的元素的方法是按照角标获取的，二维数组第一个角标代表行数，第二个角标代表列数，比如arr[1][2]，代表获取第二行第三列的元素，即6。通常最多用到三维数组，再更多维，用起来会很麻烦。
+</code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>本来想写面试重点的，但是强迫症一不小心写成知识点总结了。那就按步就班继续写吧，今天总结了下Java的一些基础类型，运算，基础数据类型。下一篇应该会写关于条件语句，循环语句，以及数组的更深入的知识点。今天貌似没有什么references，都是基础的，也都是我自己写的，如果有错请指正。
+    </p>
 
-    获得多维数组的元素的方法是按照角标获取的，二维数组第一个角标代表行数，第二个角标代表列数，比如arr[1][2]，代表获取第二行第三列的元素，即6。通常最多用到三维数组，再更多维，用起来会很麻烦。</code></pre><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>本来想写面试重点的，但是强迫症一不小心写成知识点总结了。那就按步就班继续写吧，今天总结了下Java的一些基础类型，运算，基础数据类型。下一篇应该会写关于条件语句，循环语句，以及数组的更深入的知识点。今天貌似没有什么references，都是基础的，也都是我自己写的，如果有错请指正。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
             </div>
             <hr/>
 
@@ -1072,7 +1071,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1107,7 +1106,7 @@
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 

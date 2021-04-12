@@ -31,6 +31,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -229,7 +231,7 @@
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -453,7 +455,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.9k
+                        1.8k
                     </div>
                     
 
@@ -489,32 +491,40 @@
         console.log("inside a: " + a);
         console.log("inside c: " + c);
     }
-
+    
     console.log("outside c: " + c);
     console.log("outside a: " + a);
-    console.log("b: " + b);</code></pre><p>结果是：</p>
+    console.log("b: " + b);
+</code></pre>
+<p>结果是：</p>
 <pre><code>inside a: 1
 inside c: 3
 outside c: 3
-Uncaught ReferenceError: a is not defined</code></pre><p>结合代码和结果，显而易见，var定义的变量c，虽然被定义在if这个块内，但是能被外面用到，而let定义的变量a则不能。接下来再看个复杂的例子：</p>
+Uncaught ReferenceError: a is not defined
+</code></pre>
+<p>结合代码和结果，显而易见，var定义的变量c，虽然被定义在if这个块内，但是能被外面用到，而let定义的变量a则不能。接下来再看个复杂的例子：</p>
 <pre><code>    for(let i = 0; i &lt; 5; i++) {
         setTimeout(function() {
             console.log("i: " + i);
         }, 1000);
     }
-
+    
     let j;
     for(j = 0; j &lt; 5; j++) {
         setTimeout(function() {
             console.log("j: " + j);
         }, 2000);
-    }</code></pre><p>结果是：</p>
+    }
+</code></pre>
+<p>结果是：</p>
 <pre><code>demo2.html:26 i: 0
 demo2.html:26 i: 1
 demo2.html:26 i: 2
 demo2.html:26 i: 3
 demo2.html:26 i: 4
-5 demo2.html:33 j: 5</code></pre><p>我们可以看到，第一个for循环，i这个变量是在for循环块内定义的，由于let是块状作用域关键字，因此在这个for块中，i就好像一个实体，每次 + 1，都会产生一个实体。</p>
+5 demo2.html:33 j: 5
+</code></pre>
+<p>我们可以看到，第一个for循环，i这个变量是在for循环块内定义的，由于let是块状作用域关键字，因此在这个for块中，i就好像一个实体，每次 + 1，都会产生一个实体。</p>
 <p>第二个for循环，j是在for块外定义的，传入for块内，就像是传入了一个参数，并不作为一个实体在for循环内，因此每次 j + 1，都是修改外面变量指向的内存，并不会创建新的变量。</p>
 <p>同样的代码，改成var的话，比如下面的代码：</p>
 <pre><code>    for(var i = 0; i &lt; 5; i++) {
@@ -522,15 +532,19 @@ demo2.html:26 i: 4
             console.log("i: " + i);
         }, 1000);
     }
-
+    
     var j;
     for(j = 0; j &lt; 5; j++) {
         setTimeout(function() {
             console.log("j: " + j);
         }, 2000);
-    }</code></pre><p>结果是：</p>
+    }
+</code></pre>
+<p>结果是：</p>
 <pre><code>5 i: 5
-5 j: 5</code></pre><p>显而易见，i和j均打印了五次，因为var是全局作用域，所以在不在for循环内创建，都会只创建一个，因为是异步操作（上面也是）因此最后传入相应变量的值都是最后一个值，因此都是5。</p>
+5 j: 5
+</code></pre>
+<p>显而易见，i和j均打印了五次，因为var是全局作用域，所以在不在for循环内创建，都会只创建一个，因为是异步操作（上面也是）因此最后传入相应变量的值都是最后一个值，因此都是5。</p>
 <p>以上是对块级作用域的一些见解和使用。如果有不恰当的地方，希望能指正，谢谢了。</p>
 <h2 id="ES6-解构赋值"><a href="#ES6-解构赋值" class="headerlink" title="ES6 - 解构赋值"></a>ES6 - 解构赋值</h2><h3 id="解构赋值-对象"><a href="#解构赋值-对象" class="headerlink" title="解构赋值 - 对象"></a><strong>解构赋值 - 对象</strong></h3><p>接下来说一下ES6的新功能，就是解构赋值，这种功能大大的简化了对象或者数组的取值操作。比如下面代码：</p>
 <pre><code>    let person = {
@@ -541,37 +555,61 @@ demo2.html:26 i: 4
     let {name,age} = person;
     console.log(name, " : ", age);
     let {height} = person;
-    console.log(height);</code></pre><p>结果是：</p>
+    console.log(height);
+</code></pre>
+<p>结果是：</p>
 <pre><code>personName  :  12
-undefined</code></pre><p>上面是解构赋值的最简单用法，很容易获得对象内的相应的参数的值。但是有一点需要注意的是，解构的变量名必须和对象内的参数key值对应。</p>
+undefined
+</code></pre>
+<p>上面是解构赋值的最简单用法，很容易获得对象内的相应的参数的值。但是有一点需要注意的是，解构的变量名必须和对象内的参数key值对应。</p>
 <h3 id="解构赋值-数组"><a href="#解构赋值-数组" class="headerlink" title="解构赋值 - 数组"></a><strong>解构赋值 - 数组</strong></h3><p>同样的，可以用类似的方法解构数组，比如：</p>
 <pre><code>    let arr = [1,2,3];
     let [a,b] = arr;
     console.log("a:", a,"b:",b);
     let [d,c] = arr;
-    console.log("c:", c,"d:",d);</code></pre><p>结果是：</p>
+    console.log("c:", c,"d:",d);
+</code></pre>
+<p>结果是：</p>
 <pre><code>a: 1 b: 2
-c: 2 d: 1</code></pre><p>通过结果能看出，解构数组，是通过值索引对应的，也就是第一个变量就是获得索引为0的值，以此类推。</p>
+c: 2 d: 1
+</code></pre>
+<p>通过结果能看出，解构数组，是通过值索引对应的，也就是第一个变量就是获得索引为0的值，以此类推。</p>
 <h3 id="解构赋值-字符串"><a href="#解构赋值-字符串" class="headerlink" title="解构赋值 - 字符串"></a><strong>解构赋值 - 字符串</strong></h3><p>除了对象和数组，字符串也能解构赋值。如下方代码：</p>
 <pre><code>    let str = "ABCD";
     let [a,b] = str;
 
-    console.log(a,b);</code></pre><p>结果是：</p>
-<pre><code>A B</code></pre><p>与数组差不多，字符串在解构时，也是会类似数组那样，按照索引获得。同样的，按照索引获取（数组和字符串等），不能用大括号来解构，但是解构对象，是要用大括号解构的。</p>
+    console.log(a,b);
+</code></pre>
+<p>结果是：</p>
+<pre><code>A B
+</code></pre>
+<p>与数组差不多，字符串在解构时，也是会类似数组那样，按照索引获得。同样的，按照索引获取（数组和字符串等），不能用大括号来解构，但是解构对象，是要用大括号解构的。</p>
 <h2 id="ES6-展开运算符"><a href="#ES6-展开运算符" class="headerlink" title="ES6 - 展开运算符"></a>ES6 - 展开运算符</h2><h3 id="展开运算符-数组"><a href="#展开运算符-数组" class="headerlink" title="展开运算符 - 数组"></a><strong>展开运算符 - 数组</strong></h3><p>接下来打算说下展开运算符（…）展开运算符类似解构赋值，可以用于数组和对象等，简化了对数组或对象内的各项的获取步骤。下面是展开运算符的简单使用：</p>
 <pre><code>    let arr = [1,2,3];
     console.log(arr);
-    console.log(...arr);</code></pre><p>结果是：</p>
-<pre><code>(3) [1, 2, 3]
-1 2 3</code></pre><p>很明显，直接打印arr，则打印的是数组，可以展开查看各项，而使用展开运算符（三个点）则能获取到每一项，而不用像以前一样，要用循环或者其它方法。可见展开运算符有多方便。下面是展开运算符在数组的一些用法：</p>
+    console.log(...arr);
+</code></pre>
+<p>结果是：</p>
+<pre><code>(3)&nbsp;[1, 2, 3]
+1 2 3
+</code></pre>
+<p>很明显，直接打印arr，则打印的是数组，可以展开查看各项，而使用展开运算符（三个点）则能获取到每一项，而不用像以前一样，要用循环或者其它方法。可见展开运算符有多方便。下面是展开运算符在数组的一些用法：</p>
 <pre><code>    let arr = [1,2,3,4];
     let arr2 = ["a", ...arr,"b"];
-    console.log(arr2);</code></pre><p>结果是：</p>
-<pre><code>(6) ["a", 1, 2, 3, 4, "b"]</code></pre><p>展开运算符可以轻松的将数组中的所有项放入到另一个数组中。这样简化了很多类似的操作。接下来是一个稍微复杂些的用法：</p>
+    console.log(arr2);
+</code></pre>
+<p>结果是：</p>
+<pre><code>(6)&nbsp;["a", 1, 2, 3, 4, "b"]
+</code></pre>
+<p>展开运算符可以轻松的将数组中的所有项放入到另一个数组中。这样简化了很多类似的操作。接下来是一个稍微复杂些的用法：</p>
 <pre><code>    let arr = [1,2,3,4];
     let [a,...b] = arr;
-    console.log("a:",a," b:",b);</code></pre><p>结果是：</p>
-<pre><code>a: 1  b: (3) [2, 3, 4]</code></pre><p>从上述能看出，a被赋值了数字1，b被赋值了一个数组，内容是除了1之外的其他数字。展开运算符能分别赋值变量，怎么赋值随开发要求而定，这种赋值方式十分方便。</p>
+    console.log("a:",a," b:",b);
+</code></pre>
+<p>结果是：</p>
+<pre><code>a: 1  b: (3)&nbsp;[2, 3, 4]
+</code></pre>
+<p>从上述能看出，a被赋值了数字1，b被赋值了一个数组，内容是除了1之外的其他数字。展开运算符能分别赋值变量，怎么赋值随开发要求而定，这种赋值方式十分方便。</p>
 <h3 id="展开运算符-对象"><a href="#展开运算符-对象" class="headerlink" title="展开运算符 - 对象"></a><strong>展开运算符 - 对象</strong></h3><p>类似解构赋值，展开运算符可以很方便的用于对象，可以简化对象的赋值或者获取值的操作，比如：</p>
 <pre><code>    let obj = {
         a:1,
@@ -584,8 +622,12 @@ c: 2 d: 1</code></pre><p>通过结果能看出，解构数组，是通过值索
         d:4
     }
 
-    console.log(obj2);</code></pre><p>结果是：</p>
-<pre><code>{a: 1, b: 2, c: 3, d: 4}</code></pre><p>通过上述代码，我们轻松的将obj的参数和值添加到了obj2中。但是比如下方代码：</p>
+    console.log(obj2);
+</code></pre>
+<p>结果是：</p>
+<pre><code>{a: 1, b: 2, c: 3, d: 4}
+</code></pre>
+<p>通过上述代码，我们轻松的将obj的参数和值添加到了obj2中。但是比如下方代码：</p>
 <pre><code>    let obj = {
         a:1,
         b:2
@@ -597,8 +639,12 @@ c: 2 d: 1</code></pre><p>通过结果能看出，解构数组，是通过值索
         d:4
     }
 
-    console.log(obj2);</code></pre><p>结果是：</p>
-<pre><code>{a: 3, b: 2, d: 4}</code></pre><p>可见，如果obj2中存在obj中的key-value时，则不复制进去。接下来看看另一个例子，和上述数组中类似的例子：</p>
+    console.log(obj2);
+</code></pre>
+<p>结果是：</p>
+<pre><code>{a: 3, b: 2, d: 4}
+</code></pre>
+<p>可见，如果obj2中存在obj中的key-value时，则不复制进去。接下来看看另一个例子，和上述数组中类似的例子：</p>
 <pre><code>    let obj = {
         a:1,
         b:2
@@ -611,30 +657,16 @@ c: 2 d: 1</code></pre><p>通过结果能看出，解构数组，是通过值索
     }
 
     let {a,...b} = obj2;
-    console.log(a, b);</code></pre><p>结果是：</p>
-<pre><code>1 {b: 2, c: 3, d: 4}</code></pre><p>结果显而易见，类似展开数组一样，a被赋值1，b被赋值成一个新对象，对象中的参数是原obj2中，除了a之外的其它的参数。</p>
+    console.log(a, b);
+</code></pre>
+<p>结果是：</p>
+<pre><code>1 {b: 2, c: 3, d: 4}
+</code></pre>
+<p>结果显而易见，类似展开数组一样，a被赋值1，b被赋值成一个新对象，对象中的参数是原obj2中，除了a之外的其它的参数。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这篇文章说了下块状作用域和解构赋值。还是很好理解的，但是由于let和const是块状作用域，var则不同。所以万一需要异步操作，还是要小心赋值的问题。</p>
 <p>至于解构赋值，对象是以变量名对应对象参数key值来解构的，变量名必须和key值相同。其它类似数组和字符串，解构时，按照索引解构，不需要特定变量名。</p>
 <p>展开运算符的很多用法类似于解构赋值。不管是展开运算符还是解构赋值，都很大的程度上简化了一些对象，数组或类似数据结构的值的获取和赋值。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -893,7 +925,9 @@ Set先说一下set，Java</div>
                     <div class="summary"> es6的一些知识点整理 - 2 
   异步与同步  
 
-*异步和同步是一种消息通知机制。*什么是异步？异步非阻塞：比如： A调用B，B处理同时，A继续执行。B处理结束，返回结果，A再用B的结果执行。A在此期间不用等B执行结束。同步阻塞：比</div>
+异步和同步是一种消息通知机制。什么是异步？异步非阻塞：比如： A调用B，B处理同时，A继续执行。B处理结束，返回结果，A再用B的结果执行。A在此期间不用等B执行结束。
+
+同步阻塞：比</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-17
@@ -1037,7 +1071,7 @@ Set先说一下set，Java</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1072,7 +1106,7 @@ Set先说一下set，Java</div>
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 

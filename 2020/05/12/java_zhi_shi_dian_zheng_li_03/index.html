@@ -31,6 +31,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -229,7 +231,7 @@
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -453,7 +455,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.4k
+                        2.3k
                     </div>
                     
 
@@ -483,12 +485,16 @@
 <pre><code>1. 链接打印机
 2. 打开文档
 3. 开始打印
-4. 打印结束</code></pre><p>而如果是面向对象语言呢，每个程序都有一个或者若干对象（实例），完成一段程序，就是对象之间互动。比如上述例子：</p>
+4. 打印结束
+</code></pre>
+<p>而如果是面向对象语言呢，每个程序都有一个或者若干对象（实例），完成一段程序，就是对象之间互动。比如上述例子：</p>
 <pre><code>1. 创建电脑实例
 2. 创建打印机实例
 3. 电脑和打印机通信
 4. 电脑调用打印
-5. 请求转到打印机接口并打印</code></pre><p>其实这么简单的例子，看起来区别不大，甚至面向对象好像还麻烦一点。但是面向对象语言的实现方式，很接近我们的现实生活，因此更容易理解。</p>
+5. 请求转到打印机接口并打印
+</code></pre>
+<p>其实这么简单的例子，看起来区别不大，甚至面向对象好像还麻烦一点。但是面向对象语言的实现方式，很接近我们的现实生活，因此更容易理解。</p>
 <h2 id="Java面向对象的基础"><a href="#Java面向对象的基础" class="headerlink" title="Java面向对象的基础"></a>Java面向对象的基础</h2><p>要想讲面向对象，应该得先了解Java的类和实例。</p>
 <pre><code>1. 类（class）
 
@@ -512,7 +518,7 @@
     protected：允许当前类，子孙类和同一个package下的类访问
     
     default（或者不写任何修饰字段）：当前类和同一个package下可见。
-
+    
     private：仅当前类可见
 
 类中字段的类型字段是相应的字段类型，比如可以是基本类型，int，double等，也可以是引用类型，比如String，Person，Food这种类类型。
@@ -525,7 +531,9 @@
 
     Food food = new Food();
 
-然后通过food.weight就可以获得实例对应的字段的值了。</code></pre><h2 id="Java面向对象-方法"><a href="#Java面向对象-方法" class="headerlink" title="Java面向对象 - 方法"></a>Java面向对象 - 方法</h2><p>对于面向对象来说，类很重要，而另一个也很重要的内容是方法（method）。方法的用途就是提供一些途径去处理类中字段或者其它用户需求的内容。</p>
+然后通过food.weight就可以获得实例对应的字段的值了。
+</code></pre>
+<h2 id="Java面向对象-方法"><a href="#Java面向对象-方法" class="headerlink" title="Java面向对象 - 方法"></a>Java面向对象 - 方法</h2><p>对于面向对象来说，类很重要，而另一个也很重要的内容是方法（method）。方法的用途就是提供一些途径去处理类中字段或者其它用户需求的内容。</p>
 <pre><code>1. 方法
 
 有时候直接把字段暴露在外这种做法并不好，因为其他人能随意篡改，破坏了Java的一大特性 - 封装性。因此大多数情况，我们会用private修饰字段，因为private修饰的字段，只能在类内可见。因此在外部是无法调用的。所以我们可以用public修饰相应的操作字段的方法。比如下列代码：
@@ -618,7 +626,7 @@
 
     Person p = new Person();
     p.setName("Tony");
-
+    
 上述代码"Tony"字符串会绑定在setName方法的name参数上。
 
 当传入的值是基本数据类型时，传入的是值的复制。因此在外部修改传入值，对方法内参数没影响：
@@ -667,26 +675,11 @@
 
 上述代码的结果是“Andrew, Bob”和“Luke, Bob”。因为当传入参数是引用类型，函数内的局部变量则指向引用类型参数值所在的地址，而不是获得了相应的值。等于传入后，方法局部参数和外部传入的参数指向同一个内存地址，因此外部参数修改了内存地址中的内容后，也会影响到函数内部的参数值。
 
-当然，如果传入String类型，会出现和传入一个基本类型一样的结果，就是外部变量改变，内部的变量值不会被影响。这是因为，参数传入方法后，外部变量和函数局部变量都指向同一个字符串，而当外部变量改变时，并不是改变了指向地址的字符串值，而是改变了它自己的指向，因此方法内局部变量仍然指向原来指向的字符串，且字符串值并没有变。</code></pre><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天写了点关于面向对象的基本概念，同时说了下关于类，实例，变量，参数，方法等面向对象语言很重要的基础部分。本想继续说下关于构造函数。但是感觉文章篇幅不想太长。那就下一篇，先说下构造函数，再说下方法重载，因为重载在构造函数中用途很广。如果篇幅不长，下一篇中还会写Java的核心中的核心 - 继承和多态的知识点。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+当然，如果传入String类型，会出现和传入一个基本类型一样的结果，就是外部变量改变，内部的变量值不会被影响。这是因为，参数传入方法后，外部变量和函数局部变量都指向同一个字符串，而当外部变量改变时，并不是改变了指向地址的字符串值，而是改变了它自己的指向，因此方法内局部变量仍然指向原来指向的字符串，且字符串值并没有变。
+</code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天写了点关于面向对象的基本概念，同时说了下关于类，实例，变量，参数，方法等面向对象语言很重要的基础部分。本想继续说下关于构造函数。但是感觉文章篇幅不想太长。那就下一篇，先说下构造函数，再说下方法重载，因为重载在构造函数中用途很广。如果篇幅不长，下一篇中还会写Java的核心中的核心 - 继承和多态的知识点。
+    </p>
+
             </div>
             <hr/>
 
@@ -886,7 +879,9 @@
   Java面向对象-02  
 
 前言今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：
-Food food = new Food("Beef");这句话</div>
+Food food = new Food("Beef");
+
+这</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-17
@@ -1089,7 +1084,7 @@ Food food = new Food("Beef");这句话</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1124,7 +1119,7 @@ Food food = new Food("Beef");这句话</div>
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 

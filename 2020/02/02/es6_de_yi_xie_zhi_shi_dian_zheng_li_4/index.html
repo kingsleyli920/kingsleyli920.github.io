@@ -32,6 +32,8 @@ Set先说一下set，Java">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -230,7 +232,7 @@ Set先说一下set，Java">
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -482,11 +484,17 @@ Set先说一下set，Java">
 
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前介绍了很多关于ES6的新增功能，比如let和const，块状作用域，解构赋值，展开运算符，异步同步等。今天想说一下set和map这两个数据结构。</p>
 <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>先说一下set，Javascript的set类似于其它语言的set，其最大作用就是可以去重，MDN对set的描述是：</p>
-<pre><code>Set 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用。[1]</code></pre><p>下面是一个set的例子：</p>
+<pre><code>Set 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用。[1]
+</code></pre>
+<p>下面是一个set的例子：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4];
     let set = new Set(arr);
-    console.log(set);</code></pre><p>运行结果是：</p>
-<pre><code>Set(4) {1, 2, 3, 4}</code></pre><p>通过上述代码，我们能很快很方便的把数组转换成set，数组中的重复的值都被去除掉了。</p>
+    console.log(set);
+</code></pre>
+<p>运行结果是：</p>
+<pre><code>Set(4)&nbsp;{1, 2, 3, 4}
+</code></pre>
+<p>通过上述代码，我们能很快很方便的把数组转换成set，数组中的重复的值都被去除掉了。</p>
 <h3 id="Set的常用方法-add-delete-has-clear，forEach"><a href="#Set的常用方法-add-delete-has-clear，forEach" class="headerlink" title="Set的常用方法 - add, delete, has, clear，forEach"></a><strong>Set的常用方法 - add, delete, has, clear，forEach</strong></h3><h3 id="1-add方法"><a href="#1-add方法" class="headerlink" title="1. add方法"></a>1. add方法</h3><p>顾名思义，add方法是向set中添加值的方法。如下方的代码：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4];
     let set = new Set(arr);
@@ -495,8 +503,12 @@ Set先说一下set，Java">
     set.add('a');
     set.add(1);
     set.add(1.1);
-    console.log(...set);</code></pre><p>结果是：</p>
-<pre><code>    1 2 3 4 "a" 1.1</code></pre><p>通过上方代码，我们分别添加了字符串a，数字1和数字1.1，从结果能看出，添加的值是逐个加入到set后面的，并且由于数字1存在，因此不会被重复添加进去。而且很容易看出，set不是一个固定数据类型的数据结构。至于返回值，add方法的返回值是set本身。</p>
+    console.log(...set);
+</code></pre>
+<p>结果是：</p>
+<pre><code>    1 2 3 4 "a" 1.1
+</code></pre>
+<p>通过上方代码，我们分别添加了字符串a，数字1和数字1.1，从结果能看出，添加的值是逐个加入到set后面的，并且由于数字1存在，因此不会被重复添加进去。而且很容易看出，set不是一个固定数据类型的数据结构。至于返回值，add方法的返回值是set本身。</p>
 <h3 id="2-delete方法"><a href="#2-delete方法" class="headerlink" title="2. delete方法"></a>2. delete方法</h3><p>接下来看一下delete方法，这个方法可以帮助我们删除掉set内的指定值。如果要删除的值存在，则删除，如果不存在，则不操作，比如如下代码：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
     let set = new Set(arr);
@@ -508,24 +520,34 @@ Set先说一下set，Java">
     set.delete("a");
     console.log(...set);
 
-    console.log(res1, res2);</code></pre><p>结果是：</p>
+    console.log(res1, res2);
+</code></pre>
+<p>结果是：</p>
 <pre><code>1 2 3 4 "a" 2.2
 2 3 4 "a" 2.2
 2 3 4 "a" 2.2
 2 3 4 2.2
-true false</code></pre><p>从结果的打印，能很容易的看出，当删除1时候，删除成功，之后删除1.1，由于1.1不存在，因此没有操作，最后删除字符串a，删除成功。而且从打印的返回值res1和res2我们能看出，如果删除成功，返回值是true，否则是false。这个返回值，有时候会帮助我们用于判断，决定接下来的操作。</p>
+true false
+</code></pre>
+<p>从结果的打印，能很容易的看出，当删除1时候，删除成功，之后删除1.1，由于1.1不存在，因此没有操作，最后删除字符串a，删除成功。而且从打印的返回值res1和res2我们能看出，如果删除成功，返回值是true，否则是false。这个返回值，有时候会帮助我们用于判断，决定接下来的操作。</p>
 <h3 id="3-has方法"><a href="#3-has方法" class="headerlink" title="3. has方法"></a>3. has方法</h3><p>has方法很明显，用来判断set中是否存在某个值，MDN对其的描述是：</p>
-<pre><code>has() 方法返回一个布尔值来指示对应的值value是否存在Set对象中。[2]</code></pre><p>接下来一个例子：</p>
+<pre><code>has() 方法返回一个布尔值来指示对应的值value是否存在Set对象中。[2]
+</code></pre>
+<p>接下来一个例子：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
     let set = new Set(arr);
     console.log(...set);
     console.log(set.has(1));
     console.log(set.has("a"));
-    console.log(set.has(999));</code></pre><p>结果是：</p>
+    console.log(set.has(999));
+</code></pre>
+<p>结果是：</p>
 <pre><code>1 2 3 4 "a" 2.2
 true
 true
-false</code></pre><p>通过结果，我们能看出，set中包含数字1，2，3，4，字符串a以及浮点数2.2，当我们判断是否存在1和”a”时，由于存在，返回true，当判断999时，因为不存在，则返回false。</p>
+false
+</code></pre>
+<p>通过结果，我们能看出，set中包含数字1，2，3，4，字符串a以及浮点数2.2，当我们判断是否存在1和”a”时，由于存在，返回true，当判断999时，因为不存在，则返回false。</p>
 <h3 id="4-clear方法"><a href="#4-clear方法" class="headerlink" title="4. clear方法"></a>4. clear方法</h3><p>接着看下clear方法，这个方法就没什么可说了，就是很简单的清空set。这个方法返回值是undefined。而且不管set是不是空的，都不报错。一个例子如下：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
     let set = new Set(arr);
@@ -533,34 +555,50 @@ false</code></pre><p>通过结果，我们能看出，set中包含数字1，2，
     set.clear();
     console.log(set);
     set.clear();
-    console.log(set);</code></pre><p>结果是：</p>
+    console.log(set);
+</code></pre>
+<p>结果是：</p>
 <pre><code>1 2 3 4 "a" 2.2
-Set(0) {}
-Set(0) {}</code></pre><p>显而易见，set被清空，而且重复调用也不会出错。</p>
+Set(0)&nbsp;{}
+Set(0)&nbsp;{}
+</code></pre>
+<p>显而易见，set被清空，而且重复调用也不会出错。</p>
 <h3 id="5-forEach方法"><a href="#5-forEach方法" class="headerlink" title="5. forEach方法"></a>5. forEach方法</h3><p>forEach方法是很多数据结构都有的方法，用来迭代数据结构中的所有项。MDN描述如下：</p>
-<pre><code>forEach 方法会根据集合中元素的插入顺序，依次执行提供的回调函数。[3]</code></pre><p>从描述中能看出，forEach方法迭代的值和索引，是通过回调函数来使用的，代码如下：</p>
+<pre><code>forEach 方法会根据集合中元素的插入顺序，依次执行提供的回调函数。[3]
+</code></pre>
+<p>从描述中能看出，forEach方法迭代的值和索引，是通过回调函数来使用的，代码如下：</p>
 <pre><code>    let arr = [1,2,3,3,1,2,4, "a", 2.2];
     let set = new Set(arr);
 
     set.forEach((val, key, set) =&gt; {
         console.log(val,":",key, ":", set);
-    })</code></pre><p>结果如下：</p>
-<pre><code>1 ":" 1 ":" Set(6) {1, 2, 3, 4, "a", …}
-2 ":" 2 ":" Set(6) {1, 2, 3, 4, "a", …}
-3 ":" 3 ":" Set(6) {1, 2, 3, 4, "a", …}
-4 ":" 4 ":" Set(6) {1, 2, 3, 4, "a", …}
-a : a : Set(6) {1, 2, 3, 4, "a", …}
-2.2 ":" 2.2 ":" Set(6) {1, 2, 3, 4, "a", …}</code></pre><p>set的forEach函数第一个参数也是一个回调函数，类似于其他数据结构，但是set的forEach和数组有些不同，由于set没有索引，因此，回调函数的第一个value值和第二个key值都是当前操作项的值。与此同时，他还能接收第三个参数，第三个参数是这个值来源于的哪个数组。</p>
+    })
+</code></pre>
+<p>结果如下：</p>
+<pre><code>1 ":" 1 ":" Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+2 ":" 2 ":" Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+3 ":" 3 ":" Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+4 ":" 4 ":" Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+a : a : Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+2.2 ":" 2.2 ":" Set(6)&nbsp;{1, 2, 3, 4, "a",&nbsp;…}
+</code></pre>
+<p>set的forEach函数第一个参数也是一个回调函数，类似于其他数据结构，但是set的forEach和数组有些不同，由于set没有索引，因此，回调函数的第一个value值和第二个key值都是当前操作项的值。与此同时，他还能接收第三个参数，第三个参数是这个值来源于的哪个数组。</p>
 <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>说完了set，那就不能不说map了，本来想分两篇文章写，但是想了想，还是写了吧。先看下Map在MDN中的描述：</p>
-<pre><code>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。[4]</code></pre><p>下面代码，是map的简单使用：</p>
+<pre><code>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。[4]
+</code></pre>
+<p>下面代码，是map的简单使用：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
     let map2 = new Map([1, 'one'], [2, 'two'], [3, 'three']);
-    console.log(map2);</code></pre><p>结果是：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+    console.log(map2);
+</code></pre>
+<p>结果是：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
 Uncaught TypeError: Iterator value 1 is not an entry object
 at new Map (&lt;anonymous&gt;)
-at demo2.html:110</code></pre><p>从结果我们能看出，创建map不能用下面创建map2的方式，会报错，通过错误提示，我们能看出，创建map时候，传入的必须是一个可迭代的数据结构， 比如数组。接下来看看map的几个常用方法。上述代码中，key是数字1，2，3 等，value是各个key对应的英文单词。</p>
+at demo2.html:110
+</code></pre>
+<p>从结果我们能看出，创建map不能用下面创建map2的方式，会报错，通过错误提示，我们能看出，创建map时候，传入的必须是一个可迭代的数据结构， 比如数组。接下来看看map的几个常用方法。上述代码中，key是数字1，2，3 等，value是各个key对应的英文单词。</p>
 <h3 id="Map的常用方法-set-get-keys-values-delete-has-clear，forEach"><a href="#Map的常用方法-set-get-keys-values-delete-has-clear，forEach" class="headerlink" title="Map的常用方法 - set, get, keys, values, delete, has, clear，forEach"></a><strong>Map的常用方法 - set, get, keys, values, delete, has, clear，forEach</strong></h3><h3 id="1-set和get方法"><a href="#1-set和get方法" class="headerlink" title="1. set和get方法"></a>1. set和get方法</h3><p>先说下set和get方法，这两个方法很好理解，就是插入新的key-value对，和通过相应的key得到相应的value。下面看一下相应代码：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
@@ -571,96 +609,102 @@ at demo2.html:110</code></pre><p>从结果我们能看出，创建map不能用�
 
     let val = map.get(2);
     console.log("getVal: ", val);
-
+    
     map.set(1, "oneoneone");
     console.log("map: ", map);
 
-    console.log(map.get(333));</code></pre><p>结果是：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
-map:  Map(4) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
-setAns:  Map(4) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+    console.log(map.get(333));
+</code></pre>
+<p>结果是：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+map:  Map(4)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+setAns:  Map(4)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
 getVal:  two
-map:  Map(4) {1 =&gt; "oneoneone", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
-undefined</code></pre><p>通过上面结果我们能看出，set方法的返回值是map本身，get方法的返回值是获取到的value值，如果没有对应的key，则返回undefined。同时我们能轻松的看出插入和获取的操作，如果插入时，key值不存在，则插入key-value对。如果存在，则更新key对应的value值为新插入的值。</p>
+map:  Map(4)&nbsp;{1 =&gt; "oneoneone", 2 =&gt; "two", 3 =&gt; "three", 4 =&gt; "four"}
+undefined
+</code></pre>
+<p>通过上面结果我们能看出，set方法的返回值是map本身，get方法的返回值是获取到的value值，如果没有对应的key，则返回undefined。同时我们能轻松的看出插入和获取的操作，如果插入时，key值不存在，则插入key-value对。如果存在，则更新key对应的value值为新插入的值。</p>
 <h3 id="2-keys和values方法"><a href="#2-keys和values方法" class="headerlink" title="2. keys和values方法"></a>2. keys和values方法</h3><p>通过keys和values方法，我们分别能得到相应的可迭代对象作为返回值，对象中分别按插入顺序存入了所有key值和value值。下面是keys和values的简单用法：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
-
+    
     let keys = map.keys();
     console.log("keys: ", keys);
 
     let values = map.values();
-    console.log("values: ", values);</code></pre><p>结果是：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
-keys:  MapIterator {1, 2, 3}
-values:  MapIterator {"one", "two", "three"}</code></pre><p>通过结果我们能看出，keys和values方法的返回值都是MapIterator对象，我们能使用Iterator对象的相应方法获取相应的值。</p>
+    console.log("values: ", values);
+</code></pre>
+<p>结果是：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+keys:  MapIterator&nbsp;{1, 2, 3}
+values:  MapIterator&nbsp;{"one", "two", "three"}
+</code></pre>
+<p>通过结果我们能看出，keys和values方法的返回值都是MapIterator对象，我们能使用Iterator对象的相应方法获取相应的值。</p>
 <h3 id="3-delete方法"><a href="#3-delete方法" class="headerlink" title="3. delete方法"></a>3. delete方法</h3><p>map的delete方法类似set中的delete方法，删除对应key值的value，删除成功返回true，失败返回false。简单用法如下：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
-
+    
     let ans1 = map.delete(1);
     console.log("map: ", map);
     console.log("return answer after delete: ", ans1);
     let ans2 = map.delete(1);
     console.log("map: ", map);
-    console.log("return answer after delete: ", ans2);</code></pre><p>打印结果是：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
-map:  Map(2) {2 =&gt; "two", 3 =&gt; "three"}
+    console.log("return answer after delete: ", ans2);
+</code></pre>
+<p>打印结果是：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+map:  Map(2)&nbsp;{2 =&gt; "two", 3 =&gt; "three"}
 return answer after delete:  true
-map:  Map(2) {2 =&gt; "two", 3 =&gt; "three"}
-return answer after delete:  false</code></pre><p>从结果显而易见，第一次调用delete，传入参数1，则成功删除key值1对应的值“one”，并且我们能看出，由于删除成功，返回值是true。而第二次再次删除数字1对应的值时，由于之前删除过，map中已经不存在key为1的项，因此删除失败，map不变，返回值为false。</p>
+map:  Map(2)&nbsp;{2 =&gt; "two", 3 =&gt; "three"}
+return answer after delete:  false
+</code></pre>
+<p>从结果显而易见，第一次调用delete，传入参数1，则成功删除key值1对应的值“one”，并且我们能看出，由于删除成功，返回值是true。而第二次再次删除数字1对应的值时，由于之前删除过，map中已经不存在key为1的项，因此删除失败，map不变，返回值为false。</p>
 <h3 id="4-has方法"><a href="#4-has方法" class="headerlink" title="4. has方法"></a>4. has方法</h3><p>has方法也很简单，通过传入的key值，判断是否存在相应的键值对，如果存在则返回true，否则返回false。下面是简单用法：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
-
+    
     console.log(map.has(1));
-    console.log(map.has("one"));</code></pre><p>打印结果为：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+    console.log(map.has("one"));
+</code></pre>
+<p>打印结果为：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
 true
-false</code></pre><p>从结果能很快看出，当我们传入数字1时，由于map中存在这个key值，因此返回true，相反的，map中不存在“one”，因此第二个has返回的结果时false。</p>
+false
+</code></pre>
+<p>从结果能很快看出，当我们传入数字1时，由于map中存在这个key值，因此返回true，相反的，map中不存在“one”，因此第二个has返回的结果时false。</p>
 <h3 id="5-clear方法"><a href="#5-clear方法" class="headerlink" title="5. clear方法"></a>5. clear方法</h3><p>clear方法就更简单了，就是清空map用的。clear方法的返回值是undefined。代码如下：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
-
+    
     map.clear();
-    console.log(map);</code></pre><p>结果如下：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
-Map(0) {}</code></pre><p>结果显而易见，就不赘述了。</p>
+    console.log(map);
+</code></pre>
+<p>结果如下：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+Map(0)&nbsp;{}
+</code></pre>
+<p>结果显而易见，就不赘述了。</p>
 <h3 id="6-forEach方法"><a href="#6-forEach方法" class="headerlink" title="6. forEach方法"></a>6. forEach方法</h3><p>map的forEach方法和set的略有不同，同样是传入一个回调函数作为参数，不同的是，回调函数的第一个和第二个参数，set由于没有索引，因此两个参数都是相应的值，但是map不同，map的forEach方法中的回调函数的第一个参数是键值对的value值，第二个是key值，下面的例子很清楚：</p>
 <pre><code>    let map = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
     console.log(map);
-
+    
     map.forEach((val, key) =&gt; {
         console.log(key,":",val);
-    });</code></pre><p>结果是：</p>
-<pre><code>Map(3) {1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
+    });
+</code></pre>
+<p>结果是：</p>
+<pre><code>Map(3)&nbsp;{1 =&gt; "one", 2 =&gt; "two", 3 =&gt; "three"}
 1 ":" "one"
 2 ":" "two"
-3 ":" "three"</code></pre><p>从结果能很容易看出，map的回调函数也有第三个参数，和set类似，返回这个map，在此不再多说了。</p>
+3 ":" "three"
+</code></pre>
+<p>从结果能很容易看出，map的回调函数也有第三个参数，和set类似，返回这个map，在此不再多说了。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>今天说了两个数据解构，set和map，这两个数据结构并不罕见，很多编程语言中都有，而且在javaScript中的用法和在其它语言中的用法也很类似。可以简单便捷的完成很多其它数据解构不容易完成的任务。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set</a></p>
-<p>[2] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has</a></p>
-<p>[3] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach</a></p>
-<p>[4] <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map</a></p>
+
             </div>
             <hr/>
 
@@ -1062,7 +1106,7 @@ Map(0) {}</code></pre><p>结果显而易见，就不赘述了。</p>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1097,7 +1141,7 @@ Map(0) {}</code></pre><p>结果显而易见，就不赘述了。</p>
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 

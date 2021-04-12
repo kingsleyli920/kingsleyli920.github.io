@@ -9,7 +9,9 @@
   Java面向对象-02  
 
 前言今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：
-Food food = new Food(&#34;Beef&#34;);这句话">
+Food food = new Food(&#34;Beef&#34;);
+
+这">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -32,6 +34,8 @@ Food food = new Food(&#34;Beef&#34;);这句话">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -230,7 +234,7 @@ Food food = new Food(&#34;Beef&#34;);这句话">
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
@@ -454,7 +458,7 @@ Food food = new Food(&#34;Beef&#34;);这句话">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        968
                     </div>
                     
 
@@ -481,9 +485,13 @@ Food food = new Food(&#34;Beef&#34;);这句话">
 <center> <h2> <font color="lightgray">Java面向对象-02</font> </h2> </center>
 
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：</p>
-<pre><code>Food food = new Food("Beef");</code></pre><p>这句话如果按照上一个文章的写法是：</p>
+<pre><code>Food food = new Food("Beef");
+</code></pre>
+<p>这句话如果按照上一个文章的写法是：</p>
 <pre><code>Food food = new Food();
-food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候就给这个实例相应的内容，会简单很多。而帮我们完成这个目标的函数，就是构造函数。</p>
+food.setRecipe("Beef");
+</code></pre>
+<p>可见如果能在创建实例的时候就给这个实例相应的内容，会简单很多。而帮我们完成这个目标的函数，就是构造函数。</p>
 <h2 id="Java构造函数"><a href="#Java构造函数" class="headerlink" title="Java构造函数"></a>Java构造函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><pre><code>实际上，每次创建一个实例时，是通过构造方法来创建实例，比如上述例子：
 
     class Food {
@@ -501,7 +509,9 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
         // 构造函数内容
     }
 
-构造函数的名字和类名一样，首字母也是大写的，这点和其它函数不同。构造函数没有返回值和返回类型，只有访问可见性的修饰字段。大部分时间，在简单的项目和代码中我们就直接定义构造函数为public，但是构造函数也可以用其它修饰类型，比如private来修饰的。构造函数的参数列表并没有要求，想要在创建实例的时候初始化的字段，都可以放在参数列表。</code></pre><h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h3><pre><code>但是类似我们上一篇文章中的例子，比如：
+构造函数的名字和类名一样，首字母也是大写的，这点和其它函数不同。构造函数没有返回值和返回类型，只有访问可见性的修饰字段。大部分时间，在简单的项目和代码中我们就直接定义构造函数为public，但是构造函数也可以用其它修饰类型，比如private来修饰的。构造函数的参数列表并没有要求，想要在创建实例的时候初始化的字段，都可以放在参数列表。
+</code></pre>
+<h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h3><pre><code>但是类似我们上一篇文章中的例子，比如：
 
     class Person {
         String name;
@@ -529,7 +539,9 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
 
 没有在构造函数中初始化的参数，引用类型默认值时null，int类型是0，boolean类型是false，double是0.0。
 
-当类中有多个构造方法的时候，Java可以通过识别参数个数和类型来判断在创建实例时候，需要调用哪一个构造函数。</code></pre><h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><p>上面我提到了一种概念，叫做函数/方法的重载，具体意思就是如果一个类中需要一系列的作用类似，参数不同的方法，则可以把它们定义成一个名字，例如：</p>
+当类中有多个构造方法的时候，Java可以通过识别参数个数和类型来判断在创建实例时候，需要调用哪一个构造函数。
+</code></pre>
+<h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><p>上面我提到了一种概念，叫做函数/方法的重载，具体意思就是如果一个类中需要一系列的作用类似，参数不同的方法，则可以把它们定义成一个名字，例如：</p>
 <pre><code>class Food {
 
     public void addFood(String name, int weight) {
@@ -543,27 +555,12 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
     public void addFood(String[] names, int[] weights) {
         //
     }
-}</code></pre><p>上述例子中，我们重载了addFood方法，重载方法的参数不同，但是通常返回类型是相同的。这样我们在使用某个方法时，更灵活，也不会因为定义过多的不同方法名的函数而显得混乱。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这篇文章比较短，因为想继续写后面的内容，但是发现后面想写的内容，比较复杂内容比较多，因为我接下来想讲一下面向对象的一个很重要的特性 - 继承和多态。因此这篇文章就这样结尾吧，下一篇文章，便是Java的重头戏之一，继承和多态。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+}
+</code></pre>
+<p>上述例子中，我们重载了addFood方法，重载方法的参数不同，但是通常返回类型是相同的。这样我们在使用某个方法时，更灵活，也不会因为定义过多的不同方法名的函数而显得混乱。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这篇文章比较短，因为想继续写后面的内容，但是发现后面想写的内容，比较复杂内容比较多，因为我接下来想讲一下面向对象的一个很重要的特性 - 继承和多态。因此这篇文章就这样结尾吧，下一篇文章，便是Java的重头戏之一，继承和多态。
+    </p>
+
             </div>
             <hr/>
 
@@ -750,16 +747,17 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/02/chong_xue_cao_zuo_xi_tong_yi/">
+                <a href="/2021/04/02/chong_xue_cao_zuo_xi_tong_er/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（一）">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（二）">
                         
-                        <span class="card-title">重学操作系统（一）</span>
+                        <span class="card-title">重学操作系统（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">重学操作系统（一）前言我准备写一篇文章，记录下我学习操作系统的过程和一些关键知识点。题目是借用了拉钩教育上某个课程的题目[1]，感觉很贴切。之所以想学习操作系统，是因为某个面试问了很多jvm，mysql，redis调优以及操作系统相关的问题</div>
+                    <div class="summary">重学操作系统（二）前言这一篇文章准备记录下关于32位和64位相关的知识点。32位和64位我们都熟悉，但是大部分人，包括我，都没有真正去研究过，今天借着拉钩教育这个教程，趁机学习并且总结下，留作以后回顾。
+贯穿全文的思考：相比32位，64位的</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-02
@@ -966,7 +964,7 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.6k</span>
+                <span class="white-color">23k</span>
             
 
             
@@ -1001,7 +999,7 @@ food.setRecipe("Beef");</code></pre><p>可见如果能在创建实例的时候�
 
 
 
-    <a href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" target="_blank" rel="noopener" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kuncheng-li-02310b16b/" class="tooltipped" data-tooltip="LinkedIn联系我: https://www.linkedin.com/in/kuncheng-li-02310b16b/" data-position="top" data-delay="50">
         <i class="fa fa-linkedin"></i>
     </a>
 
