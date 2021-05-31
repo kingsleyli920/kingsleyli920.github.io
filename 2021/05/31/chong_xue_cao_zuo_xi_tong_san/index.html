@@ -4,15 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的第一个博客 - 新起点, CoderStarter">
-    <meta name="description" content=" 我的第一个博客 
-  新起点  
-
-
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
-
-
-在本科学习和硕士学习期间，我已经学习计算机科学超过五年">
+    <meta name="keywords" content="重学操作系统（三）, CoderStarter">
+    <meta name="description" content="重学操作系统（三）前言之前面试遇到了递归转非递归的问题，当时把我难住了。今天就看到了相关的文章，悔不当初，应该早点看。现在就把这个文章总结下，加深记忆。
+贯穿全文的问题：不支持递归的程序语言如何实现递归for循环执行int sum = 0;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>我的第一个博客 - 新起点 | CoderStarter</title>
+    <title>重学操作系统（三） | CoderStarter</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -318,13 +312,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        我的第一个博客 - 新起点
+                        重学操作系统（三）
                     </div>
                 </div>
             </div>
@@ -416,8 +410,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%90%90%E7%A2%8E%E6%9D%82%E8%B0%88/" target="_blank">
-                                <span class="chip bg-color">琐碎杂谈</span>
+                            <a href="/tags/Operating-System/" target="_blank">
+                                <span class="chip bg-color">Operating System</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_blank">
+                                <span class="chip bg-color">操作系统</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" target="_blank">
+                                <span class="chip bg-color">相关原理</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/" target="_blank">
+                                <span class="chip bg-color">图灵机</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC/" target="_blank">
+                                <span class="chip bg-color">冯诺伊曼</span>
                             </a>
                         
                     </div>
@@ -428,8 +438,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="post-category" target="_blank">
-                                一些感悟
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/" class="post-category" target="_blank">
+                                操作系统相关
                             </a>
                         
                     </div>
@@ -440,21 +450,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-23
+                    2021-05-31
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        323
+                        1.8k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        6 分
                     </div>
                     
                 
@@ -470,20 +480,147 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center> <h1>我的第一个博客</h1> </center>
-<center> <h2> <font color="lightgray">新起点</font> </h2> </center>
+                <h2 id="重学操作系统（三）"><a href="#重学操作系统（三）" class="headerlink" title="重学操作系统（三）"></a><center>重学操作系统（三）</center></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前面试遇到了递归转非递归的问题，当时把我难住了。今天就看到了相关的文章，悔不当初，应该早点看。现在就把这个文章总结下，加深记忆。</p>
+<h2 id="贯穿全文的问题：不支持递归的程序语言如何实现递归"><a href="#贯穿全文的问题：不支持递归的程序语言如何实现递归" class="headerlink" title="贯穿全文的问题：不支持递归的程序语言如何实现递归"></a><em><strong>贯穿全文的问题：不支持递归的程序语言如何实现递归</strong></em></h2><h3 id="for循环执行"><a href="#for循环执行" class="headerlink" title="for循环执行"></a>for循环执行</h3><pre><code>int sum = 0;
 
-<font size="4">
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
+for (int i = 1; i &lt;= 100; i++) {
 
+    sum += i;
 
-<p>在本科学习和硕士学习期间，我已经学习计算机科学超过五年了。我在英国获得了本科学位。我的大学是埃塞克斯大学。它位于英国最古老的城镇-科尔切斯特。</p>
-<p>在这几年中。我学到了很多不同类型的技术栈。例如，Java，Spring，Python，Django，HTML，CSS，JavaScript，Vue.js，React.js，Angular，MySQL，Redis和属于其他技术领域的技术。我的知识足够广泛。但是我需要找出这些技术的未来职业方向。而且我需要深入学习相关技术。</p>
-<p>因此，我建立并部署了此个人博客。我希望记录下我需要记住的知识点，在开发项目期间遇到的错误以及对所学技术的个人理解。</p>
-<p>我目前的计划是修正和复习有关Java的知识，记录要点，学习期间发生的错误等。</p>
-<p>将来，我将复习和修正越来越多我以前学过的的技术的要点。</p>
-<p>谢谢。</p>
-</font><p><font size="4">K.L<br></font></p>
+}
+</code></pre>
+<p>上面代码很简单，就是通过for循环，获得1 - 100相加和。但是如果是计算机指令执行，就比上述代码复杂很多，大体比如：</p>
+<pre><code># var i = 1, s = 0
+# 对应 Java 代码，我们首先将 1 和 0 存储到两个地址
+# 这两个地址我们用 $i 和 $s 表示
+store #1 -&gt; $i // 将数字 1 存入i的地址
+store #0 -&gt; $s // 将数字 0 存入 s 的地址
+
+# 接下来循环要开始了，我们在这里预留一个 loop 标签
+# loop 是一个自定义标签，它代表指令的相对位置
+# 后续我们可以用 jump 指令跳转回这个位置实现循环
+loop: # 循环标签
+# for ... i &lt;= 100
+# 接下来我们开始实现循环控制
+# 我们先首先 i &lt;= 100的比较
+# 我们先将变量 i 的地址，也就是 $i 导入寄存器 R0
+load $i -&gt; R0
+# 然后我们用 cmp 比较指令 R0 和数字 100
+cmp R0 #100 // 比较 R0 和数字 100
+# 注意指令不会有返回值，它会进行计算，然后改变机器的状态（也就是寄存器）
+# 比较后，有几个特殊的寄存器会保存比较结果
+# 然后我们用 ja（jump above）, 如果比较结果 R0 比 100 大
+# 那么我们就跳转到 end 标签，实现循环的跳出
+ja end 
+
+nop
+# 如果 R0&lt;=100，那么ja end 没有生效，这时我们处理 s+=i
+# 首先我们把变量 s 所在地址的数据导入寄存器 R1
+load $s -&gt; R1
+# 然后我们把寄存器R0和R1加和，把结果存储寄存器 R2
+add R0 R1 R2 
+# 这时，我们把寄存器 R2 的值存入变量 s 所在的地址
+store R2 -&gt; $s
+# 刚才我们完成了一次循环
+# 我们还需要维护变量 i 的自增
+# 现在 i 的值在 R0 中，我们首先将整数 1 叠加到 R0 上
+add R0 #1 R0
+# 再把 R0 的值存入i所在的内存地址
+store R0 -&gt; $i
+# 这时我们的循环体已经全部执行完成，我们需要调转回上面 loop 标签所在的位置
+# 继续循环
+
+jump loop
+nop
+end:
+</code></pre>
+<center>代码来源于参考一</center>
+
+<p>其实上述就可以看作一种汇编语言，我没学过汇编，但是学过C语言，感觉编写逻辑也是和上述类似的。通过上述方式，上面的for循环操作成功转换成指令，然后在编码成二进制，就能存在内存中了。</p>
+<h3 id="条件控制程序"><a href="#条件控制程序" class="headerlink" title="条件控制程序"></a>条件控制程序</h3><p>主要是if-else和switch-case，if-else是自上向下执行，所以如果有1000个case，最坏结果是执行999次。而switch-case是可以通过数学方法，精确定位到相应的case。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数的执行，深入到底层，涉及到栈这种数据结构。比如下面这个两数相加的方法：</p>
+<pre><code>int add(int a, int b) {
+    return a + b;
+}
+</code></pre>
+<p>在上述例子中，栈的主要作用是解决两个问题，一是参数如何传递给函数，而是返回值如何传递给调用者。</p>
+<p>因此上述方法执行顺序是：</p>
+<blockquote>
+<p>调用 -&gt; 参数压栈 -&gt; Stack -&gt; 取出参数 -&gt; 函数执行</p>
+</blockquote>
+<p>上述方法返回结果顺序是：</p>
+<blockquote>
+<p>函数执行 -&gt; 写入结果，参数出zhan -&gt; Stack -&gt; 取出结果 -&gt; 调用</p>
+</blockquote>
+<p> 参数入栈叫做压栈，结果取出叫做出栈。栈中每个数据大小一样，所以函数执行中，我们通过参数个数和参数的序号计算参数在栈中的位置。</p>
+<p> 例如执行11 + 15:</p>
+<pre><code>1. 压栈参数11
+2. 压栈15
+3. 返回值压栈（这时候是0）
+4. 调用函数，结果写入返回值
+5. 存储函数调用前存储的指针，方便函数结束后，跳转回去
+6. 函数参数和返回值换位置，清除，这样就从参数先清除，不会出现异常
+</code></pre>
+<h3 id="递归的执行"><a href="#递归的执行" class="headerlink" title="递归的执行"></a>递归的执行</h3><p>给出一个递归的例子：<br>    int sum(int n) {<br>        if (n == 1) return 1;<br>        return n + sum(n - 1);<br>    }</p>
+<p>递归的时候，每次执行，都会形成一个参数 -&gt; 返回地址 -&gt; 返回值这样的栈结构。比如sum（1000）第一次调用n，第二次调用99。这样的话，栈会非常大。消耗了更多的空间，但是保证一定的独立性。递归需要退出条件，不然就会死循环。因为递归和栈存取数据方式类似，因此栈是实现递归的一种方式。而大部分编程语言，是用栈来实现递归的。</p>
+<h3 id="类型（class）的实现"><a href="#类型（class）的实现" class="headerlink" title="类型（class）的实现"></a>类型（class）的实现</h3><p>总结前面的：</p>
+<ol>
+<li>变量是一个内存地址，只需要分配内存就好（指针）</li>
+<li>循环控制：跳转➕判断</li>
+<li>条件控制：跳转➕判断，switch-case需要一些数学计算</li>
+<li>函数：参数压栈，结果出栈，返回值，返回地址</li>
+</ol>
+<p>那么，class是如何被指令实现的？</p>
+<p>class可以分为两部分，一部分是属性，另一部分是方法。而class有一个特殊的函数叫构造函数，它会为class分配内存。构造函数执行时，扫描class中定义的所有属性和方法。</p>
+<ol>
+<li>遇到属性，为属性分配内存地址</li>
+<li>遇到方法，方法本身存到程序所在内存区域，方法的值设置为方法指令所在的内存地址</li>
+</ol>
+<p>当调用一个class的方法时候，本质是执行了一个函数，和函数调用一致：</p>
+<ol>
+<li>返回值返回地址压栈</li>
+<li>参数压栈</li>
+<li>执行跳转</li>
+</ol>
+<h4 id="this指针的实现"><a href="#this指针的实现" class="headerlink" title="this指针的实现"></a>this指针的实现</h4><blockquote>
+<p>把this作为函数的第一个参数压栈，这样class的函数就能访问class的成员了。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>将程序编译成指令 - 编译器</li>
+<li>图灵完备语言：一个语言的能力和图灵机等价，也就是说，平时编程做的事，指令也能做到，所以计算能力等价。也就是一种编程语言的能力，与图灵机等价，称为图灵完备语言。</li>
+</ol>
+<h4 id="贯穿全文的问题-》不支持递归的程序语言如何实现递归？"><a href="#贯穿全文的问题-》不支持递归的程序语言如何实现递归？" class="headerlink" title="贯穿全文的问题 =》不支持递归的程序语言如何实现递归？"></a>贯穿全文的问题 =》不支持递归的程序语言如何实现递归？</h4><blockquote>
+<ol>
+<li>我们需要一个栈（数组就可以）</li>
+<li>我们需要一个栈指针，或者类似Java这种，用变量</li>
+<li>然后实现压栈出栈等操作</li>
+</ol>
+</blockquote>
+<p>斐波那契求第n项：</p>
+<pre><code>int fib(int n) {
+if(n == 1 || n == 2) { return n; }
+    return fib(n-1) + fib(n-2)
+}
+</code></pre>
+<p>改写为非递归：</p>
+<pre><code>private static int fib2(int n) { 
+    if (n == 1 || n == 2) { 
+        return n; 
+    } 
+    //初始化数据 
+    int[] stack = new int[n]; 
+    int point = n - 3; 
+    stack[n - 1] = 1; 
+    stack[n - 2] = 2; 
+    //数组模拟出栈入栈 
+    while (point &gt;0) { 
+        stack[point] = stack[point + 1] + stack[point + 2]; 
+        point--; 
+    } 
+    return stack[0];
+}
+</code></pre>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4609">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4609</a></p>
 
             </div>
             <hr/>
@@ -624,7 +761,7 @@
                     </span>
                     <a href="https://kingsleyli920.github.io" class="b-link-green">CoderStarter</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/11/23/wo_de_di_yi_ge_bo_ke_xin_de_kai_shi/" class="b-link-green">我的第一个博客 - 新起点</a>
+                    <a href="/2021/05/31/chong_xue_cao_zuo_xi_tong_san/" class="b-link-green">重学操作系统（三）</a>
                 </p>
             </div>
         </div>
@@ -646,7 +783,7 @@
         repo: 'kingsleyli920.github.io',
         owner: 'kingsleyli920',
         admin: "kingsleyli920",
-        id: '2019-11-23T04-05-38',
+        id: '2021-05-31T14-35-37',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -667,58 +804,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/02/es6_de_yi_xie_zhi_shi_dian_zheng_li/">
+                <a href="/2021/05/31/chong_xue_cao_zuo_xi_tong_san/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/frontend-js-article1.jpeg" class="responsive-img" alt="es6的一些知识点整理">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（三）">
                         
-                        <span class="card-title">es6的一些知识点整理</span>
+                        <span class="card-title">重学操作系统（三）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> es6的一些知识点整理 
-  基础部分  
-
-
-
-开篇接触前端也很久了，当然主要都是在学校，工业级的不太多，仅仅是实习中的有限的时间接触了一些。说到前端，不得不说前端的发展历程，从最简单的类似UI的工作，到现在，各种前端框架层出不穷，前端</div>
+                    <div class="summary">重学操作系统（三）前言之前面试遇到了递归转非递归的问题，当时把我难住了。今天就看到了相关的文章，悔不当初，应该早点看。现在就把这个文章总结下，加深记忆。
+贯穿全文的问题：不支持递归的程序语言如何实现递归for循环执行int sum = 0;</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                    前端开发
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/" class="post-category" target="_blank">
+                                    操作系统相关
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/" target="_blank">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/Operating-System/" target="_blank">
+                        <span class="chip bg-color">Operating System</span>
                     </a>
                     
-                    <a href="/tags/ECMAScript-6/" target="_blank">
-                        <span class="chip bg-color">ECMAScript 6</span>
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_blank">
+                        <span class="chip bg-color">操作系统</span>
                     </a>
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_blank">
-                        <span class="chip bg-color">前端开发</span>
+                    <a href="/tags/%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" target="_blank">
+                        <span class="chip bg-color">相关原理</span>
                     </a>
                     
-                    <a href="/tags/Web%E5%BC%80%E5%8F%91/" target="_blank">
-                        <span class="chip bg-color">Web开发</span>
+                    <a href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/" target="_blank">
+                        <span class="chip bg-color">图灵机</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC/" target="_blank">
+                        <span class="chip bg-color">冯诺伊曼</span>
                     </a>
                     
                 </div>
@@ -729,49 +868,56 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/23/wo_de_di_yi_ge_bo_ke_xin_de_kai_shi/">
+                <a href="/2021/04/02/chong_xue_cao_zuo_xi_tong_yi/">
                     <div class="card-image">
                         
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（一）">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="我的第一个博客 - 新起点">
-                        
-                        <span class="card-title">我的第一个博客 - 新起点</span>
+                        <span class="card-title">重学操作系统（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> 我的第一个博客 
-  新起点  
-
-
-您好，我是Kingsley。我于2019年5月10日毕业于南加州大学（USC）。我的专业是计算机科学。我现在仍在找美国的全职软件工程师职位。
-
-
-在本科学习和硕士学习期间，我已经学习计算机科学超过五年</div>
+                    <div class="summary">重学操作系统（一）前言我准备写一篇文章，记录下我学习操作系统的过程和一些关键知识点。题目是借用了拉钩教育上某个课程的题目[1]，感觉很贴切。之所以想学习操作系统，是因为某个面试问了很多jvm，mysql，redis调优以及操作系统相关的问题</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="post-category" target="_blank">
-                                    一些感悟
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/" class="post-category" target="_blank">
+                                    操作系统相关
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%90%90%E7%A2%8E%E6%9D%82%E8%B0%88/" target="_blank">
-                        <span class="chip bg-color">琐碎杂谈</span>
+                    <a href="/tags/Operating-System/" target="_blank">
+                        <span class="chip bg-color">Operating System</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_blank">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" target="_blank">
+                        <span class="chip bg-color">相关原理</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/" target="_blank">
+                        <span class="chip bg-color">图灵机</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC/" target="_blank">
+                        <span class="chip bg-color">冯诺伊曼</span>
                     </a>
                     
                 </div>

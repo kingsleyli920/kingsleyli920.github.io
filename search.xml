@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>重学操作系统（三）</title>
+      <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_san/"/>
+      <url>2021/05/31/chong_xue_cao_zuo_xi_tong_san/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（三）"><a href="#重学操作系统（三）" class="headerlink" title="重学操作系统（三）"></a><center>重学操作系统（三）</center></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前面试遇到了递归转非递归的问题，当时把我难住了。今天就看到了相关的文章，悔不当初，应该早点看。现在就把这个文章总结下，加深记忆。</p><h2 id="贯穿全文的问题：不支持递归的程序语言如何实现递归"><a href="#贯穿全文的问题：不支持递归的程序语言如何实现递归" class="headerlink" title="贯穿全文的问题：不支持递归的程序语言如何实现递归"></a><em><strong>贯穿全文的问题：不支持递归的程序语言如何实现递归</strong></em></h2><h3 id="for循环执行"><a href="#for循环执行" class="headerlink" title="for循环执行"></a>for循环执行</h3><pre><code>int sum = 0;for (int i = 1; i &lt;= 100; i++) {    sum += i;}</code></pre><p>上面代码很简单，就是通过for循环，获得1 - 100相加和。但是如果是计算机指令执行，就比上述代码复杂很多，大体比如：</p><pre><code># var i = 1, s = 0# 对应 Java 代码，我们首先将 1 和 0 存储到两个地址# 这两个地址我们用 $i 和 $s 表示store #1 -&gt; $i // 将数字 1 存入i的地址store #0 -&gt; $s // 将数字 0 存入 s 的地址# 接下来循环要开始了，我们在这里预留一个 loop 标签# loop 是一个自定义标签，它代表指令的相对位置# 后续我们可以用 jump 指令跳转回这个位置实现循环loop: # 循环标签# for ... i &lt;= 100# 接下来我们开始实现循环控制# 我们先首先 i &lt;= 100的比较# 我们先将变量 i 的地址，也就是 $i 导入寄存器 R0load $i -&gt; R0# 然后我们用 cmp 比较指令 R0 和数字 100cmp R0 #100 // 比较 R0 和数字 100# 注意指令不会有返回值，它会进行计算，然后改变机器的状态（也就是寄存器）# 比较后，有几个特殊的寄存器会保存比较结果# 然后我们用 ja（jump above）, 如果比较结果 R0 比 100 大# 那么我们就跳转到 end 标签，实现循环的跳出ja end nop# 如果 R0&lt;=100，那么ja end 没有生效，这时我们处理 s+=i# 首先我们把变量 s 所在地址的数据导入寄存器 R1load $s -&gt; R1# 然后我们把寄存器R0和R1加和，把结果存储寄存器 R2add R0 R1 R2 # 这时，我们把寄存器 R2 的值存入变量 s 所在的地址store R2 -&gt; $s# 刚才我们完成了一次循环# 我们还需要维护变量 i 的自增# 现在 i 的值在 R0 中，我们首先将整数 1 叠加到 R0 上add R0 #1 R0# 再把 R0 的值存入i所在的内存地址store R0 -&gt; $i# 这时我们的循环体已经全部执行完成，我们需要调转回上面 loop 标签所在的位置# 继续循环jump loopnopend:</code></pre><center>代码来源于参考一</center><p>其实上述就可以看作一种汇编语言，我没学过汇编，但是学过C语言，感觉编写逻辑也是和上述类似的。通过上述方式，上面的for循环操作成功转换成指令，然后在编码成二进制，就能存在内存中了。</p><h3 id="条件控制程序"><a href="#条件控制程序" class="headerlink" title="条件控制程序"></a>条件控制程序</h3><p>主要是if-else和switch-case，if-else是自上向下执行，所以如果有1000个case，最坏结果是执行999次。而switch-case是可以通过数学方法，精确定位到相应的case。</p><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数的执行，深入到底层，涉及到栈这种数据结构。比如下面这个两数相加的方法：</p><pre><code>int add(int a, int b) {    return a + b;}</code></pre><p>在上述例子中，栈的主要作用是解决两个问题，一是参数如何传递给函数，而是返回值如何传递给调用者。</p><p>因此上述方法执行顺序是：</p><blockquote><p>调用 -&gt; 参数压栈 -&gt; Stack -&gt; 取出参数 -&gt; 函数执行</p></blockquote><p>上述方法返回结果顺序是：</p><blockquote><p>函数执行 -&gt; 写入结果，参数出zhan -&gt; Stack -&gt; 取出结果 -&gt; 调用</p></blockquote><p> 参数入栈叫做压栈，结果取出叫做出栈。栈中每个数据大小一样，所以函数执行中，我们通过参数个数和参数的序号计算参数在栈中的位置。</p><p> 例如执行11 + 15:</p><pre><code>1. 压栈参数112. 压栈153. 返回值压栈（这时候是0）4. 调用函数，结果写入返回值5. 存储函数调用前存储的指针，方便函数结束后，跳转回去6. 函数参数和返回值换位置，清除，这样就从参数先清除，不会出现异常</code></pre><h3 id="递归的执行"><a href="#递归的执行" class="headerlink" title="递归的执行"></a>递归的执行</h3><p>给出一个递归的例子：<br>    int sum(int n) {<br>        if (n == 1) return 1;<br>        return n + sum(n - 1);<br>    }</p><p>递归的时候，每次执行，都会形成一个参数 -&gt; 返回地址 -&gt; 返回值这样的栈结构。比如sum（1000）第一次调用n，第二次调用99。这样的话，栈会非常大。消耗了更多的空间，但是保证一定的独立性。递归需要退出条件，不然就会死循环。因为递归和栈存取数据方式类似，因此栈是实现递归的一种方式。而大部分编程语言，是用栈来实现递归的。</p><h3 id="类型（class）的实现"><a href="#类型（class）的实现" class="headerlink" title="类型（class）的实现"></a>类型（class）的实现</h3><p>总结前面的：</p><ol><li>变量是一个内存地址，只需要分配内存就好（指针）</li><li>循环控制：跳转➕判断</li><li>条件控制：跳转➕判断，switch-case需要一些数学计算</li><li>函数：参数压栈，结果出栈，返回值，返回地址</li></ol><p>那么，class是如何被指令实现的？</p><p>class可以分为两部分，一部分是属性，另一部分是方法。而class有一个特殊的函数叫构造函数，它会为class分配内存。构造函数执行时，扫描class中定义的所有属性和方法。</p><ol><li>遇到属性，为属性分配内存地址</li><li>遇到方法，方法本身存到程序所在内存区域，方法的值设置为方法指令所在的内存地址</li></ol><p>当调用一个class的方法时候，本质是执行了一个函数，和函数调用一致：</p><ol><li>返回值返回地址压栈</li><li>参数压栈</li><li>执行跳转</li></ol><h4 id="this指针的实现"><a href="#this指针的实现" class="headerlink" title="this指针的实现"></a>this指针的实现</h4><blockquote><p>把this作为函数的第一个参数压栈，这样class的函数就能访问class的成员了。</p></blockquote><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>将程序编译成指令 - 编译器</li><li>图灵完备语言：一个语言的能力和图灵机等价，也就是说，平时编程做的事，指令也能做到，所以计算能力等价。也就是一种编程语言的能力，与图灵机等价，称为图灵完备语言。</li></ol><h4 id="贯穿全文的问题-》不支持递归的程序语言如何实现递归？"><a href="#贯穿全文的问题-》不支持递归的程序语言如何实现递归？" class="headerlink" title="贯穿全文的问题 =》不支持递归的程序语言如何实现递归？"></a>贯穿全文的问题 =》不支持递归的程序语言如何实现递归？</h4><blockquote><ol><li>我们需要一个栈（数组就可以）</li><li>我们需要一个栈指针，或者类似Java这种，用变量</li><li>然后实现压栈出栈等操作</li></ol></blockquote><p>斐波那契求第n项：</p><pre><code>int fib(int n) {if(n == 1 || n == 2) { return n; }    return fib(n-1) + fib(n-2)}</code></pre><p>改写为非递归：</p><pre><code>private static int fib2(int n) {     if (n == 1 || n == 2) {         return n;     }     //初始化数据     int[] stack = new int[n];     int point = n - 3;     stack[n - 1] = 1;     stack[n - 2] = 2;     //数组模拟出栈入栈     while (point &gt;0) {         stack[point] = stack[point + 1] + stack[point + 2];         point--;     }     return stack[0];}</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4609">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4609</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> 图灵机 </tag>
+            
+            <tag> 冯诺伊曼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重学操作系统（一）</title>
       <link href="2021/04/02/chong_xue_cao_zuo_xi_tong_yi/"/>
       <url>2021/04/02/chong_xue_cao_zuo_xi_tong_yi/</url>
