@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="重学操作系统（二）, CoderStarter">
-    <meta name="description" content="重学操作系统（二）前言这一篇文章准备记录下关于32位和64位相关的知识点。32位和64位我们都熟悉，但是大部分人，包括我，都没有真正去研究过，今天借着拉钩教育这个教程，趁机学习并且总结下，留作以后回顾。
-贯穿全文的思考：相比32位，64位的">
+    <meta name="keywords" content="重学操作系统（七）, CoderStarter">
+    <meta name="description" content="重学操作系统（七）前言今天继续学习记录关于操作系统这个课程。这一章节是Linux权限划分相关的知识点。我们最熟悉的，每次运行某些命令，会提示permission denied。这就代表当前用户没权限，这样我们加上sudo去运行，就可以了。
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>重学操作系统（二） | CoderStarter</title>
+    <title>重学操作系统（七） | CoderStarter</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -318,7 +318,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        重学操作系统（二）
+                        重学操作系统（七）
                     </div>
                 </div>
             </div>
@@ -450,21 +450,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-02
+                    2021-05-31
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.4k
+                        1.8k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        8 分
+                        6 分
                     </div>
                     
                 
@@ -480,132 +480,113 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="重学操作系统（二）"><a href="#重学操作系统（二）" class="headerlink" title="重学操作系统（二）"></a><center>重学操作系统（二）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这一篇文章准备记录下关于32位和64位相关的知识点。32位和64位我们都熟悉，但是大部分人，包括我，都没有真正去研究过，今天借着拉钩教育这个教程，趁机学习并且总结下，留作以后回顾。</p>
-<h4 id="贯穿全文的思考：相比32位，64位的优势是什么？"><a href="#贯穿全文的思考：相比32位，64位的优势是什么？" class="headerlink" title="贯穿全文的思考：相比32位，64位的优势是什么？"></a><em><strong>贯穿全文的思考：相比32位，64位的优势是什么？</strong></em></h4><h3 id="图灵机的两大贡献"><a href="#图灵机的两大贡献" class="headerlink" title="图灵机的两大贡献"></a>图灵机的两大贡献</h3><ol>
-<li>定义了计算机的计算边界，即可计算理论</li>
-<li>定义了计算机的组成，和程序如何执行</li>
-</ol>
-<h3 id="图灵机的构造"><a href="#图灵机的构造" class="headerlink" title="图灵机的构造"></a>图灵机的构造</h3><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/tulingji.png" alt="图灵机的构造" title="图灵机的构造"></p>
-<center>图片来源于参考中的链接</center>
-
-<p>可以看出，图灵机是很长的白色纸带（模仿内存）和读写头以及一些其它元件（储存元件，控制单元等）组成，这样图灵机就能模仿内存的读写了。</p>
-<p>例如：计算11 + 15</p>
+                <h2 id="重学操作系统（七）"><a href="#重学操作系统（七）" class="headerlink" title="重学操作系统（七）"></a><center>重学操作系统（七）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天继续学习记录关于操作系统这个课程。这一章节是Linux权限划分相关的知识点。我们最熟悉的，每次运行某些命令，会提示permission denied。这就代表当前用户没权限，这样我们加上sudo去运行，就可以了。</p>
 <blockquote>
+<p>Tips: sudo命令在维基百科的解释是substitute user [或 superuser] do。</p>
+</blockquote>
+<hr>
+<h3 id="贯穿全文的一道题：简述Linux权限划分原则？"><a href="#贯穿全文的一道题：简述Linux权限划分原则？" class="headerlink" title="贯穿全文的一道题：简述Linux权限划分原则？"></a><em><strong>贯穿全文的一道题：简述Linux权限划分原则？</strong></em></h3><hr>
+<h3 id="权限抽象"><a href="#权限抽象" class="headerlink" title="权限抽象"></a>权限抽象</h3><p>一个完整的权限管理体系，要有合理的抽象，包括对用户，进程，文件，内存，系统调用等抽象。</p>
+<h4 id="用户和组"><a href="#用户和组" class="headerlink" title="用户和组"></a><strong>用户和组</strong></h4><p>Linux是多用户平台，允许多个用户同时登录系统。Linux将用户抽象为账户。账户可以登录系统。</p>
+<p>为了方便分配用户权限，Linux支持组（Group）账户。组账户是很多用户账户的集合，组可以为成员分配某一类权限，一个用户可以在多个组。</p>
+<p>Root账户，也叫超级管理员，对系统有着完全的掌控。一个root账户，可以使用系统提供的所有能力。</p>
+<h4 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a><strong>文件和目录</strong></h4><p>Linux对文件和目录（目录也是一种文件）进行了权限抽象，Linux对于文件有以下三个权限：</p>
+<pre><code>1. 读权限（r）：控制读取文件
+2. 写权限（w）：控制写入文件
+3. 执行权限（x）：控制文件执行
+</code></pre>
+<p>以上每个权限，可以从用户，组，全部用户三个维度区进行配置：</p>
+<pre><code>文件权限一般是类似下述：
+- rwx rwx rwx
+第一位是file type，"-"是文件，"d"是目录，"p"是管道文件
+后面三位三位分别对应三个维度的读写执行权限，如果是rwx，则拥有读写执行权限，如果比如"r--"，就是拥有只读权限，没有的权限用"-"来表示
+</code></pre>
+<h4 id="初始权限"><a href="#初始权限" class="headerlink" title="初始权限"></a><strong>初始权限</strong></h4><p>一个文件创建后，文件所属用户被设置成创建文件的用户。Linux会为每个用户创建一个同名分组，如果用户想要切换分组，执行newgrp指令切换。因此被创建的文件属于用户所在的分组，因此一般情况，文件创建后权限是：</p>
+<blockquote>
+<p>rw-rw-r–</p>
+</blockquote>
+<p>用户和组维度可读写，所有用户可读。</p>
+<h4 id="类似ls这种指令文件的权限"><a href="#类似ls这种指令文件的权限" class="headerlink" title="类似ls这种指令文件的权限"></a><strong>类似ls这种指令文件的权限</strong></h4><p>废话不多说，先看图！！！</p>
+<p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-1.png" alt="ls -l运行结果" title="ls -l运行结果"></p>
+<p>上图是在”/usr/local/bin”中运行”ls -l”的结果，从结果看，这些指令文件的权限都是一样的，都是用户维度的可读写执行，组和全部用户维度都是可读可执行。它们都属于root用户，wheel组（组名可能是系统不同组名不同）。</p>
+<blockquote>
+<p>Tips: 如果一个文件不可读，可执行，那么这个文件也无法执行。</p>
+</blockquote>
+<h4 id="执行文件"><a href="#执行文件" class="headerlink" title="执行文件"></a><strong>执行文件</strong></h4><p>Linux中，可以通过”echo $PATH”查看可执行文件都在哪些目录中。PATH就是Linux的环境变量。</p>
+<h4 id="内核和系统调用权限"><a href="#内核和系统调用权限" class="headerlink" title="内核和系统调用权限"></a><strong>内核和系统调用权限</strong></h4><p>内核提供操作硬盘，磁盘，内存分页，进程等最核心的能力。并拥有直接操作全部内存的权限。因此内核不能把自己的全部能力提供给用户，也不能允许用户通过shell指令进行系统调用。Linux把部分进程需要的系统调用以API的形式暴露出来，部分系统调用需要进行权限检查。</p>
+<h3 id="权限架构思想"><a href="#权限架构思想" class="headerlink" title="权限架构思想"></a>权限架构思想</h3><p>权限架构的主要目标是让系统安全，稳定且用户，程序之间相互制约，相互隔离。因此优秀的架构，应该遵循最小权限原则（Least Privilege）。此外，权限架构应该还遵循一个原则，权限划分边界应该足够清晰，尽量相互隔离。</p>
+<h4 id="分级保护"><a href="#分级保护" class="headerlink" title="分级保护"></a><strong>分级保护</strong></h4><p>内核可以直接操作内存和CPU，驱动程序能直接控制摄像头，显示屏等核心设备，因此它们需要采取安全措施。一般操作系统采取环状保护模式。</p>
+<p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-2.png" alt="分级保护" title="分级保护"></p>
+<p><em><strong></strong></em></p><center><em><strong>图片来源于参考中的链接</strong></em></center><p></p>
+<p>上图就能看出，越往内层，权限级别越高。最外层是应用权限层，中间两层是设备驱动权限层，中间是内核权限层。</p>
+<h4 id="权限包围（Privilege-Bracking）"><a href="#权限包围（Privilege-Bracking）" class="headerlink" title="权限包围（Privilege Bracking）"></a><strong>权限包围（Privilege Bracking）</strong></h4><p>Linux提供一一个能力，比如有一个应用需要临时使用高级权限，可以验证身份通过后，赋予临时高级权限，当这个应用执行完相应的操作，马上恢复为普通权限。这样能做到减少应用在高级权限的时间，做到专权专用，防止被恶意程序利用。</p>
+<h3 id="用户分组指令"><a href="#用户分组指令" class="headerlink" title="用户分组指令"></a>用户分组指令</h3><ul>
+<li><p>groups指令：查看当前用户的所有分</p>
+</li>
+<li><p>id指令：查看当前用户</p>
+<p>  <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-3.png" alt="id运行结果" title="id运行结果"></p>
+<p>  其中，uid是当前用户id，gid是组id，groups后面的是每个分组和分组id。</p>
+</li>
+<li><p>cat /etc/passwd：查看所有用户信息</p>
+<p>  <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-4.png" alt="id运行结果" title="id运行结果"></p>
+<p>  以root这一行来看：</p>
+<p>  root:*:0:0:System Administrator:/var/root:/bin/sh</p>
+<ul>
+<li>root：用户名</li>
+<li>*：密码</li>
+<li>0: uid</li>
+<li>0: gid</li>
+<li>System Administrator：userId信息</li>
+<li>/var/root：家目录</li>
+<li>/bin/sh：shell路径</li>
+</ul>
+</li>
+<li><p>useradd：创建用户</p>
+</li>
+<li><p>groupadd：创建分组</p>
+</li>
+<li><p>usermod -a -G sudo 【用户名】：<br>组分为主要分组（Primary Group）和次级分组（Secondary Group），主要分组只有一个，次级分组可以有多个。usermod的作用是给用户添加次级分组。比如上面命令就是给【用户名】添加到sudo分组，从而使其有sudo的权限。</p>
+</li>
+</ul>
+<blockquote>
+<p>Tips: -a = append, -G = 次级分组清单</p>
+</blockquote>
+<ul>
+<li>usermod -g somegroup 【用户名】：修改用户主要分组</li>
+</ul>
+<h3 id="文件权限管理指令"><a href="#文件权限管理指令" class="headerlink" title="文件权限管理指令"></a>文件权限管理指令</h3><ul>
+<li><p>chmod：修改文件权限</p>
+<blockquote>
+<p>chmod +x [文件名]</p>
+</blockquote>
+<blockquote>
+<p>chmod -x [文件名]</p>
+</blockquote>
+<blockquote>
+<p>chmod +rwx [文件名]</p>
+</blockquote>
+<blockquote>
+<p>chmod 467 [文件名]（467 =》二进制是100 110 111，对应：用户权限 - 组权限 - 所有用户权限的rwx，r– rw- rwx）</p>
+</blockquote>
+</li>
+<li><p>chown：修改文件所属用户，比如：</p>
+<p>  chown user1 ./file =&gt; 将file文件修改为user1用户</p>
+<p>  或者</p>
+<p>  chown group1.user1 ./file =&gt; 将file文件所属用户和分组改为group1分组下的user1用户。</p>
+</li>
+</ul>
+<p>以上是多种修改文件权限的方式。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一章学了很多惯用语Linux权限的，很多之前不明白的操作，终于明白了。而且最关键的是，权限这方面的知识点，之前面试竟然遇到了，很庆幸看了这个章节。</p>
+<p><em><strong>回到前面的问题，Linux权限的划分原则？</strong></em></p>
+<p>答案显而易见，就是Linux遵循最小权限原则，每个用户和组掌握的权限应该足够小，应用应当尽可能小的使用权限。尽量少用root。系统层面，通过实现分级保护实现权限的划分。</p>
+<p>如果一个目录是只读权限，对于root用户，读写执行操作都没问题。但是对于普通用户，则无法进入目录。</p>
+<p><em><strong>目录的可执行权限的作用</strong></em></p>
 <ol>
-<li>我们先把11，15，+分别写入纸带的三个格子，假定图灵机能识别数字和计算符号。</li>
-<li>图灵机将11和15读入控制单元，控制单元将数字存储到存储单元中。</li>
-<li>遇到加号，读写头将加号传输给控制单元，控制单元识别出加号是预设运算符，因此不放入存储单元，而是传输给运算单元，之后运算单元在存储单元取出11和15，进行运算，将结果存入存储单元，运算单元同时将结果返回给控制单元。</li>
-<li>控制单元将结果返回给读写头，读写头写出结果。</li>
+<li>进入目录</li>
+<li>访问内部文件</li>
+<li>对目录底下清单的修改，如增加，修改文件名，删除等</li>
 </ol>
-</blockquote>
-<p>一个问题如果能拆解成图灵机的可执行步骤，那么这个问题就是客可运算的。</p>
-<h3 id="冯诺伊曼模型"><a href="#冯诺伊曼模型" class="headerlink" title="冯诺伊曼模型"></a>冯诺伊曼模型</h3><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/fengnuoyimanmoxing.png" alt="冯诺伊曼模型" title="冯诺伊曼模型"></p>
-<center>图片来源于参考中的链接</center>
-
-<p>冯诺伊曼模型基本遵循了图灵机的设计，主要分成5个部分：输入，输出，内存，CPU和总线，并且约定用二进制存储和计算，是现代计算机的鼻祖。现代计算机，不管多复杂，都遵循这个模型的设计方式。</p>
-<h4 id="冯诺伊曼模型-内存"><a href="#冯诺伊曼模型-内存" class="headerlink" title="冯诺伊曼模型 - 内存"></a>冯诺伊曼模型 - 内存</h4><p>程序和数据被存储在一个线性排列的存储区域内，存储单元是二进制（bit），最小单位为字节（8位，byte），每个字节对应一个内存地址。内存地址编号由0开始，依次递增（类似数组那种存储方式 0 - 长度 - 1）。内存是随机存取器，读写任何位置，速度一样。</p>
-<h4 id="冯诺伊曼模型-CPU"><a href="#冯诺伊曼模型-CPU" class="headerlink" title="冯诺伊曼模型 - CPU"></a>冯诺伊曼模型 - CPU</h4><p>冯诺伊曼模型中的CPU相对简单一些，负责控制和计算。CPU可以计算多个字节的数值，以应对较大数值计算。</p>
-<blockquote>
-<ol>
-<li>32位：CPU能计算4Byte</li>
-<li>64位：CPU能计算8Byte</li>
-</ol>
-</blockquote>
-<p>为什么这么设计CPU？</p>
-<blockquote>
-<p>一个byte范围是0-255，因此CPU需要支持多个byte一起计算。32位的CPU已经能计算到2<sup>32</sup> - 1（4294967295）。</p>
-</blockquote>
-<ul>
-<li><p>控制单元和逻辑运算单元</p>
-<ul>
-<li>控制单元负责控制CPU工作，逻辑运算单元负责计算。</li>
-</ul>
-</li>
-<li><p>寄存器</p>
-<ul>
-<li>存储将要被计算的数字，寄存器离计算单元和控制单元很近，速度很快。</li>
-<li>通用寄存器：可供用户编程，比如用来存加和指令的两个参数。</li>
-<li>特殊寄存器：程序指针是一个特殊寄存器，存储了CPU要执行的下一条指令所在的地址。</li>
-<li>指令寄存器：下一条指令被内存读入指令寄存器，在指令执行结束前，它都被存在指令寄存器中。</li>
-</ul>
-</li>
-<li><p>总线</p>
-<ul>
-<li>用于CPU和内存等其它设备通信用的</li>
-<li>地址总线：指定CPU将要操作的内存地址。</li>
-<li>数据总线：用来读写内存中的数据。</li>
-<li>CPU读取内存：先通过地址总线指定内存地址，再通过数据总线来传输数据。</li>
-<li>控制总线：用来发送和接收关键信号，比如设备的中断，就绪，复位等信号。</li>
-</ul>
-</li>
-<li><p>输入输出设备</p>
-<ul>
-<li>输入设备：向计算机输入数据。</li>
-<li>输出设备：数据计算完，经过输出设备向外界传递。</li>
-<li>输入输出设备和CPU传递信号，需要用到控制总线。</li>
-</ul>
-</li>
-</ul>
-<h3 id="线路位宽"><a href="#线路位宽" class="headerlink" title="线路位宽"></a>线路位宽</h3><p>数据是通过电压来传递的，低电压为0，高电压为1。如果只有一条线路，每次传一个信号，如果构造1100，就需要传递4次。这种一个bit一个bit发的方式，叫做串行。因此要一次传递多个信号，就需要增加线路。</p>
-<p>例如：</p>
-<blockquote>
-<p>一条地址总线，每次就能操作两个内存地址，0或者1。如果10条总线，可以操作1024个地址，如果希望操作4G内存地址，因此需要32条地址总线。串行可以接受，但是每增加一条总线，速度都会翻倍。</p>
-</blockquote>
-<h3 id="64位和32位的计算"><a href="#64位和32位的计算" class="headerlink" title="64位和32位的计算"></a>64位和32位的计算</h3><p>场景：32位的CPU，加和两个64位的数。</p>
-<blockquote>
-<p>32位的CPU计算大于32位的数，需要制定相应规则，比较麻烦，因此32位CPU最好操作32位的地址和数据总线。</p>
-<p>计算过程：<br>将64位数拆成两个32位数计算，需要类似我们算数学题，先加和低位，后加和高位，然后加上进位。</p>
-<p>而64位CPU可以直接读如64位数，然后进行计算。但是计算小于32位数字，两个CPU性能没区别。</p>
-<p>32位CPU最多有32个寄存器，最多操作4G内存地址。</p>
-</blockquote>
-<h3 id="程序执行过程"><a href="#程序执行过程" class="headerlink" title="程序执行过程"></a>程序执行过程</h3><h4 id="CPU执行程序："><a href="#CPU执行程序：" class="headerlink" title="CPU执行程序："></a>CPU执行程序：</h4><pre><code>1. CPU读取PC指针指向的指令，把指令导入指令寄存器
-    * 步骤一：CPU的控制单元操作地址总线，指定需要访问的内存地址
-    * 步骤二：CPU通知内存设备住被数据，内存设备通过数据总线把数据传入CPU
-    * 步骤三：CPU收到内存传来的数据，将数据存入指令寄存器
-2. CPU分析指令寄存器的指令，确定类型和参数
-3. 如果是计算类型的指令，交给逻辑运算单元计算，如果是存储指令，交给控制单元执行
-4. PC指针自增，准备获取下一个指令
-
-Tips: 32位系统，指令指针自增4（因为32位是4Byte）
-More:
-    1. 指令和数据一般不存在一起
-    2. 64位CPU如果只有40条总线，也只能操作2的40次方的CPU地址（约 1T）
-    3. 从PC指针读取指令，到执行，到下一个指令的循环，称为CPU指令周期
-</code></pre>
-<h4 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h4><pre><code>1. 指令以16进制保存。
-2. 构造指令的过程叫指令编码，通常由编译器完成。
-3. 解析指令的过程，叫作指令解码，由CPU完成。
-4. CPU解码过程：
-    I. Fetch(获取): CPU通过PC指针读取对应内存地址的指令
-    II. Decode: CPU对指令进行解码
-    III. Execution: 执行指令
-    IV. Store: CPU将结果存回寄存器或者寄存器存入内存
-</code></pre>
-<p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/zhilingxunhuan.png" alt="CPU解析指令的过程" title="CPU解析指令的过程"></p>
-<center>图片来源于参考中的链接</center>
-
-<pre><code>上述四个步骤，叫做CPU的指令周期。
-</code></pre>
-<h4 id="指令的类型"><a href="#指令的类型" class="headerlink" title="指令的类型"></a>指令的类型</h4><pre><code>不同类型的指令，参数个数，每个参数位宽都不一样，参数类型分三种：1. 寄存器； 2. 内存地址；3. 数值（整数或者浮点数）
-</code></pre>
-<p>指令从功能角度可划分为以下5类：<br>    1. I/O类型指令：如处理和内存间交换数据的指令store/load等，或者数据从一个地址转移到另一个地址的指令mov<br>    2. 计算类型指令：最多只能处理两个寄存器，比如加减乘除，位运算，比较大小等<br>    3. 跳转类型指令：修改PC指针，例如编程中的：if-esle，switch-case，函数调用等<br>    4. 信号类型指令：比如发送中断的指令trap<br>    5. 闲置CPU指令nop：执行后，CPU空转一个周期</p>
-<p>指令可以按照寻址模式区分，例如求和指令，可以分成：<br>    1. 将两个寄存器的值相加的指令add<br>    2. 将一个寄存器和一个整数相加的指令addi</p>
-<p>load指令按寻址模式区分：<br>    1. 直接寻址（la）：直接加载一个内存地址中的数据到寄存器<br>    2. 寄存器寻址（li）：直接将一个数值导入寄存器<br>    3. 间接寻址（lw）：将一个寄存器中的数值作为地址，再加载这个地址中的数据</p>
-<h4 id="指令的执行速度"><a href="#指令的执行速度" class="headerlink" title="指令的执行速度"></a>指令的执行速度</h4><p>CPU是利用脉冲转化为时钟信号驱动的，每一次时钟信号的高低电平的转换，就是一个周期，成为时钟周期。CPU主频，就是时钟信号的频率。比如1GHz的CPU，就是时钟信号的频率是1G。多数指令不能在一个时钟周期内完成。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>回到本文最开始，遗留的贯穿全文的问题，64位比32位的优势有哪些？</p>
-<pre><code>1. CPU方面：
-    a. 64位CPU能执行更大数字的运算
-    b. 64位CPU可以寻址更大的内存空间
-2. 程序方面：
-    a. 指的是指令是32位还是64位。64位机器兼容32位指令，因为只需要兼容机制。而32位机器执行64位指令很难，因为寄存器存不下64位指令
-3. 操作系统方面：
-    a. 64位操作系统安装不到32位机器
-</code></pre>
-<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><pre><code>CPU中怎么存对数？
-CPU底层不能存对数，只能用逼近法，计算机按照位数，提前设计允许的误差值，
-然后用e^x - a不断尝试不同x进行逼近。
-</code></pre>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>全文参考于：<a target="_blank" rel="noopener" href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478#/detail/pc?id=4608">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478#/detail/pc?id=4608</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1] <a target="_blank" rel="noopener" href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614</a></p>
 
             </div>
             <hr/>
@@ -746,7 +727,7 @@ CPU底层不能存对数，只能用逼近法，计算机按照位数，提前�
                     </span>
                     <a href="https://kingsleyli920.github.io" class="b-link-green">CoderStarter</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2021/04/02/chong_xue_cao_zuo_xi_tong_er/" class="b-link-green">重学操作系统（二）</a>
+                    <a href="/2021/05/31/chong_xue_cao_zuo_xi_tong_qi/" class="b-link-green">重学操作系统（七）</a>
                 </p>
             </div>
         </div>
@@ -768,7 +749,7 @@ CPU底层不能存对数，只能用逼近法，计算机按照位数，提前�
         repo: 'kingsleyli920.github.io',
         owner: 'kingsleyli920',
         admin: "kingsleyli920",
-        id: '2021-04-02T14-09-57',
+        id: '2021-05-31T14-44-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -789,24 +770,26 @@ CPU底层不能存对数，只能用逼近法，计算机按照位数，提前�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/04/02/chong_xue_cao_zuo_xi_tong_yi/">
+                <a href="/2021/05/31/chong_xue_cao_zuo_xi_tong_qi/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（一）">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（七）">
                         
-                        <span class="card-title">重学操作系统（一）</span>
+                        <span class="card-title">重学操作系统（七）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">重学操作系统（一）前言我准备写一篇文章，记录下我学习操作系统的过程和一些关键知识点。题目是借用了拉钩教育上某个课程的题目[1]，感觉很贴切。之所以想学习操作系统，是因为某个面试问了很多jvm，mysql，redis调优以及操作系统相关的问题</div>
+                    <div class="summary">重学操作系统（七）前言今天继续学习记录关于操作系统这个课程。这一章节是Linux权限划分相关的知识点。我们最熟悉的，每次运行某些命令，会提示permission denied。这就代表当前用户没权限，这样我们加上sudo去运行，就可以了。
+</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -819,6 +802,7 @@ CPU底层不能存对数，只能用逼近法，计算机按照位数，提前�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -853,32 +837,29 @@ CPU底层不能存对数，只能用逼近法，计算机按照位数，提前�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/17/java_zhi_shi_dian_zheng_li_04/">
+                <a href="/2021/05/31/chong_xue_cao_zuo_xi_tong_liu/">
                     <div class="card-image">
                         
-                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/java-articles-cover-image.jpg" class="responsive-img" alt="Java知识点整理-04">
+                        <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/blog-cover-imgs/chongxuecaozuoxitong-cover.png" class="responsive-img" alt="重学操作系统（六）">
                         
-                        <span class="card-title">Java知识点整理-04</span>
+                        <span class="card-title">重学操作系统（六）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"> Java知识点整理-04 
-  Java面向对象-02  
+                    <div class="summary">重学操作系统（六）前言通过上一篇文章，帮助我巩固了Linux一些简单的命令的使用和原理。接下来，后面这个文章，介绍些和进程，重定向，以及管道指令相关的事情。
 
-前言今天继续写一些关于构造方法的知识点。有时候我们会看到，在创建一个实例的时候，会给实例一个初始值，比如：
-Food food = new Food("Beef");
-
-这</div>
+贯穿全文的问题：xargs指令的作用是什么？
+进程应用的可执行文件是在文件系统中</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                    Java开发
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/" class="post-category" target="_blank">
+                                    操作系统相关
                                 </a>
                             
                             
@@ -888,20 +869,24 @@ Food food = new Food("Beef");
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/" target="_blank">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Operating-System/" target="_blank">
+                        <span class="chip bg-color">Operating System</span>
                     </a>
                     
-                    <a href="/tags/Java-Core/" target="_blank">
-                        <span class="chip bg-color">Java Core</span>
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_blank">
+                        <span class="chip bg-color">操作系统</span>
                     </a>
                     
-                    <a href="/tags/Java%E5%BC%80%E5%8F%91/" target="_blank">
-                        <span class="chip bg-color">Java开发</span>
+                    <a href="/tags/%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" target="_blank">
+                        <span class="chip bg-color">相关原理</span>
                     </a>
                     
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/" target="_blank">
-                        <span class="chip bg-color">Java基础</span>
+                    <a href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/" target="_blank">
+                        <span class="chip bg-color">图灵机</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC/" target="_blank">
+                        <span class="chip bg-color">冯诺伊曼</span>
                     </a>
                     
                 </div>

@@ -4,6 +4,138 @@
   
     
     <entry>
+      <title>重学操作系统（七）</title>
+      <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_qi/"/>
+      <url>2021/05/31/chong_xue_cao_zuo_xi_tong_qi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（七）"><a href="#重学操作系统（七）" class="headerlink" title="重学操作系统（七）"></a><center>重学操作系统（七）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天继续学习记录关于操作系统这个课程。这一章节是Linux权限划分相关的知识点。我们最熟悉的，每次运行某些命令，会提示permission denied。这就代表当前用户没权限，这样我们加上sudo去运行，就可以了。</p><blockquote><p>Tips: sudo命令在维基百科的解释是substitute user [或 superuser] do。</p></blockquote><hr><h3 id="贯穿全文的一道题：简述Linux权限划分原则？"><a href="#贯穿全文的一道题：简述Linux权限划分原则？" class="headerlink" title="贯穿全文的一道题：简述Linux权限划分原则？"></a><em><strong>贯穿全文的一道题：简述Linux权限划分原则？</strong></em></h3><hr><h3 id="权限抽象"><a href="#权限抽象" class="headerlink" title="权限抽象"></a>权限抽象</h3><p>一个完整的权限管理体系，要有合理的抽象，包括对用户，进程，文件，内存，系统调用等抽象。</p><h4 id="用户和组"><a href="#用户和组" class="headerlink" title="用户和组"></a><strong>用户和组</strong></h4><p>Linux是多用户平台，允许多个用户同时登录系统。Linux将用户抽象为账户。账户可以登录系统。</p><p>为了方便分配用户权限，Linux支持组（Group）账户。组账户是很多用户账户的集合，组可以为成员分配某一类权限，一个用户可以在多个组。</p><p>Root账户，也叫超级管理员，对系统有着完全的掌控。一个root账户，可以使用系统提供的所有能力。</p><h4 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a><strong>文件和目录</strong></h4><p>Linux对文件和目录（目录也是一种文件）进行了权限抽象，Linux对于文件有以下三个权限：</p><pre><code>1. 读权限（r）：控制读取文件2. 写权限（w）：控制写入文件3. 执行权限（x）：控制文件执行</code></pre><p>以上每个权限，可以从用户，组，全部用户三个维度区进行配置：</p><pre><code>文件权限一般是类似下述：- rwx rwx rwx第一位是file type，"-"是文件，"d"是目录，"p"是管道文件后面三位三位分别对应三个维度的读写执行权限，如果是rwx，则拥有读写执行权限，如果比如"r--"，就是拥有只读权限，没有的权限用"-"来表示</code></pre><h4 id="初始权限"><a href="#初始权限" class="headerlink" title="初始权限"></a><strong>初始权限</strong></h4><p>一个文件创建后，文件所属用户被设置成创建文件的用户。Linux会为每个用户创建一个同名分组，如果用户想要切换分组，执行newgrp指令切换。因此被创建的文件属于用户所在的分组，因此一般情况，文件创建后权限是：</p><blockquote><p>rw-rw-r–</p></blockquote><p>用户和组维度可读写，所有用户可读。</p><h4 id="类似ls这种指令文件的权限"><a href="#类似ls这种指令文件的权限" class="headerlink" title="类似ls这种指令文件的权限"></a><strong>类似ls这种指令文件的权限</strong></h4><p>废话不多说，先看图！！！</p><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-1.png" alt="ls -l运行结果" title="ls -l运行结果"></p><p>上图是在”/usr/local/bin”中运行”ls -l”的结果，从结果看，这些指令文件的权限都是一样的，都是用户维度的可读写执行，组和全部用户维度都是可读可执行。它们都属于root用户，wheel组（组名可能是系统不同组名不同）。</p><blockquote><p>Tips: 如果一个文件不可读，可执行，那么这个文件也无法执行。</p></blockquote><h4 id="执行文件"><a href="#执行文件" class="headerlink" title="执行文件"></a><strong>执行文件</strong></h4><p>Linux中，可以通过”echo $PATH”查看可执行文件都在哪些目录中。PATH就是Linux的环境变量。</p><h4 id="内核和系统调用权限"><a href="#内核和系统调用权限" class="headerlink" title="内核和系统调用权限"></a><strong>内核和系统调用权限</strong></h4><p>内核提供操作硬盘，磁盘，内存分页，进程等最核心的能力。并拥有直接操作全部内存的权限。因此内核不能把自己的全部能力提供给用户，也不能允许用户通过shell指令进行系统调用。Linux把部分进程需要的系统调用以API的形式暴露出来，部分系统调用需要进行权限检查。</p><h3 id="权限架构思想"><a href="#权限架构思想" class="headerlink" title="权限架构思想"></a>权限架构思想</h3><p>权限架构的主要目标是让系统安全，稳定且用户，程序之间相互制约，相互隔离。因此优秀的架构，应该遵循最小权限原则（Least Privilege）。此外，权限架构应该还遵循一个原则，权限划分边界应该足够清晰，尽量相互隔离。</p><h4 id="分级保护"><a href="#分级保护" class="headerlink" title="分级保护"></a><strong>分级保护</strong></h4><p>内核可以直接操作内存和CPU，驱动程序能直接控制摄像头，显示屏等核心设备，因此它们需要采取安全措施。一般操作系统采取环状保护模式。</p><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-2.png" alt="分级保护" title="分级保护"></p><p><em><strong></strong></em></p><center><em><strong>图片来源于参考中的链接</strong></em></center><p></p><p>上图就能看出，越往内层，权限级别越高。最外层是应用权限层，中间两层是设备驱动权限层，中间是内核权限层。</p><h4 id="权限包围（Privilege-Bracking）"><a href="#权限包围（Privilege-Bracking）" class="headerlink" title="权限包围（Privilege Bracking）"></a><strong>权限包围（Privilege Bracking）</strong></h4><p>Linux提供一一个能力，比如有一个应用需要临时使用高级权限，可以验证身份通过后，赋予临时高级权限，当这个应用执行完相应的操作，马上恢复为普通权限。这样能做到减少应用在高级权限的时间，做到专权专用，防止被恶意程序利用。</p><h3 id="用户分组指令"><a href="#用户分组指令" class="headerlink" title="用户分组指令"></a>用户分组指令</h3><ul><li><p>groups指令：查看当前用户的所有分</p></li><li><p>id指令：查看当前用户</p><p>  <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-3.png" alt="id运行结果" title="id运行结果"></p><p>  其中，uid是当前用户id，gid是组id，groups后面的是每个分组和分组id。</p></li><li><p>cat /etc/passwd：查看所有用户信息</p><p>  <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cxczxt7-4.png" alt="id运行结果" title="id运行结果"></p><p>  以root这一行来看：</p><p>  root:*:0:0:System Administrator:/var/root:/bin/sh</p><ul><li>root：用户名</li><li>*：密码</li><li>0: uid</li><li>0: gid</li><li>System Administrator：userId信息</li><li>/var/root：家目录</li><li>/bin/sh：shell路径</li></ul></li><li><p>useradd：创建用户</p></li><li><p>groupadd：创建分组</p></li><li><p>usermod -a -G sudo 【用户名】：<br>组分为主要分组（Primary Group）和次级分组（Secondary Group），主要分组只有一个，次级分组可以有多个。usermod的作用是给用户添加次级分组。比如上面命令就是给【用户名】添加到sudo分组，从而使其有sudo的权限。</p></li></ul><blockquote><p>Tips: -a = append, -G = 次级分组清单</p></blockquote><ul><li>usermod -g somegroup 【用户名】：修改用户主要分组</li></ul><h3 id="文件权限管理指令"><a href="#文件权限管理指令" class="headerlink" title="文件权限管理指令"></a>文件权限管理指令</h3><ul><li><p>chmod：修改文件权限</p><blockquote><p>chmod +x [文件名]</p></blockquote><blockquote><p>chmod -x [文件名]</p></blockquote><blockquote><p>chmod +rwx [文件名]</p></blockquote><blockquote><p>chmod 467 [文件名]（467 =》二进制是100 110 111，对应：用户权限 - 组权限 - 所有用户权限的rwx，r– rw- rwx）</p></blockquote></li><li><p>chown：修改文件所属用户，比如：</p><p>  chown user1 ./file =&gt; 将file文件修改为user1用户</p><p>  或者</p><p>  chown group1.user1 ./file =&gt; 将file文件所属用户和分组改为group1分组下的user1用户。</p></li></ul><p>以上是多种修改文件权限的方式。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一章学了很多惯用语Linux权限的，很多之前不明白的操作，终于明白了。而且最关键的是，权限这方面的知识点，之前面试竟然遇到了，很庆幸看了这个章节。</p><p><em><strong>回到前面的问题，Linux权限的划分原则？</strong></em></p><p>答案显而易见，就是Linux遵循最小权限原则，每个用户和组掌握的权限应该足够小，应用应当尽可能小的使用权限。尽量少用root。系统层面，通过实现分级保护实现权限的划分。</p><p>如果一个目录是只读权限，对于root用户，读写执行操作都没问题。但是对于普通用户，则无法进入目录。</p><p><em><strong>目录的可执行权限的作用</strong></em></p><ol><li>进入目录</li><li>访问内部文件</li><li>对目录底下清单的修改，如增加，修改文件名，删除等</li></ol><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> 图灵机 </tag>
+            
+            <tag> 冯诺伊曼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重学操作系统（六）</title>
+      <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_liu/"/>
+      <url>2021/05/31/chong_xue_cao_zuo_xi_tong_liu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（六）"><a href="#重学操作系统（六）" class="headerlink" title="重学操作系统（六）"></a><center>重学操作系统（六）</center></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>通过上一篇文章，帮助我巩固了Linux一些简单的命令的使用和原理。接下来，后面这个文章，介绍些和进程，重定向，以及管道指令相关的事情。</p><hr><h3 id="贯穿全文的问题：xargs指令的作用是什么？"><a href="#贯穿全文的问题：xargs指令的作用是什么？" class="headerlink" title="贯穿全文的问题：xargs指令的作用是什么？"></a><em><strong>贯穿全文的问题：xargs指令的作用是什么？</strong></em></h3><hr><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>应用的可执行文件是在文件系统中，当执行的时候，会在操作系统中（内存）形成一个应用副本，这个副本就是进程。</p><h3 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a><strong>什么是进程？</strong></h3><blockquote><p>定义：进程是应用的副本<br>作用：进程是操作系统分配资源的最小单位</p></blockquote><h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>查看当前进程，p代表processes（进程），s代表snapshot（快照）。</p><blockquote><p>TTY：过去用来传递信息，现在可以指代传真，邮件，微信等。</p></blockquote><p>操作系统上的TTY是一个输入输出终端的概念，比如用户打开一个bash，操作系统就为用户分配一个输入输出终端。没有加任何参数的ps只显示在同一个TTY的进程。</p><ol><li><p>ps -e：用来显示所有进程，-e没有特殊含义，只为了和-A区分开。通常用ps -ef比较多，-f的作用是显示更多描述信息。</p><p> <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/chongxuecaozuoxitong6-1.png" alt="ps -e输出结果" title="ps -e输出结果"></p><p> <strong></strong></p><center><strong>ps -e 输出结果</strong></center><p></p><p> <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/chongxuecaozuoxitong6-2.png" alt="ps -ef输出结果" title="ps -ef输出结果"></p><p> <strong></strong></p><center><strong>ps -ef 输出结果</strong></center><p></p><p> 从上面两个图片可以看出，ps-ef显示更多的信息，包括（从左到右）：</p><ol><li>UID：进程所有者</li><li>PID：进程唯一标识</li><li>PPID：进程的父进程ID</li><li>C：CPU利用率（CPU占用）</li><li>STIME：开始时间</li><li>TTY：进程所在TTY，如果没有，是？</li><li>TIME</li><li>CMD：进程启动时命令，如果不是Shell命令，用方括号括起来，那就是系统进程或者内核进程</li></ol></li><li><p>ps aux：功能类似ps -e，但是是BSD（加州伯克利分校）研发的UNIX分支版本的衍生风格，如下：</p><p> <img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/chongxuecaozuoxitong6-3.png" alt="ps -ef输出结果" title="ps -ef输出结果"></p><p> <strong></strong></p><center><strong>ps aux 输出结果</strong></center><p></p></li></ol><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top能力和ps差不多，但是显示的不是快照，而是实时更新数据。</p><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/chongxuecaozuoxitong6-4.png" alt="top" title="top"></p><p> <strong></strong></p><center><strong>top 输出结果</strong></center><p></p><h2 id="管道（Pipeline）"><a href="#管道（Pipeline）" class="headerlink" title="管道（Pipeline）"></a>管道（Pipeline）</h2><p>管道的作用，是在命令和命令之间，传递数据。比如一个命令的结果，可以作为另一个命令的输入。这里的命令就是进程，因此管道可以说，是在进程间传递数据。</p><h3 id="输入输出流"><a href="#输入输出流" class="headerlink" title="输入输出流"></a>输入输出流</h3><p>每个进程都有自己的标准输入流，标准输出流和标准错误流。根本上来说，这几个标准流都是文件。</p><ol><li>标准输入流（用0表示）：可以作为进程执行的上下文</li><li>标准输出流（用1表示）：写入的结果会被打印到屏幕上</li><li>标准错误流（用2表示）：如果在进程执行过程中，发生异常，那么异常信息就会被记录到标准错误流中</li></ol><h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>重定向符号的作用是，将标准输出流输出的结果，重定向到一个文件中。</p><blockquote><p>‘&gt;’符号：覆盖重定向<br>‘&gt;&gt;’符号：追加重定向<br>比如：ls -l &gt; out，将ls -l的输出，写入out文件，如果out文件是有内容，则覆盖。<br>start.sh &gt;&gt; logfile，将运行日志追加进logfile中<br>ls1 &gt; out，这个结果不会存入out，因为ls1指令不存在<br>ls1 &amp;&gt; out，写法等价于，ls1 &gt;out 2 &amp;&gt;1，重定向标准错误流<br>&amp;代表引用关系，在上述中代表了ls1 &gt; out的标准输出流</p></blockquote><h3 id="管道的作用和分类"><a href="#管道的作用和分类" class="headerlink" title="管道的作用和分类"></a>管道的作用和分类</h3><p>管道和重定向很像，但是管道是一个连接一个计算，重定向是将一个文件的内容，定向到另以恶搞文件。</p><p>Linux中，管道也是文件，其中有两种类型：</p><ul><li>匿名管道（Unnamed Pipline），这种管道也在文件系统中，它只是一个存储节点，不属于任何目录（没有路径）</li><li>命名管道（Named Pipline），这种管道就是一个文件，有自己的路径</li></ul><h3 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h3><p>管道具有FIFO的特性，所以先进入管道的数据，先传递到管道的下游。</p><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><blockquote><p>Linux提供了’|’作为管道符，’|’左面的输出结果会作为右面的输入结果。</p></blockquote><h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a><strong>排序</strong></h4><p>比如使用ls，希望按照文件名排序倒序，可以使用匿名管道，将ls的结果传给sort指令。</p><blockquote><p>ls | sort -r （-r是reverse）</p></blockquote><h4 id="去重"><a href="#去重" class="headerlink" title="去重"></a><strong>去重</strong></h4><p>去重可以使用uniq指令，uniq指令查找文件中相邻的重复行，然后去重，但是如果重复行是交替的，就不能直接uniq，可以先sort然后利用管道，将sort结果重定向到uniq指令。</p><blockquote><p>sort text.txt | uniq</p></blockquote><h4 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a><strong>筛选</strong></h4><p>筛选可以利用grep结合管道，比如</p><blockquote><p>find ./ | grep Spring 查找当前路径下所有包含Spring关键字<br>（Tips: find的作用是在所指定路径中递归查找文件）<br>grep -v xxx 查找不包含xxx的结果</p></blockquote><h4 id="计算行数"><a href="#计算行数" class="headerlink" title="计算行数"></a><strong>计算行数</strong></h4><ol><li>如果想知道一个文件中有多少行，可以用wc -l 文件名</li><li>如果想知道目录下有多少文件，用ls ｜ wc -l</li><li>如果计算一个java项目的目录中，有多少行代码，可以用：find -i ‘.java’ ./ | wc -l</li></ol><h4 id="中间结果"><a href="#中间结果" class="headerlink" title="中间结果"></a><strong>中间结果</strong></h4><p>如果多个管道相连，我们想保存下中间的结果，就需要用到tee指令。tee指令从标准输入流中读取数据到标准输出流。tee的另一个作用是，在这个过程中，把输入流的数据存到文件中，比如：</p><pre><code>find ./ -i "*.java" | tee JavaList | grep Spring这个指令的意思是，在当前目录找到所有Spring关键字的Java文件，tee本身不影响指令的执行，但是tee会把find的结果存到JavaList文件中。tee就像T，连接通道两端，下面开了个口，这个开口在函数式编程，叫副作用。</code></pre><h4 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a><strong>xargs</strong></h4><p>xargs指令，从标准数据流中构造并执行一行行的指令。xargs从输入流获取字符串，利用空白，换行符等切割字符，在这些字符串的基础上，构造指令，最后一行行的执行这些指令。</p><pre><code>比如要重命名x.a，y.a，z.a三个文件，想在它们前面都加上prefix_前缀，就可以用xargs。假设它们三个在一个文件夹中，并且文件夹中没有其它文件，可以直接用指令：ls | xargs -I FILE mv FILE prefix_FILE这里，FILE是指代ls查找的所有文件名，-I是查找替换符。样板代码：如果上述例子，不用xargs，那么我们需要自己敲代码完成文件的重命名：    mv x.a prefix_x.a    mv y.a prefix_y.a    mv z.a prefix_z.a这就是样板代码</code></pre><h3 id="管道文件"><a href="#管道文件" class="headerlink" title="管道文件"></a>管道文件</h3><p>命名管道文件是要在文件夹中，有自己的路径，因此需要创建。可以使用mkfifo指令创建命名管道，比如mkfifo pipe1。明明管道和匿名管道能力类似。</p><p>比如我们创建一个命名管道叫pip，如果这时候用cat pip，则不打印任何东西。</p><blockquote><p>Tips: cat指令的作用是，将文件内容打印到屏幕</p></blockquote><p>之后如果执行 echo ‘abc’ &gt; pip，将abc写入pip，屏幕中会打印abc</p><blockquote><p>Tips: 可以使用cat pip &amp;指令，&amp;的意思是后台执行，这样就不会阻塞用户继续输入。</p></blockquote><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一篇文章的内容，对于我来说，是全新的，帮助我加深了对Linux命令的了解，也更加清晰，一些常见命令，比如grep，cat等和其它命令通过’|’连接，具体是如何执行的，并且原理是什么。目前这个主题的文章看到这，我已经惊叹不已，基本把我对计算机原理，Linux基础命令的漏洞，都补充上了。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4613">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4613</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> 图灵机 </tag>
+            
+            <tag> 冯诺伊曼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重学操作系统（五）</title>
+      <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_wu/"/>
+      <url>2021/05/31/chong_xue_cao_zuo_xi_tong_wu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（五）"><a href="#重学操作系统（五）" class="headerlink" title="重学操作系统（五）"></a><center>重学操作系统（五）</center></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上面几篇文章，学习了关于计算机的基本理论，计算机原理，底层一些知识点。也算为我打开一扇大门。其中很多知识点和思想，都是曾经没学到的。之前几篇文章，让我受益匪浅。接下来几篇是介绍Linux指令相关的。Linux指令在面试中，不一定都会问到，但是就我的经验，问到后，答得越多，越准确，是十分加分的一项，尤其是社招。</p><hr><h3 id="贯穿全文的问题：rm-rf什么意思？"><a href="#贯穿全文的问题：rm-rf什么意思？" class="headerlink" title="贯穿全文的问题：rm / -rf什么意思？"></a><em><strong>贯穿全文的问题：rm / -rf什么意思？</strong></em></h3><hr><h3 id="什么是Shell"><a href="#什么是Shell" class="headerlink" title="什么是Shell"></a>什么是Shell</h3><p>简单来说，就是一个命令行的用户界面。</p><blockquote><p>Bash：Bourne Again Shell，是Shell的组成程序。由Steve Bourne发明的。</p></blockquote><h3 id="Linux对文件目录的抽象"><a href="#Linux对文件目录的抽象" class="headerlink" title="Linux对文件目录的抽象"></a>Linux对文件目录的抽象</h3><p>Linux对文件进行了一个树状的抽象。/代表根目录，每一层目录用/分开。</p><h3 id="路径（Path）"><a href="#路径（Path）" class="headerlink" title="路径（Path）"></a>路径（Path）</h3><p>路径就是一个文件在文件系统的地址。目标文件的绝对目录（Absolute Path），也叫完全路径（Full Path），是从/开始，接下来每一层都是一级子目录，直到定位到目标文件为止。</p><h3 id="工作目录"><a href="#工作目录" class="headerlink" title="工作目录"></a>工作目录</h3><p>Shell抽象出得目录。相对路径是以工作目录为基点的路径比如如果在/usr目录内，rm文件的相对路径是bin/rm。</p><blockquote><p>.代表当前目录，..代表上级目录。</p></blockquote><p>cd指令（Change Directory）：切换工作路径，既可以是绝对路径，也可以是相对路径。</p><blockquote><p>cd（不加参数）：回到home</p></blockquote><blockquote><p>cd .：什么都不发生</p></blockquote><blockquote><p>cd..：返回上级目录</p></blockquote><blockquote><p>pwd：查看当前目录</p></blockquote><h3 id="几种常见的文件类型"><a href="#几种常见的文件类型" class="headerlink" title="几种常见的文件类型"></a>几种常见的文件类型</h3><ol><li>普通文件（比如文本文件）</li><li>目录文件（特殊文件，存储文件清单，/也是一个文件）</li><li>可执行文件（rm这种命令文件就是可执行文件）</li><li>管道文件</li><li>socket文件</li><li>软链接文件（相当于指向另一个文件所在路径的符号）</li><li>硬连接文件（指向另一个文件的指针）</li></ol><blockquote><p>ls -F 可以看到当前目录下文件和它的类型：</p><ol><li>*结尾是可执行文件</li><li>=结尾是socket文件</li><li>@结尾是软链接</li><li>｜结尾是管道文件</li><li>没有符号的是普通文件</li><li>/结尾是目录文件</li></ol></blockquote><h3 id="设备文件"><a href="#设备文件" class="headerlink" title="设备文件"></a>设备文件</h3><p>Socket是网络插座，是客户端和服务端之间同步数据的接口。 Linux把设备抽象成文件，因为设备和操作系统交换数据就是有读，写两个操作。类似文件的操作。Linux把设备，如打印机，显卡等抽象成文件，使文件系统设计变得统一。</p><h3 id="文件的增删改查"><a href="#文件的增删改查" class="headerlink" title="文件的增删改查"></a>文件的增删改查</h3><blockquote><p>tips: man [指令] 可以查看相应指令的帮助，man是manual。比如man rm，man touch等。</p></blockquote><h4 id="增加"><a href="#增加" class="headerlink" title="增加"></a><strong>增加</strong></h4><ol><li>touch：用来改变时间戳，但是如果没有文件，就会创建文件。</li><li>mkdir： 创建目录（mkdir 目录名）</li><li>mkdir -p：递归创建，比如创建A/B/C</li></ol><h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a><strong>查看</strong></h4><ol><li>ls： list缩写，查看文件夹内容</li><li>ls -l： 展示详细信息，比如权限，大小，修改时间</li><li>ls -a：显示所有</li><li>ls -al：显示所有的详细信息</li></ol><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a><strong>删除</strong></h4><ol><li>rm：删除文件</li><li>rm -r：递归删除，删除目录</li><li>rm -f:强制删除，-f force（删除不给提示）</li></ol><h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a><strong>修改</strong></h4><ol><li>nano，vim：Linux自带编辑器</li></ol><h3 id="查阅文件内容"><a href="#查阅文件内容" class="headerlink" title="查阅文件内容"></a>查阅文件内容</h3><ol><li>cat：适合浏览比较小的文件，比如配置文件。cat指令将文件连接到标准输出流并打印到屏幕</li><li>标准输出流（Standard Output）也是一种文件。</li><li>more：定位是一个阅读过滤器，可以支持翻页，也支持文本搜索</li><li>less：和more类似，less支持向上翻页，因此less用途比较多</li><li>head/tail：head和tail是一组，他们读取头部N行或者尾部N行（tail -n 1000）</li><li>tail -f：f是follow，会自动输出追加的内容（tailf）</li><li>grep：g = global，re = regular expression，p = pattern，所以它的作用是通过正则全局搜索一个文件找到的匹配模式<ol><li>grep [一段ip] ./nginx_logs.txt</li><li>grep [一个时间（20/April/2021:19:20）] ./nginx_logs.txt</li></ol></li></ol><h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><ol><li>which：文件所在位置（which grep =》返回grep指令文件所在位置）</li><li>find：在文件系统中查找文件（find / -iname “*.txt”， -iname是用来匹配查找，i忽略大小写，-name是不忽略大小写）</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>全文下来，收获很丰富，了解了很多知道，但是知之不深的一些指令。回到前面的问题，rm -rf /，会删除根目录及其下所有文件和文件夹，并不给任何提示。所以不要乱用啊～～</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4612">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4612</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> 图灵机 </tag>
+            
+            <tag> 冯诺伊曼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重学操作系统（四）</title>
+      <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_si/"/>
+      <url>2021/05/31/chong_xue_cao_zuo_xi_tong_si/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（四）"><a href="#重学操作系统（四）" class="headerlink" title="重学操作系统（四）"></a><center>重学操作系统（四）</center></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章，记录下存储器相关的一些知识，涉及到L1 Cache，SSD，内存的一些问题。接下来还是贯穿全文的一个问题</p><h3 id="SSD、内存和-L1-Cache-相比速度差多少倍？"><a href="#SSD、内存和-L1-Cache-相比速度差多少倍？" class="headerlink" title="SSD、内存和 L1 Cache 相比速度差多少倍？"></a><em><strong>SSD、内存和 L1 Cache 相比速度差多少倍？</strong></em></h3><h2 id="存储器分级"><a href="#存储器分级" class="headerlink" title="存储器分级"></a>存储器分级</h2><h3 id="为什么有存储器分级策略"><a href="#为什么有存储器分级策略" class="headerlink" title="为什么有存储器分级策略"></a>为什么有存储器分级策略</h3><p>因为我们希望的存储器是，体积小，空间大，功耗低，散热好，速度快。但是这种存储器是不存在的，现阶段，没有存储器能同时满足所有优点。</p><h3 id="存储器分级策略"><a href="#存储器分级策略" class="headerlink" title="存储器分级策略"></a>存储器分级策略</h3><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/cunchuqifenji.png" alt="存储器分级" title="存储器分级"></p><center>图片来源于参考一</center><p>上图很明显看出，存储器主要分6级。</p><h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a><strong>寄存器</strong></h3><p>紧挨着CPU的控制单元和逻辑单元，所使用的材料也是最快的。存储速度快，能耗高，产热大，花费高。所以数量不能很多。</p><blockquote><p>32位CPU中寄存器大多能存4个字节的内容</p></blockquote><blockquote><p>64位CPU中寄存器大多能存8个字节的内容</p></blockquote><p> 寄存器访问很快，一般要求半个CPU周期内完成读写。</p><h3 id="L1-Cache"><a href="#L1-Cache" class="headerlink" title="L1-Cache"></a><strong>L1-Cache</strong></h3><blockquote><p>L1 缓存在CPU中，虽然它离CPU更近，但是它造价低，通常L1缓存大小在几十Kb到几百Kb，读写速度大概是2-4个CPU周期。</p></blockquote><h3 id="L2-Cache"><a href="#L2-Cache" class="headerlink" title="L2-Cache"></a><strong>L2-Cache</strong></h3><blockquote><p>L2缓存也在CPU中，但是比L1缓存离CPU远。它大小比L1缓存大，能达到几M，速度是10 - 20个CPU周期。</p></blockquote><h3 id="L3-Cache"><a href="#L3-Cache" class="headerlink" title="L3-Cache"></a><strong>L3-Cache</strong></h3><blockquote><p>L3缓存在CPU中，比L2缓存离CPU更远。大小通常大于L2缓存，可以达到十几或者几十M，读写时间是20 - 60个CPU周期。</p></blockquote><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a><strong>内存</strong></h3><blockquote><p>内存主要材料是半导体硅，主要插在主板上，距离CPU有一定的距离，需要总线，才能和CPU连接。它体积大，造价远低于前面的存储器。内存可以达到几G到几T这个范围的存储空间。它的读写速度是200 - 300个CPU周期</p></blockquote><h3 id="SSD和硬盘"><a href="#SSD和硬盘" class="headerlink" title="SSD和硬盘"></a><strong>SSD和硬盘</strong></h3><blockquote><p>SSD：固态硬盘，结构类似内存，但是断电后数据能保存。内存，缓存，寄存器，断电后数据消失。内存读写速度比SSD快了10 - 1000倍，而比硬盘快了大概100万倍。因此SSD逐渐取代硬盘。</p></blockquote><p>当CPU需要内存中的某个数据，查询流程是：</p><blockquote><p>寄存器（如果没有）-&gt; L1缓存（如果没有）-&gt; L2缓存（如果没有）-&gt; L3缓存（如果没有）-&gt;内存</p></blockquote><h3 id="缓存条目结构"><a href="#缓存条目结构" class="headerlink" title="缓存条目结构"></a>缓存条目结构</h3><p>无论内存还是缓存，都是线性存储器，数据一个挨着一个存储。如果内存是一列表格，那么缓存是一个多列表格，每个表格中的每一行，叫做缓存条目。</p><blockquote><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3></blockquote><blockquote><p>数学方法：<br>比如100个内存地址，但是10个缓存条目。内存地址编号0 - 999，缓存条目编号0 - 9。比如701编号的内存，用数学方法，通过”地址 % 缓存条目数”这种方式，确定它的缓存条目。</p></blockquote><h3 id="指令预读"><a href="#指令预读" class="headerlink" title="指令预读"></a>指令预读</h3><p>由于CPU执行指令速度很快，一般2 - 6个周期能执行完毕，但是CPU读取内存速度，要200 - 300个周期，因此，CPU不能在内存中读一条指令就执行，如果这样，每个指令执行要200 - 300个周期。</p><blockquote><p>解决方法：<br>将L1缓存分为指令区和数据区，为了避免数据缓存覆盖指令缓存。然后CPU把内存中的指令预读几十或者上百条，存到L1缓存。L1缓存读写速度是2 - 4个周期，因此可以跟上指令执行的速度。L2和L3不协助处理指令预读的问题，因此它们不需要被分为指令区和数据区。</p></blockquote><h3 id="缓存的命中率"><a href="#缓存的命中率" class="headerlink" title="缓存的命中率"></a>缓存的命中率</h3><p>和缓存命中相反的是，miss，缓存穿透。一般三级缓存的命中率在95%，只有大概5%的内存读取会穿透。</p><h3 id="缓存置换"><a href="#缓存置换" class="headerlink" title="缓存置换"></a>缓存置换</h3><p>L1缓存满了，再次读内存，需要将旧条目移除，新条目存入，就叫缓存置换。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回到开头的问题，我们可以得到，内存比SSD快10 - 1000倍，L1 Cache比内存快100倍。因此L1 Cache比SSD快1000 - 100000倍。</p><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><strong>假设有一个二维数组，共有1M个条目，如果遍历数组，是逐行遍历还是逐列遍历？</strong><br>Answer：<br>逐行遍历，因为二维数组是每行是一个一维数组。元素存在一维数组内是连续的，因此逐行遍历，能一次将这些连续地址加载到缓存，提高了缓存命中率。并且逐行遍历，内存页交换次数会增加很多（最差情况，每遍历一个元素就交换一次）。这种情况可以通过增大物理内存解决。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4610">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4610</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> 图灵机 </tag>
+            
+            <tag> 冯诺伊曼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重学操作系统（三）</title>
       <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_san/"/>
       <url>2021/05/31/chong_xue_cao_zuo_xi_tong_san/</url>
