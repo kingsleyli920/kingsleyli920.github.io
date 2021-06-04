@@ -4,6 +4,105 @@
   
     
     <entry>
+      <title>重学操作系统（十）</title>
+      <link href="2021/06/04/chong_xue_cao_zuo_xi_tong_shi/"/>
+      <url>2021/06/04/chong_xue_cao_zuo_xi_tong_shi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（十）"><a href="#重学操作系统（十）" class="headerlink" title="重学操作系统（十）"></a><center>重学操作系统（十）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前看了很多Linux相关的内容，最后有分析日志和自动化运维的一些知识，有些太深入了，所以只是看了下，跟着做了下练习，没有写成文章。</p><p>今天继续，来说一下Windows和Linux的区别。</p><p>Windows，Linux，MacOS应该是现今世界上最受欢迎的三大操作系统了。今天不谈MacOS，单说Windows和Linux。</p><ul><li><p>Windows，商业系统，微软家的，大量优秀的开发者加入微软，进行Windows系统相关的开发。</p></li><li><p>Linux，开源系统，因此通过开源社区，吸引大量顶级开发者贡献源码。</p></li></ul><p>两个操作系统，其实在我看来各有各的市场，存在竞争，但是很多方面却是互补的。</p><ul><li><p>从消费者的角度来说，如果是业内人士，Windows，Linux（包括MacOS）肯定大都接触过，就开发而言，除非做微软家的开发，否则用Linux（包括MacOS）做开发，无论是安装一些软件包，命令行，编辑器的运行流畅度等，Linux肯定是秒杀Windows。但是对于普通用户，就一句话来形容：什么是Linux？</p></li><li><p>对于我个人，简单一句，Windows玩儿游戏，MacOS开发（我开发不用Linux）。</p></li></ul><hr><h3 id="贯穿全文的一道题：Linux-内核和-Windows-内核有什么区别？"><a href="#贯穿全文的一道题：Linux-内核和-Windows-内核有什么区别？" class="headerlink" title="贯穿全文的一道题：Linux 内核和 Windows 内核有什么区别？"></a><em><strong>贯穿全文的一道题：Linux 内核和 Windows 内核有什么区别？</strong></em></h3><hr><h3 id="什么是内核"><a href="#什么是内核" class="headerlink" title="什么是内核"></a>什么是内核</h3><h4 id="内核是操作系统中应用连接硬件设备的桥梁。"><a href="#内核是操作系统中应用连接硬件设备的桥梁。" class="headerlink" title="内核是操作系统中应用连接硬件设备的桥梁。"></a><em><strong>内核是操作系统中应用连接硬件设备的桥梁。</strong></em></h4><p>内核一般具有下列基本功能：</p><ol><li>管理进程、线程（决定哪个进程、线程使用CPU）</li><li>管理内存（决定内存用来做什么）</li><li>连接硬件设备（为进程、和设备间提供通信能力）</li><li>提供系统调用（接收进程发送来的系统调用）</li></ol><p>通常操作系统可以分成三层，最底层是硬件设备的抽象（CPU，IO设备，存储设备等），中间是内核（Kernel），最上层是应用层（Application）</p><div align="center"><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt10-1.png" width="100%" height="100%"></div><h4 id="图片来源于-Quora"><a href="#图片来源于-Quora" class="headerlink" title=" 图片来源于: @Quora"></a><em><strong><center> 图片来源于: @Quora</center></strong></em></h4><h4 id="操作系统分层"><a href="#操作系统分层" class="headerlink" title=" 操作系统分层 "></a><em><strong><center> 操作系统分层 </center></strong></em></h4><h3 id="内核的工作原理"><a href="#内核的工作原理" class="headerlink" title="内核的工作原理"></a>内核的工作原理</h3><p>内核的权限非常高，它可以管理进程，直接访问所有内存，因此内核和进程之间需要有一定的隔离。这个隔离是类似服务端和客户端请求响应的模型。但不同的是，服务端和客户端一般在不同机器运行，因此不需要共享资源。但是进程调用内核期间，存在资源共享。</p><p>多数操作系统遵循的设计原则是：进程向内核发起一个请求，然后将CPU执行权限让出给内核。内核接手CPU执行权限，然后完成请求，再把CPU执行权限给进程。</p><h3 id="Linux的设计"><a href="#Linux的设计" class="headerlink" title="Linux的设计"></a>Linux的设计</h3><h4 id="Multitsdk-and-SMP-Symmetric-multiprocessing"><a href="#Multitsdk-and-SMP-Symmetric-multiprocessing" class="headerlink" title="Multitsdk and SMP (Symmetric multiprocessing)"></a><em><strong>Multitsdk and SMP (Symmetric multiprocessing)</strong></em></h4><p>Multitask 顾名思义，就是Linux是一个多任务的操作系统。多任务指多个任务能同时执行。Linux支持并发执行。</p><p>SMP指的是对称多处理，就是Linux每个处理器地位相同，内存对多个处理器来说是共享的。每个处理器能访问完整的内存和硬件资源。因为这个特性，用户程序或者内核程序执行时，会可能被分配到任何处理器上执行。</p><h4 id="ELF（Executable-and-Linkable-Format）"><a href="#ELF（Executable-and-Linkable-Format）" class="headerlink" title="ELF（Executable and Linkable Format）"></a><em><strong>ELF（Executable and Linkable Format）</strong></em></h4><p>这个词的意思就是可执行文件链接格式。是从Unix继承而来的可执行文件存储格式。ELF中，文件被分成一个个段（Segment），每个段都有自己的作用。</p><div align="center"><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt10-2.png" width="100%" height="100%"></div><h4 id="图片来源于-https-linuxhint-com-understanding-elf-file-format"><a href="#图片来源于-https-linuxhint-com-understanding-elf-file-format" class="headerlink" title=" 图片来源于: https://linuxhint.com/understanding_elf_file_format/ "></a><em><strong><center> 图片来源于: <a href="https://linuxhint.com/understanding_elf_file_format/">https://linuxhint.com/understanding_elf_file_format/</a> </center></strong></em></h4><h4 id="文件的结构"><a href="#文件的结构" class="headerlink" title=" 文件的结构 "></a><em><strong><center> 文件的结构 </center></strong></em></h4><h4 id="Monolithic-Kernel"><a href="#Monolithic-Kernel" class="headerlink" title="Monolithic Kernel"></a><em><strong>Monolithic Kernel</strong></em></h4><p>这个名词的意思是宏内核，与其相反的，还有一个Microkernel，就是微内核。宏内核，预示着，Linux内核是一个完整的可执行程序，且内核用最高权限来运行。宏内核的特点是很多程序会打包在内核中，如文件系统，驱动，内存管理等。Linux支持动态加载内核模块，这样每次安装驱动，不需要再重新编译内核了。</p><p>微内核与宏内核对应，微内核只保存了基本能力，比如进程调度，虚拟内存，中断。大部分应用，包括文件系统，驱动程序，内存管理，是在用户空间管理的。</p><div align="center"><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt10-3.png" width="100%" height="100%"></div><h4 id="图片来源于-拉钩教育"><a href="#图片来源于-拉钩教育" class="headerlink" title=" 图片来源于: @拉钩教育"></a><em><strong><center> 图片来源于: @拉钩教育</center></strong></em></h4><h4 id="不同类型的内核的结构"><a href="#不同类型的内核的结构" class="headerlink" title=" 不同类型的内核的结构 "></a><em><strong><center> 不同类型的内核的结构 </center></strong></em></h4><p>宏内核的好处是：</p><blockquote><p>需要频繁调用底层操作的应用，比如驱动程序，使用宏内核结构性能更好。</p></blockquote><p>微内核的好处是：</p><blockquote><p>内核体积小，可移植性强。</p></blockquote><p>还有就是混合类型内核，其架构像微内核，内核中会有一个最小版本内核，其它功能会在这个能力上搭建。但是混合类型内核，内核也是一个完整的程序，大部分功能包含在内核中。</p><h3 id="Windows设计"><a href="#Windows设计" class="headerlink" title="Windows设计"></a>Windows设计</h3><p>Windows有两个版本的内核，一个叫Windows 9x，应用在Win95， Win98系统中。另一个是Windows NT，应用在现在的Win7和Win10。NT指的是New Technology。</p><div align="center"><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt10-4.png" width="100%" height="100%"></div><h4 id="图片来源于-Quora-1"><a href="#图片来源于-Quora-1" class="headerlink" title=" 图片来源于: @Quora"></a><em><strong><center> 图片来源于: @Quora</center></strong></em></h4><h4 id="Windows内核的结构"><a href="#Windows内核的结构" class="headerlink" title=" Windows内核的结构 "></a><em><strong><center> Windows内核的结构 </center></strong></em></h4><p>Windows 支持Mutitask和SMP（对称多处理）。Windows内核属于混合内核。其内核中有一个Microkernel，但是整个内核又类似宏内核，包含完整功能。</p><p>Windows也有自己的可执行文件格式，叫作Portable Executable（PE），也就是可移植的执行文件，扩展名一般是.exe，.dll，.sys等。</p><p>PE和ELF结构有很多类似的地方。大致如下：</p><div align="center"><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt10-5.png" width="100%" height="100%"></div><h4 id="图片来源于-ResearchGate"><a href="#图片来源于-ResearchGate" class="headerlink" title=" 图片来源于: @ResearchGate"></a><em><strong><center> 图片来源于: @ResearchGate</center></strong></em></h4><h4 id="PE的结构"><a href="#PE的结构" class="headerlink" title=" PE的结构 "></a><em><strong><center> PE的结构 </center></strong></em></h4><p>Windows有很多独特的功能，比如Hyper-V虚拟化技术。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实在看这一章节之前，对操作系统的内核并没这么了解。也许也是平时工作用不到，所以也不是很重视这个方面。看了这一章节之后，不但相关只是点获得补充，也发现，其实对于变成语言来说，它们可能不同。但是其实，它们又相同。在操作系统，数据结构，底层原理，编译原理等方面，它们都大相径庭，因此学好操作系统，深入学习是有必要的。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478#/detail/pc?id=4620">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478#/detail/pc?id=4620</a></p><p>[2] <a href="https://linuxhint.com/understanding_elf_file_format/">https://linuxhint.com/understanding_elf_file_format/</a></p><p>[3] <a href="https://www.quora.com/How-close-is-Microsoft-Windows-internal-architecture-compared-to-Linux-s-operating-system-I-have-worked-as-a-programmer-in-Linux-Is-it-easy-to-move-to-Windows-operating-system-as-a-developer">https://www.quora.com/How-close-is-Microsoft-Windows-internal-architecture-compared-to-Linux-s-operating-system-I-have-worked-as-a-programmer-in-Linux-Is-it-easy-to-move-to-Windows-operating-system-as-a-developer</a></p><p>[4] <a href="https://www.researchgate.net/figure/Portable-executable-file-format_fig6_338355873">https://www.researchgate.net/figure/Portable-executable-file-format_fig6_338355873</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> Linux &amp; Windows </tag>
+            
+            <tag> 操作系统内核 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重学操作系统（九）</title>
+      <link href="2021/06/04/chong_xue_cao_zuo_xi_tong_jiu/"/>
+      <url>2021/06/04/chong_xue_cao_zuo_xi_tong_jiu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（九）"><a href="#重学操作系统（九）" class="headerlink" title="重学操作系统（九）"></a><center>重学操作系统（九）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天说一下在Linux（当然，我用的是Mac，不过差不多）下安装程序的一些知识点。我们知道，Linux安装程序一般就是两种方式：</p><ol><li>下载源码然后编译</li><li>使用包管理器</li></ol><p>第一种方式当然只针对开源项目，不过Linux大多数软件都是开源的。</p><hr><h3 id="贯穿全文的一道题：编译安装和包管理器安装有什么优势和劣势？"><a href="#贯穿全文的一道题：编译安装和包管理器安装有什么优势和劣势？" class="headerlink" title="贯穿全文的一道题：编译安装和包管理器安装有什么优势和劣势？"></a><em><strong>贯穿全文的一道题：编译安装和包管理器安装有什么优势和劣势？</strong></em></h3><hr><h3 id="包管理器安装"><a href="#包管理器安装" class="headerlink" title="包管理器安装"></a>包管理器安装</h3><p>也许很多接触Linux的人，都听说过dpkg和rpm。他们两个可以相当于包管理器，同时也可被认为是安装包的格式，或者安装包的机制。</p><h4 id="Linux系统两大分类"><a href="#Linux系统两大分类" class="headerlink" title="Linux系统两大分类"></a>Linux系统两大分类</h4><pre><code>1. RedHat系列：Redhat， Centos，Fedora等2. Debian系列：Debian，Ubuntu等Redhat系列：* 常见的安装包格式是rpm* 包管理工具是yumDebian系列：* 常见的包格式是deb* 包管理工具apt-get</code></pre><p>他们提供的功能主要包括：</p><pre><code>1. 查询是否安装某个软件2. 查询所有安装的软件包3. 安装一个软件包4. 删除一个安装好的软件包</code></pre><p>但是他们也有自己的缺点，主要就是，如果某个包依赖很多其它的包，他们不会对此进行处理，先安装依赖包。因此，出现了yum和apt两个自动包管理工具。</p><h3 id="自动依赖管理"><a href="#自动依赖管理" class="headerlink" title="自动依赖管理"></a>自动依赖管理</h3><h4 id="yum"><a href="#yum" class="headerlink" title="yum"></a><em><strong>yum</strong></em></h4><pre><code>yum全称是Yellow Dog Updator， Modified，基于Yellow Dog Updator修改而来的。Yellowdog Updator是Yellow Dog Linux的包管理工具。后面Yellow Dog Linux也使用yum了。yum是Python开发的，提供rpm安装包，因此只有Redhat系列的Linux系统可用，如Centos。yum可以做到在安装软件包前，帮你下载并安装相关依赖。命令：yum install vim</code></pre><h4 id="apt"><a href="#apt" class="headerlink" title="apt"></a><em><strong>apt</strong></em></h4><pre><code>apt全称是Advanced Packaging Tools，是debian系列Linux系统的包管理器。它能提供和yum类似的下载和安装依赖的能力。主要常用的命令如：apt remove xxxapt install xxxapt search xxx剩下可以通过man apt命令去查看。</code></pre><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><ol><li><p>第一步：下载源码，可以使用wget下载，如果没有，可以用apt或者yum安装。</p></li><li><p>解压下载好的源码：</p><p> tar -xzvf xxxx.tar.gz</p><blockquote><p>tar是解压和打包用的命令。之所以叫tar，主要是t代表tape，ar代表archive。因为早期存储介质较小，人们习惯把文件打包然后存储在磁带上，那时候Unix用的命令就是tar，之后Linux延续这个用法。</p></blockquote><blockquote><p>-x代表extract（提取）；-z代表gzip，解压gz类型文件；-v是verbose，用来显示解压过程，没这个选项，就不显示解压过程；-f是file，指的是要操作的是文件。tar解压的话，一般都有x，f选项，打包一般用c。</p></blockquote></li><li><p>配置和解决依赖</p><p> 一般解压后，进入文件目录，会有configure文件，是一个可执行文件。一般需要执行这个配置文件，进行配置。如果执行后，报错，例如：</p><pre><code> xxx is not found</code></pre><p> 这是依赖检查报错，需要安装相应的依赖，才能继续安装这个软件包。</p></li><li><p>编译和安装</p><p> 通常配置完后，一般输入make &amp;&amp; sudo make install来编译和安装。</p><p> make是Linux下面一个构建工具。在执行完配置文件后，通常会生成一个叫MakeFile的文件，make命令会根据MakeFile文件编译整个项目。编译完成后，能够形成可执行的二进制文件，make install便可以进行安装。&amp;&amp; 符号表示顺序执行。</p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>目前大部分包都可以通过自动依赖管理器进行安装，但是如果一个包没有在相应的包平台注册，我们就需要通过编译安装来进行安装。</p><p>包管理工具的优点不必多说，现在说下缺点：</p><pre><code>1. 不是所有包都一定编译并发布到相应的平台，这时候需要用编译安装。2. 如果一个软件定制度很高，编译阶段需要传入参数，这时候需要编译安装。</code></pre><p>Q：如果你在编译安装 MySQL 时，发现找不到 libcrypt.so，应该如何处理？</p><p>A：安装libcrypt.so然后添加到相应路径。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614</a></p><p>[2] <a href="https://blog.csdn.net/lu_embedded/article/details/51994466">https://blog.csdn.net/lu_embedded/article/details/51994466</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> Linux安装软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重学操作系统（八）</title>
+      <link href="2021/06/04/chong_xue_cao_zuo_xi_tong_ba/"/>
+      <url>2021/06/04/chong_xue_cao_zuo_xi_tong_ba/</url>
+      
+        <content type="html"><![CDATA[<h2 id="重学操作系统（八）"><a href="#重学操作系统（八）" class="headerlink" title="重学操作系统（八）"></a><center>重学操作系统（八）</center></h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>距离上次整理关于操作系统相关知识点，已经过去几周了，现在找到时间，继续看相关文章，继续总结。</p><p>今天看的文章是关于Linux网络指令相关的知识点。</p><hr><h3 id="贯穿全文的一道题：如何查看一个域名有哪些NS-Name-Server-记录？"><a href="#贯穿全文的一道题：如何查看一个域名有哪些NS-Name-Server-记录？" class="headerlink" title="贯穿全文的一道题：如何查看一个域名有哪些NS(Name Server)记录？"></a><em><strong>贯穿全文的一道题：如何查看一个域名有哪些NS(Name Server)记录？</strong></em></h3><hr><h3 id="Linux网络相关指令"><a href="#Linux网络相关指令" class="headerlink" title="Linux网络相关指令"></a>Linux网络相关指令</h3><h4 id="远程操作指令"><a href="#远程操作指令" class="headerlink" title="远程操作指令"></a><em><strong>远程操作指令</strong></em></h4><p>远程操作指令，就我个人而言，用过最多的就是ssh和scp。ssh主要是用来远程登录目标计算机并进行操作的指令。scp主要是负责远程传输文件的。</p><ol><li>ssh(Secure Shell)</li></ol><blockquote><p>一般登录远程机器的指令，比如ssh xxx@ip的方式登录。</p></blockquote><ol start="2"><li>scp</li></ol><blockquote><p>用来拷贝文件到远程机器，或者把远程机器的文件拷贝到本地。主要命令结构是”scp [可选参数] file_source file_target “，可选参数比如-C：允许压缩，-r：递归整个目录，-P：指定传输端口等。</p><p>常用的从本地拷贝到远程到命令：scp local_file remote_username@remote_ip:remote_file</p><p>常用的从远程拷贝到本地的命令：scp <a href="mailto:root@www.xxxx.xxxx">root@www.xxxx.xxxx</a>:source_file target_file</p></blockquote><h4 id="查看本地网络状态"><a href="#查看本地网络状态" class="headerlink" title="查看本地网络状态"></a><em><strong>查看本地网络状态</strong></em></h4><p>网络状态相关的主要命令，用的最多的应该是ifconfig和netstat</p><ol><li>ifconfig</li></ol><blockquote><p>主要就是用来查看本地ip和本地有哪些网络接口。如下图：</p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-1.png" alt="ifconfig 运行结果" title="ifconfig 运行结果"></p><ol start="2"><li>netstat</li></ol><blockquote><p>netstate的主要查看的是本机网络使用情况。不包括任何参数的话，查询的是本地所有socket。socket主要负责客户端和服务器之间收发数据。当客户端和服务端发生连接时，他们会同时生成一个socket文件，用来管理连接。</p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-2.png" alt="netstat 运行结果" title="netstat 运行结果"></p><blockquote><p>使用 netstat -t tcp可以查看TCP连接</p><p>查看某个端口占用：比如端口8888，可以用：<br>netstat -ntlp | grep 8888</p><p>-n: 将特殊端口号用数字显示，-t：查看TCP协议，-l：显示连接中的连接，-p：显示程序名称</p></blockquote><h4 id="网络测试命令"><a href="#网络测试命令" class="headerlink" title="网络测试命令"></a><em><strong>网络测试命令</strong></em></h4><p>通常我们都会使用一些命令，提前测试下网络延迟或者网络服务是否可用，能做到这写的命令，常用的主要是ping和telnet。</p><ol><li>ping</li></ol><blockquote><p>我们经常用到比如ping <a href="http://www.baidu.com，如下图：">www.baidu.com，如下图：</a></p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-3.png" alt="ping www.baidu.com 运行结果" title="ping www.baidu.com 运行结果"></p><blockquote><p>可以看出，本地机器是可以顺利连接到百度的。ping主要用到了ICMP协议，所以能看到icmp序号。time主要是往返一次的时间。ttl = time to live，是封包生存时间，一个封包从发出开始倒计时，如果超过52ms，这个包就会丢弃。ping同时能帮我们查询到一个网站的ip地址。</p></blockquote><ol start="2"><li>telnet</li></ol><blockquote><p>telnet主要可以让我们知道目标服务器的某个端口是否提供服务，比如：<br>telnet <a href="http://www.baidu.com/">www.baidu.com</a> 443，输出如下：</p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-4.png" alt="telnet www.baidu.com 443 运行结果" title="telnet www.baidu.com 443 运行结果"></p><blockquote><p>telnet运行后是交互式界面，可以输入相应内容，机型HTTP请求。</p></blockquote><h4 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a><em><strong>DNS查询</strong></em></h4><p>如果需要知道一个DNS的解析过程，就需要用到一些DNS的查询命令。</p><ol><li>host</li></ol><blockquote><p>是一个DNS查询工具，比如：host <a href="http://www.baidu.com输出：">www.baidu.com输出：</a></p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-5.png" alt="host www.baidu.com 运行结果" title="host www.baidu.com 运行结果"></p><blockquote><p>可以看出<a href="http://www.baidu.com是www.a.shifen.com的别名./">www.baidu.com是www.a.shifen.com的别名。</a></p></blockquote><ol start="2"><li>dig</li></ol><blockquote><p>dig的用处是查询的内容更详细。比如还是查询百度的DNS：</p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-6.png" alt="dig www.baidu.com 运行结果" title="dig www.baidu.com 运行结果"></p><h4 id="HTTP相关"><a href="#HTTP相关" class="headerlink" title="HTTP相关"></a><em><strong>HTTP相关</strong></em></h4><ol><li>curl</li></ol><blockquote><p>curl的主要作用就是在命令行请求一个网页或者一个接口。cur支持多种协议，比如SMTP，FTP，HTTP等。例如：curl <a href="http://www.baidu.com/">www.baidu.com</a></p></blockquote><p><img src="https://blog-imgs-1253907084.cos.ap-beijing.myqcloud.com/ReviewOS/cdczxt8-7.png" alt="curl www.baidu.com 运行结果" title="curl www.baidu.com 运行结果"></p><blockquote><p>从结果来看，我们请求到了百度的主页。cur也有一些可选的选项，比如curl -I，用来请求返回头。curl也可以执行POST请求。</p></blockquote><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>回到最开始的问题，查看NS记录，可以使用host -t ns {网址}来查看。比如：</p><blockquote><p>host -t ns <a href="http://www.baidu.com/">www.baidu.com</a></p></blockquote><p>如何查看TIME_WAIT状态的连接数？</p><blockquote><p>netstat -an | grep TIME_WAIT | wc -l</p></blockquote><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1] <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=478&amp;sid=20-h5Url-0&amp;buyFrom=2&amp;pageId=1pz4#/detail/pc?id=4614</a></p><p>[2] <a href="https://www.runoob.com/linux/linux-comm-scp.html">https://www.runoob.com/linux/linux-comm-scp.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Operating System </tag>
+            
+            <tag> 操作系统 </tag>
+            
+            <tag> 相关原理 </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> 操作系统基础知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重学操作系统（七）</title>
       <link href="2021/05/31/chong_xue_cao_zuo_xi_tong_qi/"/>
       <url>2021/05/31/chong_xue_cao_zuo_xi_tong_qi/</url>
